@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+body.dark {
+  background-color: #242526;
+  color: #e4e6eb;
+}
+body.light {
+  background-color: #ffffff;
+}
+.white {
+  background-color: #ffffff;
+}
+.content {
+  margin-top: 4.4rem;
+}
