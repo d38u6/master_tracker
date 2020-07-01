@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Col, Card } from "react-bootstrap";
-
+import classes from "./CategoryBox.module.css";
 import defaultImage from "../../assets/image/defaultImage.jpg";
 import withTheme from "../../HOC/withTheme";
 
-const Subject = ({ imageURL, title, desc, lastUpdate, theme }) => (
-  <>
-    <Col md="4">
+const CategoryBox = ({ imageURL, title, desc, lastUpdate, theme }) => (
+  <Col md="4">
+    <div className={classes.CategoryBox}>
       <Card bg={theme.bg} text={theme.text}>
         <Card.Img
           variant="top"
@@ -23,11 +23,11 @@ const Subject = ({ imageURL, title, desc, lastUpdate, theme }) => (
           <small className="text-muted">{lastUpdate}</small>
         </Card.Footer>
       </Card>
-    </Col>
-  </>
+    </div>
+  </Col>
 );
 
-Subject.propTypes = {
+CategoryBox.propTypes = {
   imageURL: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -39,4 +39,4 @@ Subject.propTypes = {
   }),
 };
 
-export default withTheme(Subject);
+export default withTheme(CategoryBox);
