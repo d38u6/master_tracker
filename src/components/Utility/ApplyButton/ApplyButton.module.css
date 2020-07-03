@@ -1,0 +1,11 @@
+.ApplyButton {
+  cursor: pointer;
+  display: flex;
+  padding: 7px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+}
+.ApplyButton:hover {
+  background-color: #28a745;
+}
