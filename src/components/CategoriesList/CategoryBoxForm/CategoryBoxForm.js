@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Card, Form } from "react-bootstrap";
 
-import withTheme from "../../HOC/withTheme";
-import ApplyButton from "../Utility/ApplyButton/ApplyButton";
+import withTheme from "../../../HOC/withTheme";
+import ApplyButton from "../../Utility/ApplyButton/ApplyButton";
 
 import classes from "./CategoryBoxForm.module.css";
-import defaultImage from "../../assets/image/defaultImage.jpg";
+import defaultImage from "../../../assets/image/defaultImage.jpg";
 
 const CategoryBoxForm = ({ titleConf, descConf, onSave, theme }) => {
   return (
