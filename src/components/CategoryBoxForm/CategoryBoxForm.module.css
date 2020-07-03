@@ -1,0 +1,17 @@
+.CategoryBox {
+  display: flex;
+  margin-bottom: 30px;
+  height: calc(100% - 30px);
+}
+.ApplyButton {
+  display: flex;
+  position: absolute;
+  left: calc(100% - 56px);
+  padding: 5px;
+  z-index: 1;
+}
+.TitleInput {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
