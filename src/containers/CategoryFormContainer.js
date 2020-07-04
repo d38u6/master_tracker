@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const CategoryFormContainer = ({ render }) => {
+const CategoryFormContainer = ({ categoryId, onSave, render }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+
+  // useEffect(() => {
+  //   //find category;
+  //   const category = window.STORE.categories.find(
+  //     ({ id }) => id === categoryId
+  //   );
+  //   if (category) {
+  //     setTitle(category.title);
+  //     setDesc(category.desc);
+  //   }
+  // }, [categoryId]);
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
@@ -14,7 +25,8 @@ const CategoryFormContainer = ({ render }) => {
   };
 
   const onSaveHandler = () => {
-    console.log("Save CatgoryBoxForm");
+    onSave();
+    console.log("Save CatgoryForm");
   };
 
   return render
@@ -27,7 +39,9 @@ const CategoryFormContainer = ({ render }) => {
 };
 
 CategoryFormContainer.propTypes = {
+  categoryId: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
 };
 
 export default CategoryFormContainer;
