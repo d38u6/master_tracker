@@ -10,7 +10,9 @@ function App() {
     <Theme>
       <Layout>
         <CategoriesContainer
-          render={(categories) => <CategoriesList categories={categories} />}
+          render={({ categories, addCategory }) => (
+            <CategoriesList categories={categories} onAddClick={addCategory} />
+          )}
         />
       </Layout>
     </Theme>

@@ -4,18 +4,29 @@ import { connect } from "react-redux";
 import { setCategories } from "../store/actions";
 import * as fakeData from "../data/fixtures";
 
-const CategoriesContainer = ({ categories, setCategories, render }) => {
+const CategoriesContainer = ({
+  onAddCategory,
+  categories,
+  setCategories,
+  render,
+}) => {
   useEffect(() => {
     if (categories.length < 1) {
       setCategories(fakeData.categories);
     }
   }, [categories, setCategories]);
 
-  return render(categories);
+  const addCategoryHandler = () => {
+    if (onAddCategory) onAddCategory();
+    console.log("Add new category");
+  };
+
+  return render({ categories, addCategory: addCategoryHandler });
 };
 
 CategoriesContainer.propTypes = {
   render: PropTypes.func.isRequired,
+  onAddCategory: PropTypes.func,
   //redux
   categories: PropTypes.array.isRequired,
   setCategories: PropTypes.func.isRequired,
