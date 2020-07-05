@@ -1,0 +1,7 @@
+.RemoveButton {
+  cursor: pointer;
+  text-align: center;
+}
+.RemoveButton:hover {
+  color: #c82333;
+}
