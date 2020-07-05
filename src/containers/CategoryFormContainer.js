@@ -7,7 +7,6 @@ const CategoryFormContainer = ({ categories, categoryId, onSave, render }) => {
   const [desc, setDesc] = useState("");
 
   useEffect(() => {
-    //find category;
     const category = categories.find(({ id }) => id === categoryId);
     if (category) {
       setTitle(category.title);
@@ -28,11 +27,16 @@ const CategoryFormContainer = ({ categories, categoryId, onSave, render }) => {
     console.log("Save CatgoryForm");
   };
 
+  const onRemoveHandler = () => {
+    console.log("remove category");
+  };
+
   return render
     ? render({
         titleConf: { value: title, onChange: titleChangeHandler },
         descConf: { value: desc, onChange: descChangeHandler },
-        onSave: onSaveHandler,
+        onSaveClick: onSaveHandler,
+        onRemoveClick: onRemoveHandler,
       })
     : null;
 };
@@ -41,6 +45,7 @@ CategoryFormContainer.propTypes = {
   categoryId: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
   onSave: PropTypes.func,
+  onRemove: PropTypes.func,
   //redux
   categories: PropTypes.array,
 };

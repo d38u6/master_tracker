@@ -7,13 +7,20 @@ import ApplyButton from "../../Utility/ApplyButton/ApplyButton";
 
 import classes from "./CategoryBoxForm.module.css";
 import defaultImage from "../../../assets/image/defaultImage.jpg";
+import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 
-const CategoryBoxForm = ({ titleConf, descConf, onSave, theme }) => {
+const CategoryBoxForm = ({
+  titleConf,
+  descConf,
+  onSaveClick,
+  onRemoveClick,
+  theme,
+}) => {
   return (
     <Col md="4">
       <div className={classes.CategoryBox}>
         <div className={classes.ApplyButton}>
-          <ApplyButton onClick={onSave} />
+          <ApplyButton onClick={onSaveClick} />
         </div>
         <Card bg={theme.bg} text={theme.text}>
           <Card.Img
@@ -26,7 +33,7 @@ const CategoryBoxForm = ({ titleConf, descConf, onSave, theme }) => {
               <Form.Control
                 className={classes.TitleInput}
                 type="text"
-                placeholder="Category TItle"
+                placeholder="Category Title"
                 value={titleConf.value}
                 onChange={titleConf.onChange}
               />
@@ -42,7 +49,7 @@ const CategoryBoxForm = ({ titleConf, descConf, onSave, theme }) => {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-muted">not yet</small>
+            <RemoveButton onClick={onRemoveClick} />
           </Card.Footer>
         </Card>
       </div>
@@ -59,7 +66,8 @@ CategoryBoxForm.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
   }),
-  onSave: PropTypes.func,
+  onSaveClick: PropTypes.func,
+  onRemoveClick: PropTypes.func,
   //theme Context
   theme: PropTypes.shape({
     bg: PropTypes.oneOf(["dark", "light"]),

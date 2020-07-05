@@ -14,3 +14,6 @@ body.light {
 .content {
   margin-top: 4.4rem;
 }
+svg {
+  vertical-align: text-top;
+}
