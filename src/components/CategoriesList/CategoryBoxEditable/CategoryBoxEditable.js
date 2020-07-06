@@ -5,7 +5,7 @@ import CategoryBox from "../CategoryBox/CategoryBox";
 import CategoryFormContainer from "../../../containers/CategoryFormContainer";
 import CategoryBoxForm from "../CategoryBoxForm/CategoryBoxForm";
 
-const CategoryBoxEditable = (categoryProps) => {
+function CategoryBoxEditable(categoryProps) {
   const [editMode, setEditMode] = useState(false);
 
   const turnOnEditMode = () => setEditMode(true);
@@ -20,7 +20,7 @@ const CategoryBoxEditable = (categoryProps) => {
   ) : (
     <CategoryBox {...categoryProps} onEditClick={turnOnEditMode} />
   );
-};
+}
 
 CategoryBoxEditable.propTypes = {
   id: PropTypes.string.isRequired,

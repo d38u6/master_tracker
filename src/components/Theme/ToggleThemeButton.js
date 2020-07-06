@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ThemeContext from "./ThemeContext";
 import { Button } from "react-bootstrap";
 
-const ToggleThemeButton = () => {
+function ToggleThemeButton() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const variant = theme === "dark" ? "light" : "dark";
   return (
@@ -10,6 +10,6 @@ const ToggleThemeButton = () => {
       <span style={{ textTransform: "capitalize" }}>{variant}</span>
     </Button>
   );
-};
+}
 
 export default ToggleThemeButton;

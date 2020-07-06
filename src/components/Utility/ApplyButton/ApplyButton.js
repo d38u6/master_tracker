@@ -4,13 +4,13 @@ import { FaCheck } from "react-icons/fa";
 
 import classes from "./ApplyButton.module.css";
 
-const ApplyButton = ({ onClick }) => {
+function ApplyButton({ onClick }) {
   return (
     <div className={classes.ApplyButton} onClick={onClick}>
       <FaCheck />
     </div>
   );
-};
+}
 
 ApplyButton.propTypes = {
   onClick: PropTypes.func,

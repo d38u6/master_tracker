@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { setCategories } from "../store/actions";
 import * as fakeData from "../data/fixtures";
 
-const CategoriesContainer = ({
+function CategoriesContainer({
   onAddCategory,
   categories,
   setCategories,
   render,
-}) => {
+}) {
   useEffect(() => {
     if (categories.length < 1) {
       setCategories(fakeData.categories);
@@ -22,7 +22,7 @@ const CategoriesContainer = ({
   };
 
   return render({ categories, addCategory: addCategoryHandler });
-};
+}
 
 CategoriesContainer.propTypes = {
   render: PropTypes.func.isRequired,

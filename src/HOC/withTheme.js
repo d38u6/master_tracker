@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ThemeContext from "../components/Theme/ThemeContext";
 
-const withTheme = (Cmp) => {
+function withTheme(Cmp) {
   return (props) => {
     const { theme } = useContext(ThemeContext);
     return (
@@ -11,6 +11,6 @@ const withTheme = (Cmp) => {
       />
     );
   };
-};
+}
 
 export default withTheme;

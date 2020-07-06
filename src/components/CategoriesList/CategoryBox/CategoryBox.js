@@ -8,7 +8,7 @@ import EditButton from "../../Utility/EditButton/EditButton";
 import classes from "./CategoryBox.module.css";
 import defaultImage from "../../../assets/image/defaultImage.jpg";
 
-const CategoryBox = ({ imageURL, title, desc, time, onEditClick, theme }) => {
+function CategoryBox({ imageURL, title, desc, time, onEditClick, theme }) {
   return (
     <Col md="4">
       <div className={classes.CategoryBox}>
@@ -32,7 +32,7 @@ const CategoryBox = ({ imageURL, title, desc, time, onEditClick, theme }) => {
       </div>
     </Col>
   );
-};
+}
 
 CategoryBox.propTypes = {
   imageURL: PropTypes.string,

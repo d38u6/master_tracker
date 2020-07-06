@@ -5,7 +5,7 @@ import { Navbar } from "react-bootstrap";
 import ToggleThemeButton from "../../Theme/ToggleThemeButton";
 import withTheme from "../../../HOC/withTheme";
 
-const Header = ({ theme }) => {
+function Header({ theme }) {
   return (
     <Navbar
       bg={theme.bg}
@@ -16,7 +16,7 @@ const Header = ({ theme }) => {
       <ToggleThemeButton />
     </Navbar>
   );
-};
+}
 
 Header.propTypes = {
   //theme Context

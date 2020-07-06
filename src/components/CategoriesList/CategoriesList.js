@@ -5,7 +5,7 @@ import { Row } from "react-bootstrap";
 import CategoryBoxEditable from "./CategoryBoxEditable/CategoryBoxEditable";
 import AddButton from "../Utility/AddButton/AddButton";
 
-const CategoriesList = ({ categories, onAddClick }) => {
+function CategoriesList({ categories, onAddClick }) {
   return (
     <>
       <Row>
@@ -16,7 +16,7 @@ const CategoriesList = ({ categories, onAddClick }) => {
       </Row>
     </>
   );
-};
+}
 
 CategoriesList.propTypes = {
   categories: PropTypes.arrayOf(

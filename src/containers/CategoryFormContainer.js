@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const CategoryFormContainer = ({ categories, categoryId, onSave, render }) => {
+function CategoryFormContainer({ categories, categoryId, onSave, render }) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 
@@ -39,7 +39,7 @@ const CategoryFormContainer = ({ categories, categoryId, onSave, render }) => {
         onRemoveClick: onRemoveHandler,
       })
     : null;
-};
+}
 
 CategoryFormContainer.propTypes = {
   categoryId: PropTypes.string.isRequired,

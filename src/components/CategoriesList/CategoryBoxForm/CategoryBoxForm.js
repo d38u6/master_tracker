@@ -9,13 +9,13 @@ import classes from "./CategoryBoxForm.module.css";
 import defaultImage from "../../../assets/image/defaultImage.jpg";
 import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 
-const CategoryBoxForm = ({
+function CategoryBoxForm({
   titleConf,
   descConf,
   onSaveClick,
   onRemoveClick,
   theme,
-}) => {
+}) {
   return (
     <Col md="4">
       <div className={classes.CategoryBox}>
@@ -55,7 +55,7 @@ const CategoryBoxForm = ({
       </div>
     </Col>
   );
-};
+}
 
 CategoryBoxForm.propTypes = {
   titleConf: PropTypes.shape({
