@@ -5,11 +5,14 @@ import { createStore } from "redux";
 import * as serviceWorker from "./serviceWorker";
 
 import rootReducer from "./store/reducers";
+import { saveStoreSubscriber } from "./utility/localStorageManager/localStorageManager";
 
 import "./index.css";
 import App from "./App";
 
 const store = createStore(rootReducer);
+
+store.subscribe(saveStoreSubscriber(store));
 
 ReactDOM.render(
   <React.StrictMode>
