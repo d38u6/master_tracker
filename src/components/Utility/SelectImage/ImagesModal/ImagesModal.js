@@ -2,23 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Row } from "react-bootstrap";
 
-import withTheme from "../../../../HOC/withTheme";
-import classes from "./ImagesModal.module.css";
+import ModalWithTheme from "../../ModalWithTheme/ModalWithTheme";
 
-function ImagesModal({ show, onHide, theme, children }) {
-  const themeClassName = theme.bg.charAt(0).toUpperCase() + theme.bg.slice(1);
+function ImagesModal({ show, onHide, children }) {
   return (
-    <Modal show={show} onHide={onHide} animation={false}>
+    <ModalWithTheme show={show} onHide={onHide} animation={false}>
       {/*Animation False is wolkaround to error off strict mode */}
-      <div className={classes[themeClassName]}>
-        <Modal.Header closeButton>
-          <Modal.Title>Choose Image</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Row>{children}</Row>
-        </Modal.Body>
-      </div>
-    </Modal>
+      <Modal.Header closeButton>
+        <Modal.Title>Choose Image</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Row>{children}</Row>
+      </Modal.Body>
+    </ModalWithTheme>
   );
 }
 
@@ -26,11 +22,6 @@ ImagesModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,
   onChooseImage: PropTypes.func,
-  //theme Context
-  theme: PropTypes.shape({
-    bg: PropTypes.oneOf(["dark", "light"]),
-    text: PropTypes.oneOf(["dark", "light"]),
-  }),
 };
 
-export default withTheme(ImagesModal);
+export default ImagesModal;
