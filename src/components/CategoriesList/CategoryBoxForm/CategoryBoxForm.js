@@ -5,7 +5,7 @@ import { Col, Card, Form } from "react-bootstrap";
 import withTheme from "../../../HOC/withTheme";
 import ApplyButton from "../../Utility/ApplyButton/ApplyButton";
 import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
-import SelectImageContainer from "../../../containers/SelectImageContainer/SelectImageContainer";
+import SelectImageContainer from "../../../containers/CategoriesList/CategoryForm/SelectImage/SelectImageContainer";
 import SelectImage from "../../Utility/SelectImage/SelectImage";
 
 import classes from "./CategoryBoxForm.module.css";
@@ -83,9 +83,9 @@ CategoryBoxForm.propTypes = {
   onRemoveClick: PropTypes.func,
   //theme Context
   theme: PropTypes.shape({
-    bg: PropTypes.oneOf(["dark", "light"]),
-    text: PropTypes.oneOf(["dark", "light"]),
-  }),
+    bg: PropTypes.oneOf(["dark", "light"]).isRequired,
+    text: PropTypes.oneOf(["dark", "light"]).isRequired,
+  }).isRequired,
 };
 
 export default withTheme(CategoryBoxForm);

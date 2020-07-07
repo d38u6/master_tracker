@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { loadCategoriesImage } from "../../data/imagesLoader";
+import { loadCategoriesImage } from "../../../../data/imagesLoader";
 
 function SelectImageContainer({ activeSrc, onSelect, render }) {
   const [images, setImages] = useState([]);
@@ -22,7 +22,6 @@ function SelectImageContainer({ activeSrc, onSelect, render }) {
       }))
     );
     onSelect(src);
-    console.log("choosen image: ", src);
   };
 
   return render({ images, onImageClick: imageClickHandler });

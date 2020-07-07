@@ -41,9 +41,9 @@ CategoryBox.propTypes = {
   onEditClick: PropTypes.func,
   //theme Context
   theme: PropTypes.shape({
-    bg: PropTypes.oneOf(["dark", "light"]),
-    text: PropTypes.oneOf(["dark", "light"]),
-  }),
+    bg: PropTypes.oneOf(["dark", "light"]).isRequired,
+    text: PropTypes.oneOf(["dark", "light"]).isRequired,
+  }).isRequired,
 };
 
 export default withTheme(CategoryBox);

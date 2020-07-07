@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCategories } from "../store/actions";
-import * as fakeData from "../data/fixtures";
+import { setCategories } from "../../store/actions";
+import * as fakeData from "../../data/fixtures";
 
-function CategoriesContainer({
+export function CategoriesListContainer({
   onAddCategory,
   categories,
   setCategories,
@@ -24,7 +24,7 @@ function CategoriesContainer({
   return render({ categories, addCategory: addCategoryHandler });
 }
 
-CategoriesContainer.propTypes = {
+CategoriesListContainer.propTypes = {
   render: PropTypes.func.isRequired,
   onAddCategory: PropTypes.func,
   //redux
@@ -36,4 +36,6 @@ function mapStateToProps({ categories }) {
   return { categories };
 }
 
-export default connect(mapStateToProps, { setCategories })(CategoriesContainer);
+export default connect(mapStateToProps, { setCategories })(
+  CategoriesListContainer
+);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import CategoryBox from "../CategoryBox/CategoryBox";
-import CategoryFormContainer from "../../../containers/CategoryFormContainer";
+import CategoryFormContainer from "../../../containers/CategoriesList/CategoryForm/CategoryFormContainer";
 import CategoryBoxForm from "../CategoryBoxForm/CategoryBoxForm";
 
 function CategoryBoxEditable(categoryProps) {
@@ -24,7 +24,7 @@ function CategoryBoxEditable(categoryProps) {
 
 CategoryBoxEditable.propTypes = {
   id: PropTypes.string.isRequired,
-  imageURL: PropTypes.string,
+  imageSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   time: PropTypes.number,
