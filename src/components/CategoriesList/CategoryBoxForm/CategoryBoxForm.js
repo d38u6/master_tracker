@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Card, Form } from "react-bootstrap";
 
-import withTheme from "../../../HOC/withTheme";
+import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
 import ApplyButton from "../../Utility/ApplyButton/ApplyButton";
 import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 import SelectImageContainer from "../../../containers/CategoriesList/CategoryForm/SelectImage/SelectImageContainer";
@@ -16,7 +16,6 @@ function CategoryBoxForm({
   onSaveClick,
   onRemoveClick,
   imageConf,
-  theme,
 }) {
   return (
     <Col md="4">
@@ -31,7 +30,7 @@ function CategoryBoxForm({
         <div className={classes.ApplyButton}>
           <ApplyButton onClick={onSaveClick} />
         </div>
-        <Card bg={theme.bg} text={theme.text}>
+        <CardWithTheme>
           <Card.Img
             variant="top"
             src={imageConf.src}
@@ -60,7 +59,7 @@ function CategoryBoxForm({
           <Card.Footer>
             <RemoveButton onClick={onRemoveClick} />
           </Card.Footer>
-        </Card>
+        </CardWithTheme>
       </div>
     </Col>
   );
@@ -81,11 +80,6 @@ CategoryBoxForm.propTypes = {
   }),
   onSaveClick: PropTypes.func,
   onRemoveClick: PropTypes.func,
-  //theme Context
-  theme: PropTypes.shape({
-    bg: PropTypes.oneOf(["dark", "light"]).isRequired,
-    text: PropTypes.oneOf(["dark", "light"]).isRequired,
-  }).isRequired,
 };
 
-export default withTheme(CategoryBoxForm);
+export default CategoryBoxForm;

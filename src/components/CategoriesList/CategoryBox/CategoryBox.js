@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Card } from "react-bootstrap";
 
-import withTheme from "../../../HOC/withTheme";
+import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
 import EditButton from "../../Utility/EditButton/EditButton";
 
 import classes from "./CategoryBox.module.css";
@@ -14,7 +14,7 @@ function CategoryBox({ imageSrc, title, desc, time, onEditClick, theme }) {
         <div className={classes.EditButton}>
           <EditButton onClick={onEditClick} />
         </div>
-        <Card bg={theme.bg} text={theme.text}>
+        <CardWithTheme>
           <Card.Img
             variant="top"
             src={imageSrc}
@@ -27,7 +27,7 @@ function CategoryBox({ imageSrc, title, desc, time, onEditClick, theme }) {
           <Card.Footer>
             <small className="text-muted">{time}</small>
           </Card.Footer>
-        </Card>
+        </CardWithTheme>
       </div>
     </Col>
   );
@@ -39,11 +39,6 @@ CategoryBox.propTypes = {
   description: PropTypes.string,
   time: PropTypes.number,
   onEditClick: PropTypes.func,
-  //theme Context
-  theme: PropTypes.shape({
-    bg: PropTypes.oneOf(["dark", "light"]).isRequired,
-    text: PropTypes.oneOf(["dark", "light"]).isRequired,
-  }).isRequired,
 };
 
-export default withTheme(CategoryBox);
+export default CategoryBox;
