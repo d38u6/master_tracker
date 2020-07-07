@@ -6,9 +6,8 @@ import withTheme from "../../../HOC/withTheme";
 import EditButton from "../../Utility/EditButton/EditButton";
 
 import classes from "./CategoryBox.module.css";
-import defaultImage from "../../../assets/image/defaultImage.jpg";
 
-function CategoryBox({ imageURL, title, desc, time, onEditClick, theme }) {
+function CategoryBox({ imageSrc, title, desc, time, onEditClick, theme }) {
   return (
     <Col md="4">
       <div className={classes.CategoryBox}>
@@ -18,7 +17,7 @@ function CategoryBox({ imageURL, title, desc, time, onEditClick, theme }) {
         <Card bg={theme.bg} text={theme.text}>
           <Card.Img
             variant="top"
-            src={imageURL || defaultImage}
+            src={imageSrc}
             style={{ height: "160px", objectFit: "cover" }}
           />
           <Card.Body>
@@ -35,7 +34,7 @@ function CategoryBox({ imageURL, title, desc, time, onEditClick, theme }) {
 }
 
 CategoryBox.propTypes = {
-  imageURL: PropTypes.string,
+  imageSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   time: PropTypes.number,

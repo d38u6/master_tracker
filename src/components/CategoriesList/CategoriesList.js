@@ -22,7 +22,7 @@ CategoriesList.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      imageURL: PropTypes.string,
+      imageSrc: PropTypes.string,
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
       lastUpdate: PropTypes.number,

@@ -1,5 +1,10 @@
+import itImage from "../assets/image/categories/it.jpg";
+import codingImage from "../assets/image/categories/coding.jpg";
+import defaultImage from "../assets/image/categories/default.jpg";
+
 export const categoryOne = {
   id: "1",
+  imageSrc: itImage,
   title: "Programowanie",
   desc: "Nauka kodzenia i wszystko co z nią związane",
   time: 1235489,
@@ -7,6 +12,7 @@ export const categoryOne = {
 
 export const categoryTwo = {
   id: "2",
+  imageSrc: codingImage,
   title: "Programowanie",
   desc: "Nauka kodzenia i wszystko co z nią związane",
   time: 1235489,
@@ -14,6 +20,7 @@ export const categoryTwo = {
 
 export const categoryThree = {
   id: "3",
+  imageSrc: defaultImage,
   title: "Programowanie",
   desc: "Nauka kodzenia i wszystko co z nią związane",
   time: 1235489,
@@ -21,6 +28,7 @@ export const categoryThree = {
 
 export const categoryFour = {
   id: "4",
+  imageSrc: defaultImage,
   title: "Programowanie",
   desc: "Nauka kodzenia i wszystko co z nią związane",
   time: 1235489,

@@ -10,8 +10,21 @@
   padding: 5px;
   z-index: 1;
 }
+.ImageButton {
+  display: flex;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  padding: 5px;
+  z-index: 1;
+}
 .TitleInput {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.2;
+}
+
+.CategoryBox:hover .ImageButton {
+  visibility: visible;
+  pointer-events: auto;
 }

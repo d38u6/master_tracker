@@ -5,12 +5,14 @@ import PropTypes from "prop-types";
 function CategoryFormContainer({ categories, categoryId, onSave, render }) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
     const category = categories.find(({ id }) => id === categoryId);
     if (category) {
       setTitle(category.title);
       setDesc(category.desc);
+      setImageSrc(category.imageSrc);
     }
   }, [categories, categoryId]);
 
@@ -20,6 +22,11 @@ function CategoryFormContainer({ categories, categoryId, onSave, render }) {
 
   const descChangeHandler = (e) => {
     setDesc(e.target.value);
+  };
+
+  const onImageChangeHandler = (imageSrc) => {
+    setImageSrc(imageSrc);
+    console.log("Image Change");
   };
 
   const onSaveHandler = () => {
@@ -35,6 +42,7 @@ function CategoryFormContainer({ categories, categoryId, onSave, render }) {
     ? render({
         titleConf: { value: title, onChange: titleChangeHandler },
         descConf: { value: desc, onChange: descChangeHandler },
+        imageConf: { src: imageSrc, onChange: onImageChangeHandler },
         onSaveClick: onSaveHandler,
         onRemoveClick: onRemoveHandler,
       })
@@ -45,7 +53,6 @@ CategoryFormContainer.propTypes = {
   categoryId: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
   onSave: PropTypes.func,
-  onRemove: PropTypes.func,
   //redux
   categories: PropTypes.array,
 };
