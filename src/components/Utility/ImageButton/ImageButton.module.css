@@ -1,0 +1,11 @@
+.ImageButton {
+  cursor: pointer;
+  display: flex;
+  padding: 7px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+}
+.ImageButton:hover {
+  background-color: #007bff;
+}
