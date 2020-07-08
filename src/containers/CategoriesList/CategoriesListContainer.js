@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import shortId from "shortid";
 
 import { getCategories } from "../../utility/localStorageManager/localStorageManager";
-import { setCategories } from "../../store/actions";
-import { initialCategories } from "../../data/categories";
+import { setCategories, addCategory } from "../../store/actions";
+import { initialCategories, newCategory } from "../../data/categories";
 
-export function CategoriesListContainer({ categories, setCategories, render }) {
+export function CategoriesListContainer({
+  categories,
+  setCategories,
+  addCategory,
+  render,
+}) {
   useEffect(() => {
     if (categories.length < 1) {
       const categories = getCategories();
@@ -15,7 +21,7 @@ export function CategoriesListContainer({ categories, setCategories, render }) {
   }, [categories, setCategories]);
 
   const addCategoryHandler = () => {
-    console.log("Add new category");
+    addCategory({ ...newCategory, id: shortId.generate() });
   };
 
   return render({ categories, addCategory: addCategoryHandler });
@@ -26,12 +32,13 @@ CategoriesListContainer.propTypes = {
   //redux
   categories: PropTypes.array.isRequired,
   setCategories: PropTypes.func.isRequired,
+  addCategory: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ categories }) {
   return { categories };
 }
 
-export default connect(mapStateToProps, { setCategories })(
+export default connect(mapStateToProps, { setCategories, addCategory })(
   CategoriesListContainer
 );
