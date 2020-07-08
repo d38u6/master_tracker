@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
+import { getCategories } from "../../utility/localStorageManager/localStorageManager";
 import { setCategories } from "../../store/actions";
-import * as fakeData from "../../data/fixtures";
+import { initialCategories } from "../../data/categories";
 
 export function CategoriesListContainer({ categories, setCategories, render }) {
   useEffect(() => {
     if (categories.length < 1) {
-      setCategories(fakeData.categories);
+      const categories = getCategories();
+      setCategories(categories || initialCategories);
     }
   }, [categories, setCategories]);
 
