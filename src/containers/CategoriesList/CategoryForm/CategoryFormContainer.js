@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { editCategory } from "../../../store/actions/categories/categories";
+import {
+  editCategory,
+  removeCategory,
+} from "../../../store/actions/categories/categories";
 
 function CategoryFormContainer({
   categories,
   editCategory,
+  removeCategory,
   categoryId,
   onSave,
   render,
@@ -37,12 +41,12 @@ function CategoryFormContainer({
   };
 
   const onSaveHandler = () => {
-    editCategory(categoryId, { imageSrc, title, desc });
     onSave();
+    editCategory(categoryId, { imageSrc, title, desc });
   };
 
   const onRemoveHandler = () => {
-    console.log("remove category");
+    removeCategory(categoryId);
   };
 
   return render({
@@ -61,12 +65,13 @@ CategoryFormContainer.propTypes = {
   //redux
   categories: PropTypes.array.isRequired,
   editCategory: PropTypes.func.isRequired,
+  removeCategory: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps({ categories }) {
   return { categories };
 }
 
-export default connect(mapDispatchToProps, { editCategory })(
+export default connect(mapDispatchToProps, { editCategory, removeCategory })(
   CategoryFormContainer
 );

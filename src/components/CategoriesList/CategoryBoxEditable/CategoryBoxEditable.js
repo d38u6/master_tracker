@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 
 import CategoryBox from "../CategoryBox/CategoryBox";
@@ -30,4 +30,4 @@ CategoryBoxEditable.propTypes = {
   time: PropTypes.number,
 };
 
-export default CategoryBoxEditable;
+export default memo(CategoryBoxEditable);
