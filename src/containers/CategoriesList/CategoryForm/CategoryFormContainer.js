@@ -46,7 +46,11 @@ function CategoryFormContainer({
   };
 
   const onRemoveHandler = () => {
-    removeCategory(categoryId);
+    if (categories.length > 1) {
+      removeCategory(categoryId);
+    } else {
+      console.log("You can not delete last category");
+    }
   };
 
   return render({
