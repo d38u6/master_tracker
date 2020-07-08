@@ -1,1 +1,5 @@
-export { setCategories, addCategory } from "./categories/categories";
+export {
+  setCategories,
+  addCategory,
+  editCategory,
+} from "./categories/categories";
