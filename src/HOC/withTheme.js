@@ -7,7 +7,10 @@ function withTheme(Cmp) {
     return (
       <Cmp
         {...props}
-        theme={{ bg: theme, text: theme === "dark" ? "light" : "dark" }}
+        theme={{
+          bg: theme || "dark",
+          text: theme === "light" ? "dark" : "light",
+        }}
       />
     );
   };
