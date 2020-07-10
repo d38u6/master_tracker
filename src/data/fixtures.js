@@ -40,3 +40,23 @@ export const categories = [
   categoryThree,
   categoryFour,
 ];
+
+export const titleConf = {
+  value: "Test Title Input Value ",
+  onChange: jest.fn(),
+};
+export const descConf = {
+  value: "Test Description area Value",
+  onChange: jest.fn(),
+};
+export const imageConf = {
+  src: "testImageSource.png",
+  onChange: jest.fn(),
+};
+export const categoryFormConf = {
+  titleConf,
+  descConf,
+  imageConf,
+  onSaveClick: jest.fn(),
+  onRemoveClick: jest.fn(),
+};

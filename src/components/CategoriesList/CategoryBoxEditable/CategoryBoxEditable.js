@@ -5,7 +5,7 @@ import CategoryBox from "../CategoryBox/CategoryBox";
 import CategoryFormContainer from "../../../containers/CategoriesList/CategoryForm/CategoryFormContainer";
 import CategoryBoxForm from "../CategoryBoxForm/CategoryBoxForm";
 
-function CategoryBoxEditable(categoryProps) {
+export function CategoryBoxEditable(categoryProps) {
   const [editMode, setEditMode] = useState(false);
 
   const turnOnEditMode = () => setEditMode(true);
