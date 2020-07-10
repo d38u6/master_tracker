@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Col, Card, Form } from "react-bootstrap";
 
 import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
-import ApplyButton from "../../Utility/ApplyButton/ApplyButton";
+import ImageControl from "./ImageControl/ImageControl";
+import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
+
 import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 
 import classes from "./CategoryBoxForm.module.css";
-import ImageControl from "./ImageControl/ImageControl";
-import CircleButtonWrapper from "../CategoryBox/CircleButtonWrapper/CircleButtonWrapper";
-import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
+import ApplyButton from "./ApplyButton/ApplyButton";
 
 function CategoryBoxForm({
   titleConf,
@@ -26,9 +26,7 @@ function CategoryBoxForm({
           onSelect={imageConf.onChange}
           className={classes.ImageControl}
         />
-        <CircleButtonWrapper>
-          <ApplyButton onClick={onSaveClick} />
-        </CircleButtonWrapper>
+        <ApplyButton onClick={onSaveClick} />
         <CardWithTheme>
           <CategoryImage src={imageConf.src} />
           <Card.Body>
