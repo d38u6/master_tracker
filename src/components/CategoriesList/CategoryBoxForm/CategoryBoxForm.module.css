@@ -10,12 +10,11 @@
   padding: 5px;
   z-index: 1;
 }
-.ImageButton {
+.ImageControl {
   display: flex;
   visibility: hidden;
   pointer-events: none;
   position: absolute;
-  padding: 5px;
   z-index: 1;
 }
 .TitleInput {
@@ -24,7 +23,7 @@
   line-height: 1.2;
 }
 
-.CategoryBox:hover .ImageButton {
+.CategoryBox:hover .ImageControl {
   visibility: visible;
   pointer-events: auto;
 }

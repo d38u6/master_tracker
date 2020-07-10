@@ -5,10 +5,9 @@ import { Col, Card, Form } from "react-bootstrap";
 import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
 import ApplyButton from "../../Utility/ApplyButton/ApplyButton";
 import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
-import SelectImageContainer from "../../../containers/CategoriesList/CategoryForm/SelectImage/SelectImageContainer";
-import SelectImage from "../../Utility/SelectImage/SelectImage";
 
 import classes from "./CategoryBoxForm.module.css";
+import ImageControl from "./ImageControl/ImageControl";
 
 function CategoryBoxForm({
   titleConf,
@@ -20,13 +19,11 @@ function CategoryBoxForm({
   return (
     <Col md="4">
       <div className={classes.CategoryBox}>
-        <div className={classes.ImageButton}>
-          <SelectImageContainer
-            activeSrc={imageConf.src}
-            onSelect={imageConf.onChange}
-            render={(props) => <SelectImage {...props} />}
-          />
-        </div>
+        <ImageControl
+          activeSrc={imageConf.src}
+          onSelect={imageConf.onChange}
+          className={classes.ImageControl}
+        />
         <div className={classes.ApplyButton}>
           <ApplyButton onClick={onSaveClick} />
         </div>

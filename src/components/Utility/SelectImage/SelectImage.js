@@ -28,7 +28,7 @@ function SelectImage({ images, onImageClick }) {
 }
 
 SelectImage.propTypes = {
-  images: PropTypes.array,
+  images: PropTypes.array.isRequired,
   onImageClick: PropTypes.func,
 };
 
