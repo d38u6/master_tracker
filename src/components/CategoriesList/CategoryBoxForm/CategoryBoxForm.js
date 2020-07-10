@@ -8,6 +8,7 @@ import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 
 import classes from "./CategoryBoxForm.module.css";
 import ImageControl from "./ImageControl/ImageControl";
+import CircleButtonWrapper from "../CategoryBox/CircleButtonWrapper/CircleButtonWrapper";
 
 function CategoryBoxForm({
   titleConf,
@@ -24,9 +25,9 @@ function CategoryBoxForm({
           onSelect={imageConf.onChange}
           className={classes.ImageControl}
         />
-        <div className={classes.ApplyButton}>
+        <CircleButtonWrapper>
           <ApplyButton onClick={onSaveClick} />
-        </div>
+        </CircleButtonWrapper>
         <CardWithTheme>
           <Card.Img
             variant="top"

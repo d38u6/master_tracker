@@ -1,0 +1,7 @@
+.CircleButtonWrapper {
+  display: flex;
+  position: absolute;
+  left: calc(100% - 56px);
+  padding: 5px;
+  z-index: 1;
+}

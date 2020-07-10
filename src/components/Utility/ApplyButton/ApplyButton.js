@@ -4,9 +4,12 @@ import { FaCheck } from "react-icons/fa";
 
 import classes from "./ApplyButton.module.css";
 
-function ApplyButton({ onClick }) {
+function ApplyButton({ onClick, className }) {
   return (
-    <div className={classes.ApplyButton} onClick={onClick}>
+    <div
+      className={[classes.ApplyButton, className].join(" ")}
+      onClick={onClick}
+    >
       <FaCheck />
     </div>
   );
@@ -14,6 +17,7 @@ function ApplyButton({ onClick }) {
 
 ApplyButton.propTypes = {
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default ApplyButton;
