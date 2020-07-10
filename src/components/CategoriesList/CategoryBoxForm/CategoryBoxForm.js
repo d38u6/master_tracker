@@ -9,6 +9,7 @@ import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 import classes from "./CategoryBoxForm.module.css";
 import ImageControl from "./ImageControl/ImageControl";
 import CircleButtonWrapper from "../CategoryBox/CircleButtonWrapper/CircleButtonWrapper";
+import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
 
 function CategoryBoxForm({
   titleConf,
@@ -29,11 +30,7 @@ function CategoryBoxForm({
           <ApplyButton onClick={onSaveClick} />
         </CircleButtonWrapper>
         <CardWithTheme>
-          <Card.Img
-            variant="top"
-            src={imageConf.src}
-            style={{ height: "160px", objectFit: "cover" }}
-          />
+          <CategoryImage src={imageConf.src} />
           <Card.Body>
             <Card.Title>
               <Form.Control
