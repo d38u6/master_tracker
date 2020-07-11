@@ -2,16 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Card } from "react-bootstrap";
 
-import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
-import ImageControl from "./ImageControl/ImageControl";
-import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
-
-import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
-
 import classes from "./CategoryBoxForm.module.css";
+
+import ImageControl from "./ImageControl/ImageControl";
 import ApplyButton from "./ApplyButton/ApplyButton";
+import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
+import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
 import TitleControl from "./TitleControl/TitleControl";
 import DescriptionControl from "./DescriptionControl/DescriptionControl";
+import RemoveButton from "./RemoveButton/RemoveButton";
 
 function CategoryBoxForm({
   titleConf,
@@ -29,6 +28,7 @@ function CategoryBoxForm({
           className={classes.ImageControl}
         />
         <ApplyButton onClick={onSaveClick} />
+
         <CardWithTheme>
           <CategoryImage src={imageConf.src} />
           <Card.Body>
@@ -42,9 +42,7 @@ function CategoryBoxForm({
               onChange={descConf.onChange}
             />
           </Card.Body>
-          <Card.Footer>
-            <RemoveButton onClick={onRemoveClick} />
-          </Card.Footer>
+          <RemoveButton onClick={onRemoveClick} />
         </CardWithTheme>
       </div>
     </Col>
