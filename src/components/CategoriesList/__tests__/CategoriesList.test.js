@@ -9,10 +9,12 @@ const props = { categories, onAddClick: jest.fn() };
 describe("'CategoriesList' component", () => {
   const categoiresList = shallow(<CategoriesList {...props} />);
 
+  //Row
   it("render 'Row' component", () => {
     expect(categoiresList.find("Row").exists()).toBe(true);
   });
 
+  //CategoryBoxEditable
   it("render correct number of 'CategoryBoxEditable' component", () => {
     expect(categoiresList.find("Memo(CategoryBoxEditable)").length).toBe(
       props.categories.length
@@ -27,6 +29,7 @@ describe("'CategoriesList' component", () => {
       })
     );
 
+  //AddButton
   it("render 'AddButton' component", () => {
     expect(categoiresList.find("AddButton").exists()).toBe(true);
   });

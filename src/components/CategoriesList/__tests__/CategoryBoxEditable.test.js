@@ -9,6 +9,7 @@ const props = { ...categoryOne };
 describe("'CategoryBoxEditable' component", () => {
   const categoryBoxEditable = shallow(<CategoryBoxEditable {...props} />);
 
+  //CategoryBox
   it("default render 'CategoryBox' component", () => {
     expect(categoryBoxEditable.find("CategoryBox").exists()).toBe(true);
   });
@@ -26,6 +27,7 @@ describe("'CategoryBoxEditable' component", () => {
       categoryBoxEditable.find("CategoryBox").prop("onEditClick")();
     });
 
+    //CategoryFormContainer
     it("render 'CategoryFormContainer' ", () => {
       expect(
         categoryBoxEditable.find("Connect(CategoryFormContainer)").exists()
@@ -40,6 +42,7 @@ describe("'CategoryBoxEditable' component", () => {
       ).toBe(props.id);
     });
 
+    //render prop in CategoryFormContainer
     it("render prop function in 'CategoryFormContainer', should render 'CategoryBox' div", () => {
       const wrapper = shallow(
         categoryBoxEditable
