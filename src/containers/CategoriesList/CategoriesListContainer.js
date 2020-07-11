@@ -16,7 +16,7 @@ export function CategoriesListContainer({
   useEffect(() => {
     if (categories.length < 1) {
       const categories = getCategories();
-      if (categories > 0) {
+      if (categories.length > 0) {
         setCategories(categories);
       } else {
         setCategories(initialCategories);
