@@ -10,6 +10,7 @@ import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 
 import classes from "./CategoryBoxForm.module.css";
 import ApplyButton from "./ApplyButton/ApplyButton";
+import TitleControl from "./TitleControl/TitleControl";
 
 function CategoryBoxForm({
   titleConf,
@@ -30,15 +31,11 @@ function CategoryBoxForm({
         <CardWithTheme>
           <CategoryImage src={imageConf.src} />
           <Card.Body>
-            <Card.Title>
-              <Form.Control
-                className={classes.TitleInput}
-                type="text"
-                placeholder="Category Title"
-                value={titleConf.value}
-                onChange={titleConf.onChange}
-              />
-            </Card.Title>
+            <TitleControl
+              className={classes.TitleInput}
+              value={titleConf.value}
+              onChange={titleConf.onChange}
+            />
             <Card.Text>
               <Form.Control
                 as="textarea"
