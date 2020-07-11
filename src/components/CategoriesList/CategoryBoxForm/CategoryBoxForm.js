@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 import classes from "./CategoryBoxForm.module.css";
 
@@ -11,6 +11,7 @@ import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
 import TitleControl from "./TitleControl/TitleControl";
 import DescriptionControl from "./DescriptionControl/DescriptionControl";
 import RemoveButton from "./RemoveButton/RemoveButton";
+import CategoryBoxWrapper from "../CategoryBox/CategoryBoxWrapper/CategoryBoxWrapper";
 
 function CategoryBoxForm({
   titleConf,
@@ -20,32 +21,26 @@ function CategoryBoxForm({
   imageConf,
 }) {
   return (
-    <Col md="4">
-      <div className={classes.CategoryBox}>
-        <ImageControl
-          activeSrc={imageConf.src}
-          onSelect={imageConf.onChange}
-          className={classes.ImageControl}
-        />
-        <ApplyButton onClick={onSaveClick} />
+    <CategoryBoxWrapper className={classes.CategoryBox}>
+      <ImageControl
+        activeSrc={imageConf.src}
+        onSelect={imageConf.onChange}
+        className={classes.ImageControl}
+      />
+      <ApplyButton onClick={onSaveClick} />
 
-        <CardWithTheme>
-          <CategoryImage src={imageConf.src} />
-          <Card.Body>
-            <TitleControl
-              className={classes.TitleInput}
-              value={titleConf.value}
-              onChange={titleConf.onChange}
-            />
-            <DescriptionControl
-              value={descConf.value}
-              onChange={descConf.onChange}
-            />
-          </Card.Body>
-          <RemoveButton onClick={onRemoveClick} />
-        </CardWithTheme>
-      </div>
-    </Col>
+      <CardWithTheme>
+        <CategoryImage src={imageConf.src} />
+        <Card.Body>
+          <TitleControl value={titleConf.value} onChange={titleConf.onChange} />
+          <DescriptionControl
+            value={descConf.value}
+            onChange={descConf.onChange}
+          />
+        </Card.Body>
+        <RemoveButton onClick={onRemoveClick} />
+      </CardWithTheme>
+    </CategoryBoxWrapper>
   );
 }
 
