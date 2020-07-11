@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Card, Form } from "react-bootstrap";
+import { Col, Card } from "react-bootstrap";
 
 import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
 import ImageControl from "./ImageControl/ImageControl";
@@ -11,6 +11,7 @@ import RemoveButton from "../../Utility/RemoveButton/RemoveButton";
 import classes from "./CategoryBoxForm.module.css";
 import ApplyButton from "./ApplyButton/ApplyButton";
 import TitleControl from "./TitleControl/TitleControl";
+import DescriptionControl from "./DescriptionControl/DescriptionControl";
 
 function CategoryBoxForm({
   titleConf,
@@ -36,15 +37,10 @@ function CategoryBoxForm({
               value={titleConf.value}
               onChange={titleConf.onChange}
             />
-            <Card.Text>
-              <Form.Control
-                as="textarea"
-                rows="3"
-                placeholder="Category description"
-                value={descConf.value}
-                onChange={descConf.onChange}
-              />
-            </Card.Text>
+            <DescriptionControl
+              value={descConf.value}
+              onChange={descConf.onChange}
+            />
           </Card.Body>
           <Card.Footer>
             <RemoveButton onClick={onRemoveClick} />
