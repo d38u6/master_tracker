@@ -4,12 +4,7 @@
   height: calc(100% - 30px);
 }
 .EditButton {
-  display: flex;
   visibility: hidden;
-  position: absolute;
-  left: calc(100% - 56px);
-  padding: 5px;
-  z-index: 1;
   pointer-events: none;
 }
 .CategoryBox:hover .EditButton {

@@ -5,7 +5,7 @@ import classes from "./CircleButtonWrapper.module.css";
 
 function CircleButtonWrapper({ className, children }) {
   return (
-    <div className={[classes.CircleButtonWrapper, className].join(" ")}>
+    <div className={[classes.CircleButtonWrapper, className || ""].join(" ")}>
       {children}
     </div>
   );

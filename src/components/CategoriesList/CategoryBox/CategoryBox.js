@@ -3,17 +3,18 @@ import PropTypes from "prop-types";
 import { Col, Card } from "react-bootstrap";
 
 import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
-import EditButton from "../../Utility/EditButton/EditButton";
+import EditButton from "./EditButton/EditButton";
 
 import classes from "./CategoryBox.module.css";
 
-function CategoryBox({ imageSrc, title, desc, time, onEditClick, theme }) {
+function CategoryBox({ imageSrc, title, desc, time, onEditClick }) {
   return (
     <Col md="4">
       <div className={classes.CategoryBox}>
-        <div className={classes.EditButton}>
+        <EditButton className={classes.EditButton} onClick={onEditClick} />
+        {/* <div className={classes.EditButton}>
           <EditButton onClick={onEditClick} />
-        </div>
+        </div> */}
         <CardWithTheme>
           <Card.Img
             variant="top"
