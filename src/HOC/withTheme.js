@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ThemeContext from "../components/Theme/ThemeContext";
 
 function withTheme(Cmp) {
-  return (props) => {
+  const WithTheme = (props) => {
     const { theme } = useContext(ThemeContext);
     return (
       <Cmp
@@ -14,6 +14,11 @@ function withTheme(Cmp) {
       />
     );
   };
+  WithTheme.displayName = `WithTheme(${
+    Cmp.displayName || Cmp.name || "Component"
+  })`;
+
+  return WithTheme;
 }
 
 export default withTheme;
