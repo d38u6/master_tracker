@@ -5,14 +5,14 @@ import { Navbar } from "react-bootstrap";
 import ToggleThemeButton from "../../Theme/ToggleThemeButton";
 import withTheme from "../../../HOC/withTheme";
 
-function Header({ theme }) {
+export function Header({ theme }) {
   return (
     <Navbar
       bg={theme.bg}
       variant={theme.bg}
       className="justify-content-between"
     >
-      <Navbar.Brand href="/">Progres Tracker</Navbar.Brand>
+      <Navbar.Brand href="/">Master Tracker</Navbar.Brand>
       <ToggleThemeButton />
     </Navbar>
   );
@@ -23,7 +23,7 @@ Header.propTypes = {
   theme: PropTypes.shape({
     bg: PropTypes.oneOf(["dark", "light"]),
     text: PropTypes.oneOf(["dark", "light"]),
-  }),
+  }).isRequired,
 };
 
 export default withTheme(Header);

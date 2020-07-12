@@ -60,3 +60,8 @@ export const categoryFormConf = {
   onSaveClick: jest.fn(),
   onRemoveClick: jest.fn(),
 };
+
+export const theme = {
+  bg: "dark",
+  text: "light",
+};
