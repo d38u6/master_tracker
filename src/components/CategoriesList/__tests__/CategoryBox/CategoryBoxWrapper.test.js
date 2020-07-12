@@ -29,4 +29,11 @@ describe("'CategoryBoxWrapper' component", () => {
       )
     );
   });
+
+  it("render without 'className' prop, div should contain only 'CategoryBox' class", () => {
+    const categoryBoxWrapper = shallow(<CategoryBoxWrapper />);
+    expect(
+      expect(categoryBoxWrapper.find("div").hasClass("CategoryBox")).toBe(true)
+    );
+  });
 });

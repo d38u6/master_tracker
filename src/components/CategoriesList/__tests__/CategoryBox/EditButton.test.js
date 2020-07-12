@@ -19,6 +19,19 @@ describe("'EditButton' component", () => {
     ).toBe(true);
   });
 
+  it("'CircleButtonWrapper' should contain proper class", () => {
+    expect(
+      editButton.find("CircleButtonWrapper").hasClass(props.className)
+    ).toBe(true);
+  });
+
+  it("render without 'className' prop, 'CircleButtonWrapper' should not contain class", () => {
+    const editButton = shallow(<EditButton />);
+    expect(
+      expect(editButton.find("CircleButtonWrapper").hasClass("")).toBe(true)
+    );
+  });
+
   //EditButton (Button)
   it("render 'EditButton' component", () => {
     expect(editButton.find("EditButton").exists()).toBe(true);

@@ -18,4 +18,13 @@ describe("'CircleButtonWrapper' component", () => {
       true
     );
   });
+
+  it("render without 'className' prop, div should contain only 'CircleButtonWrapper' class", () => {
+    const circleButtonWrapper = shallow(<CircleButtonWrapper />);
+    expect(
+      expect(
+        circleButtonWrapper.find("div").hasClass("CircleButtonWrapper")
+      ).toBe(true)
+    );
+  });
 });
