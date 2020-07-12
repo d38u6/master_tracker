@@ -6,6 +6,7 @@ import CategoryBoxWrapper from "./CategoryBoxWrapper/CategoryBoxWrapper";
 import EditButton from "./EditButton/EditButton";
 import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
 import CategoryImage from "./CategoryImage/CategoryImage";
+import TimeCounter from "./TimeCounter/TimeCounter";
 
 import classes from "./CategoryBox.module.css";
 
@@ -19,9 +20,7 @@ function CategoryBox({ imageSrc, title, desc, time, onEditClick }) {
           <Card.Title>{title}</Card.Title>
           <Card.Text>{desc}</Card.Text>
         </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">{time}</small>
-        </Card.Footer>
+        <TimeCounter time={time} />
       </CardWithTheme>
     </CategoryBoxWrapper>
   );
