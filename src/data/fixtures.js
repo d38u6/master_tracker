@@ -2,6 +2,11 @@ import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
 
+export const images = [itImage, codingImage, defaultImage].map((src, i) => ({
+  src,
+  active: i === 0,
+}));
+
 export const categoryOne = {
   id: "1",
   imageSrc: itImage,

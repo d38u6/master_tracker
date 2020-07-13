@@ -21,7 +21,6 @@ function ImagesModal({ show, onHide, children }) {
 ImagesModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,
-  onChooseImage: PropTypes.func,
 };
 
 export default ImagesModal;
