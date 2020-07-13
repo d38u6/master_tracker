@@ -6,7 +6,7 @@ import withTheme from "../../../HOC/withTheme";
 
 import classes from "./ModalWithTheme.module.css";
 
-function ModalWithTheme({ theme, children, ...props }) {
+export function ModalWithTheme({ theme, children, ...props }) {
   const themeClassName = theme.bg.charAt(0).toUpperCase() + theme.bg.slice(1);
   return (
     <Modal {...props}>
