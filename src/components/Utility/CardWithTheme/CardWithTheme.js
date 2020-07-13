@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 import withTheme from "../../../HOC/withTheme";
 
-function CardWithTheme({ theme, children }) {
+export function CardWithTheme({ theme, children }) {
   return (
     <Card bg={theme.bg} text={theme.text}>
       {children}
