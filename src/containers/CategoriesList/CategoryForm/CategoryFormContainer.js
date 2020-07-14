@@ -7,11 +7,11 @@ import {
   removeCategory,
 } from "../../../store/actions/categories/categories";
 
-function CategoryFormContainer({
+export function CategoryFormContainer({
   categories,
+  categoryId,
   editCategory,
   removeCategory,
-  categoryId,
   onSave,
   render,
 }) {
@@ -72,10 +72,10 @@ CategoryFormContainer.propTypes = {
   removeCategory: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps({ categories }) {
+function mapStateToProps({ categories }) {
   return { categories };
 }
 
-export default connect(mapDispatchToProps, { editCategory, removeCategory })(
+export default connect(mapStateToProps, { editCategory, removeCategory })(
   CategoryFormContainer
 );
