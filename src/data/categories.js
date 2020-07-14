@@ -10,7 +10,6 @@ export const initialCategories = [
 ];
 
 export const newCategory = {
-  id: null,
   imageSrc: defaultImage,
   title: "New Category",
   desc:

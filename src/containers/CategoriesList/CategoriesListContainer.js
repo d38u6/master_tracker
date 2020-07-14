@@ -15,9 +15,9 @@ export function CategoriesListContainer({
 }) {
   useEffect(() => {
     if (categories.length < 1) {
-      const categories = getCategories();
-      if (categories.length > 0) {
-        setCategories(categories);
+      const categoriesFromLocalStorage = getCategories();
+      if (categoriesFromLocalStorage && categoriesFromLocalStorage.length > 0) {
+        setCategories(categoriesFromLocalStorage);
       } else {
         setCategories(initialCategories);
       }
