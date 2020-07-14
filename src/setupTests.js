@@ -23,3 +23,5 @@ class localStorageMock {
 Object.defineProperty(window, "localStorage", {
   value: new localStorageMock(),
 });
+
+Object.defineProperty(require, "context", () => undefined);
