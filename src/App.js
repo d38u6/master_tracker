@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
@@ -9,9 +10,18 @@ function App() {
   return (
     <Theme>
       <Layout>
-        <CategoriesListContainer
-          render={({ categories, addCategory }) => (
-            <CategoriesList categories={categories} onAddClick={addCategory} />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <CategoriesListContainer
+              render={({ categories, addCategory }) => (
+                <CategoriesList
+                  categories={categories}
+                  onAddClick={addCategory}
+                />
+              )}
+            />
           )}
         />
       </Layout>
