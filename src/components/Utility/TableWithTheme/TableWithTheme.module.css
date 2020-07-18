@@ -1,0 +1,11 @@
+.Dark {
+  color: #f8f9fa;
+}
+
+.Dark tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.Dark tbody tr:hover {
+  color: #f8f9fa;
+  background-color: rgba(0, 0, 0, 0.075);
+}
