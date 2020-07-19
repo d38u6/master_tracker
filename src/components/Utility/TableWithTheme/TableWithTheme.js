@@ -5,16 +5,20 @@ import { Table } from "react-bootstrap";
 import withTheme from "../../../HOC/withTheme";
 import classes from "./TableWithTheme.module.css";
 
-export function TableWithTheme({ theme, children, ...props }) {
+export function TableWithTheme({ className, theme, children, ...props }) {
   const themeClassName = theme.bg.charAt(0).toUpperCase() + theme.bg.slice(1);
   return (
-    <Table {...props} className={classes[themeClassName]}>
+    <Table
+      {...props}
+      className={[className, classes[themeClassName]].join(" ")}
+    >
       {children}
     </Table>
   );
 }
 
 TableWithTheme.propTypes = {
+  className: PropTypes.string,
   //theme Context
   theme: PropTypes.shape({
     bg: PropTypes.oneOf(["dark", "light"]).isRequired,
