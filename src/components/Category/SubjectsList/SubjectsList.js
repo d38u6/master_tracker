@@ -2,19 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import classes from "./SubjectsList.module.css";
+
 import TableWithTheme from "../../Utility/TableWithTheme/TableWithTheme";
+import SubjectRowEditable from "./SubjectRowEditable/SubjectRowEditable";
 
 function SubjectsList({ subjects }) {
   return (
     <TableWithTheme className={classes.SubjectsList} striped hover size="sm">
       <tbody>
-        {subjects.map(({ id, title, summaryTime }) => (
-          <tr key={id}>
-            <td>{title}</td>
-            <td>{summaryTime}</td>
-            <td>ADD</td>
-            <td>E and D</td>
-          </tr>
+        {subjects.map((subject) => (
+          <SubjectRowEditable key={subject.id} {...subject} />
         ))}
       </tbody>
     </TableWithTheme>

@@ -1,0 +1,15 @@
+.AddTimeButton {
+  padding: 0.15rem 0.5rem;
+  background-color: inherit;
+  color: inherit;
+}
+.AddTimeButton:hover,
+.AddTimeButton:focus {
+  background-color: inherit;
+  color: inherit;
+}
+
+.Icon {
+  color: #1e7e34;
+  font-size: 1rem;
+}

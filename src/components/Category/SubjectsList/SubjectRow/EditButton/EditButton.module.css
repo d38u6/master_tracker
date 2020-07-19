@@ -1,0 +1,11 @@
+.EditButton {
+  text-align: end;
+}
+.Button {
+  margin: 0 0.44rem;
+  display: inline;
+}
+.Button:hover {
+  cursor: pointer;
+  color: #007bff;
+}
