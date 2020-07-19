@@ -2,6 +2,8 @@ import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
 
+const isTest = process.env.NODE_ENV === "test";
+
 export const images = [itImage, codingImage, defaultImage].map((src, i) => ({
   src,
   active: i === 0,
@@ -48,25 +50,43 @@ export const categories = [
 
 export const titleConf = {
   value: "Test Title Input Value ",
-  onChange: jest.fn(),
+  onChange: isTest ? jest.fn() : null,
 };
 export const descConf = {
   value: "Test Description area Value",
-  onChange: jest.fn(),
+  onChange: isTest ? jest.fn() : null,
 };
 export const imageConf = {
   src: "testImageSource.png",
-  onChange: jest.fn(),
+  onChange: isTest ? jest.fn() : null,
 };
 export const categoryFormConf = {
   titleConf,
   descConf,
   imageConf,
-  onSaveClick: jest.fn(),
-  onRemoveClick: jest.fn(),
+  onSaveClick: isTest ? jest.fn() : null,
+  onRemoveClick: isTest ? jest.fn() : null,
 };
 
 export const theme = {
   bg: "dark",
   text: "light",
 };
+
+export const subOne = {
+  id: "sub0",
+  categoryId: "1",
+  title: "Dziennik Uczuć",
+  desc: "Jakiś krótki opis czy coś",
+  summaryTime: "50h 35min",
+};
+
+export const subTwo = {
+  id: "sub1",
+  categoryId: "1",
+  title: "Master Tracker",
+  desc: "Jakiś krótki opis czy coś",
+  summaryTime: "15h 35min",
+};
+
+export const subjects = [subOne, subTwo];
