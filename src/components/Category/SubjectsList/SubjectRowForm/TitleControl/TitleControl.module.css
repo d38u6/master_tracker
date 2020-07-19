@@ -1,0 +1,15 @@
+.InputWrapper {
+  padding: 0 !important;
+}
+.TitleInput {
+  background-color: inherit;
+  color: inherit;
+  border-color: #007bff;
+  height: inherit;
+  max-width: 220px;
+  padding: 0.3rem;
+}
+.TitleInput:focus {
+  background-color: inherit;
+  color: inherit;
+}

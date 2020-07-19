@@ -1,0 +1,10 @@
+.ApplyButton {
+  text-align: end;
+}
+.Button {
+  margin: 0 0.44rem;
+}
+.Button:hover {
+  cursor: pointer;
+  color: #28a745;
+}

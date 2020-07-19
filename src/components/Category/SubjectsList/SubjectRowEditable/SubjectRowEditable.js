@@ -1,6 +1,7 @@
 import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import SubjectRow from "../SubjectRow/SubjectRow";
+import SubjectRowForm from "../SubjectRowForm/SubjectRowForm";
 
 export function SubjectRowEditable(props) {
   const [editMode, setEditMode] = useState(false);
@@ -8,7 +9,9 @@ export function SubjectRowEditable(props) {
   const turnOnEditMode = () => setEditMode(true);
   const turnOffEditMode = () => setEditMode(false);
 
-  return editMode ? null : (
+  return editMode ? (
+    <SubjectRowForm />
+  ) : (
     <SubjectRow {...props} onEditClick={turnOnEditMode} />
   );
 }

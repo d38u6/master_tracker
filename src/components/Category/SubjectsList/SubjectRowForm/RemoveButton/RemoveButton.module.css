@@ -1,0 +1,15 @@
+.RemoveButton {
+  padding: 0.15rem 0.5rem;
+  background-color: inherit;
+  color: inherit;
+}
+.RemoveButton:hover,
+.RemoveButton:focus {
+  background-color: inherit;
+  color: inherit;
+}
+
+.Icon {
+  color: #c82333;
+  font-size: 1rem;
+}
