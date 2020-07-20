@@ -4,3 +4,10 @@ export {
   editCategory,
   removeCategory,
 } from "./categories/categories";
+
+export {
+  setSubjects,
+  addSubject,
+  editSubject,
+  removeSubject,
+} from "./subjects/subjects";
