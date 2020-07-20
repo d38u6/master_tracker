@@ -2,6 +2,7 @@ import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import SubjectRow from "../SubjectRow/SubjectRow";
 import SubjectRowForm from "../SubjectRowForm/SubjectRowForm";
+import SubjectFormContainer from "../../../../containers/Category/SubjectsList/SubjectForm/SubjectFormContainer";
 
 export function SubjectRowEditable(props) {
   const [editMode, setEditMode] = useState(false);
@@ -10,7 +11,11 @@ export function SubjectRowEditable(props) {
   const turnOffEditMode = () => setEditMode(false);
 
   return editMode ? (
-    <SubjectRowForm />
+    <SubjectFormContainer
+      subjectId={props.id}
+      onSave={turnOffEditMode}
+      render={(formConf) => <SubjectRowForm {...formConf} />}
+    />
   ) : (
     <SubjectRow {...props} onEditClick={turnOnEditMode} />
   );
