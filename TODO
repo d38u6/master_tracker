@@ -1,3 +1,0 @@
-1. onSave prop in CategoryFormContainer should be requier, and called after editCategory !
-2. CategoryForm Component rename 'onSaveClick' to 'onApplyClick'
-3. In CategoryBoxEditable change 'categroyProps' to 'props'

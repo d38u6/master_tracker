@@ -16,7 +16,7 @@ import CategoryBoxWrapper from "../CategoryBox/CategoryBoxWrapper/CategoryBoxWra
 function CategoryBoxForm({
   titleConf,
   descConf,
-  onSaveClick,
+  onApplyClick,
   onRemoveClick,
   imageConf,
 }) {
@@ -27,7 +27,7 @@ function CategoryBoxForm({
         onSelect={imageConf.onChange}
         className={classes.ImageControl}
       />
-      <ApplyButton onClick={onSaveClick} />
+      <ApplyButton onClick={onApplyClick} />
 
       <CardWithTheme>
         <CategoryImage src={imageConf.src} />
@@ -57,8 +57,8 @@ CategoryBoxForm.propTypes = {
     src: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
   }),
-  onSaveClick: PropTypes.func,
-  onRemoveClick: PropTypes.func,
+  onApplyClick: PropTypes.func.isRequired,
+  onRemoveClick: PropTypes.func.isRequired,
 };
 
 export default CategoryBoxForm;

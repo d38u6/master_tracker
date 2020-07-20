@@ -6,3 +6,7 @@
   pointer-events: auto;
   visibility: visible;
 }
+.CategoryBox a {
+  color: inherit;
+  text-decoration: none;
+}

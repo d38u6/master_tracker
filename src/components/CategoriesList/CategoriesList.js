@@ -5,12 +5,16 @@ import { Row } from "react-bootstrap";
 import CategoryBoxEditable from "./CategoryBoxEditable/CategoryBoxEditable";
 import AddButton from "../Utility/AddButton/AddButton";
 
-function CategoriesList({ categories, onAddClick }) {
+function CategoriesList({ categories, onAddClick, pickCategory }) {
   return (
     <>
       <Row>
         {categories.map((category) => (
-          <CategoryBoxEditable key={category.id} {...category} />
+          <CategoryBoxEditable
+            key={category.id}
+            {...category}
+            onPickCategory={pickCategory}
+          />
         ))}
         <AddButton onClick={onAddClick} />
       </Row>
@@ -28,7 +32,8 @@ CategoriesList.propTypes = {
       lastUpdate: PropTypes.number,
     })
   ).isRequired,
-  onAddClick: PropTypes.func,
+  onAddClick: PropTypes.func.isRequired,
+  pickCategory: PropTypes.func.isRequired,
 };
 
 export default CategoriesList;

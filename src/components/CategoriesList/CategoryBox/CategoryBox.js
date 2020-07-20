@@ -9,17 +9,20 @@ import CategoryImage from "./CategoryImage/CategoryImage";
 import TimeCounter from "./TimeCounter/TimeCounter";
 
 import classes from "./CategoryBox.module.css";
+import { Link } from "react-router-dom";
 
-function CategoryBox({ imageSrc, title, desc, time, onEditClick }) {
+function CategoryBox({ id, imageSrc, title, desc, time, onPick, onEditClick }) {
   return (
     <CategoryBoxWrapper className={classes.CategoryBox}>
       <EditButton className={classes.EditButton} onClick={onEditClick} />
       <CardWithTheme>
         <CategoryImage src={imageSrc} />
-        <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Card.Text>{desc}</Card.Text>
-        </Card.Body>
+        <Link to={`/category/${title}/${id}`} onClick={onPick}>
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>{desc}</Card.Text>
+          </Card.Body>
+        </Link>
         <TimeCounter time={time} />
       </CardWithTheme>
     </CategoryBoxWrapper>
@@ -27,10 +30,12 @@ function CategoryBox({ imageSrc, title, desc, time, onEditClick }) {
 }
 
 CategoryBox.propTypes = {
+  id: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   time: PropTypes.number,
+  onPick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func,
 };
 

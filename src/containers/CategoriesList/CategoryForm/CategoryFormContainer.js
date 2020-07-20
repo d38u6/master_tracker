@@ -41,23 +41,19 @@ export function CategoryFormContainer({
   };
 
   const onSaveHandler = () => {
-    onSave();
     editCategory(categoryId, { imageSrc, title, desc });
+    onSave();
   };
 
   const onRemoveHandler = () => {
-    if (categories.length > 1) {
-      removeCategory(categoryId);
-    } else {
-      console.log("You can not delete last category");
-    }
+    removeCategory(categoryId);
   };
 
   return render({
     titleConf: { value: title, onChange: titleChangeHandler },
     descConf: { value: desc, onChange: descChangeHandler },
     imageConf: { src: imageSrc, onChange: onImageChangeHandler },
-    onSaveClick: onSaveHandler,
+    onApplyClick: onSaveHandler,
     onRemoveClick: onRemoveHandler,
   });
 }
@@ -65,7 +61,7 @@ export function CategoryFormContainer({
 CategoryFormContainer.propTypes = {
   categoryId: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
-  onSave: PropTypes.func,
+  onSave: PropTypes.func.isRequired,
   //redux
   categories: PropTypes.array.isRequired,
   editCategory: PropTypes.func.isRequired,

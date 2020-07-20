@@ -75,7 +75,7 @@ export const theme = {
 
 export const subOne = {
   id: "sub0",
-  categoryId: "1",
+  categoryId: "0",
   title: "Dziennik Uczuć",
   desc: "Jakiś krótki opis czy coś",
   summaryTime: "50h 35min",
@@ -83,7 +83,7 @@ export const subOne = {
 
 export const subTwo = {
   id: "sub1",
-  categoryId: "1",
+  categoryId: "0",
   title: "Master Tracker",
   desc: "Jakiś krótki opis czy coś",
   summaryTime: "15h 35min",
