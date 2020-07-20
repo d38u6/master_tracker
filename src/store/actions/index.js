@@ -11,3 +11,5 @@ export {
   editSubject,
   removeSubject,
 } from "./subjects/subjects";
+
+export { pickCategory } from "./app/app";

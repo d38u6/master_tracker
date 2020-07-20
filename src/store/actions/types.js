@@ -9,3 +9,6 @@ export const SET_SUBJECTS = "SET_SUBJECTS";
 export const ADD_SUBJECT = "ADD_SUBJECT";
 export const EDIT_SUBJECT = "EDIT_SUBJECT";
 export const REMOVE_SUBJECT = "REMOVE_SUBJECT";
+
+//APP
+export const PICK_CATEGORY = "PICK_CATEGORY";
