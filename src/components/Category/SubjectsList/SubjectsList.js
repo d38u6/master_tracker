@@ -7,14 +7,14 @@ import TableWithTheme from "../../Utility/TableWithTheme/TableWithTheme";
 import SubjectRowEditable from "./SubjectRowEditable/SubjectRowEditable";
 import AddButton from "./AddButton/AddButton";
 
-function SubjectsList({ subjects }) {
+function SubjectsList({ subjects, onAddClick }) {
   return (
     <TableWithTheme className={classes.SubjectsList} striped hover size="sm">
       <tbody>
         {subjects.map((subject) => (
           <SubjectRowEditable key={subject.id} {...subject} />
         ))}
-        <AddButton />
+        <AddButton onClick={onAddClick} />
       </tbody>
     </TableWithTheme>
   );
@@ -26,10 +26,10 @@ SubjectsList.propTypes = {
       id: PropTypes.string.isRequired,
       categoryId: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      desc: PropTypes.string.isRequired,
       summaryTime: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
+  onAddClick: PropTypes.func,
 };
 
 export default SubjectsList;

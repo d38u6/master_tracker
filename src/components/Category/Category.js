@@ -6,7 +6,9 @@ function Category(props) {
   return (
     <>
       <SubjectsListsContainer
-        render={(subjects) => <SubjectsList subjects={subjects} />}
+        render={({ subjects, addSubject }) => (
+          <SubjectsList subjects={subjects} onAddClick={addSubject} />
+        )}
       />
     </>
   );

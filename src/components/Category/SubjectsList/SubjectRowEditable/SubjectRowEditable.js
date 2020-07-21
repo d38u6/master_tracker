@@ -25,7 +25,6 @@ SubjectRowEditable.propTypes = {
   id: PropTypes.string.isRequired,
   categoryId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
   summaryTime: PropTypes.string.isRequired,
 };
 

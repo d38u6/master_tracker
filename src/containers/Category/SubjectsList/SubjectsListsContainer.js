@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import shortid from "shortid";
 import PropTypes from "prop-types";
 
-import { pickCategory } from "../../../store/actions";
+import { pickCategory, addSubject } from "../../../store/actions";
 
 function SubjectsListsContainer({
   subjects,
   categories,
   currentCategory,
   pickCategory,
+  addSubject,
   render,
   ...props
 }) {
@@ -36,7 +38,20 @@ function SubjectsListsContainer({
     }
   }, [currentCategory, categoryId, subjects]);
 
-  return categoryExist ? render(categorySubjects) : <Redirect to="/" />;
+  const addSubjectHandler = () => {
+    addSubject({
+      id: shortid.generate(),
+      categoryId: currentCategory,
+      title: "New Subject",
+      summaryTime: "0h 00min",
+    });
+  };
+
+  return categoryExist ? (
+    render({ subjects: categorySubjects, addSubject: addSubjectHandler })
+  ) : (
+    <Redirect to="/" />
+  );
 }
 
 SubjectsListsContainer.propTypes = {
@@ -46,6 +61,7 @@ SubjectsListsContainer.propTypes = {
   categories: PropTypes.array.isRequired,
   currentCategory: PropTypes.string,
   pickCategory: PropTypes.func.isRequired,
+  addSubject: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ categories, subjects, app: { currentCategory } }) {
@@ -54,5 +70,5 @@ function mapStateToProps({ categories, subjects, app: { currentCategory } }) {
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, { pickCategory })
+  connect(mapStateToProps, { pickCategory, addSubject })
 )(SubjectsListsContainer);
