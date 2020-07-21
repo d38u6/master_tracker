@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import CategoriesList from "../CategoriesList";
 import { categories } from "../../../data/fixtures";
 
-const props = { categories, onAddClick: jest.fn() };
+const props = { categories, onAddClick: jest.fn(), pickCategory: jest.fn() };
 
 describe("'CategoriesList' component", () => {
   const categoiresList = shallow(<CategoriesList {...props} />);

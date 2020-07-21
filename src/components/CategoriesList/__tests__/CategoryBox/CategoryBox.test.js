@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import CategoryBox from "../../CategoryBox/CategoryBox";
 import { categoryOne } from "../../../../data/fixtures";
 
-const props = { ...categoryOne, onEditClick: jest.fn() };
+const props = { ...categoryOne, onEditClick: jest.fn(), onPick: jest.fn() };
 
 describe("'CategoryBox' component", () => {
   const categoryBox = shallow(<CategoryBox {...props} />);

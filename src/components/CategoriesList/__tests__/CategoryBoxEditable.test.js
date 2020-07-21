@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import { CategoryBoxEditable } from "../CategoryBoxEditable/CategoryBoxEditable";
 import { categoryOne, categoryFormConf } from "../../../data/fixtures";
 
-const props = { ...categoryOne };
+const props = { ...categoryOne, onPickCategory: jest.fn() };
 
 describe("'CategoryBoxEditable' component", () => {
   const categoryBoxEditable = shallow(<CategoryBoxEditable {...props} />);

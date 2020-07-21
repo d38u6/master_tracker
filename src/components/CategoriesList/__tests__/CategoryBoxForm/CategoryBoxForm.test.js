@@ -34,9 +34,9 @@ describe("'CategoryBoxForm' component", () => {
     expect(categoryBoxForm.find("ApplyButton").exists()).toBe(true);
   });
 
-  it("should call 'onSaveClick' callback", () => {
+  it("should call 'onApplyClick' callback", () => {
     categoryBoxForm.find("ApplyButton").simulate("click");
-    expect(props.onSaveClick).toHaveBeenCalled();
+    expect(props.onApplyClick).toHaveBeenCalled();
   });
 
   //CardWithTheme

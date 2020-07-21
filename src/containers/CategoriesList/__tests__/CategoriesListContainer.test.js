@@ -11,6 +11,7 @@ const props = {
   categories,
   setCategories: jest.fn(),
   addCategory: jest.fn(),
+  pickCategory: jest.fn(),
   render: jest.fn(),
 };
 let useEffect;
@@ -46,13 +47,6 @@ describe("'CategoriesListContainer' component", () => {
 
     it("should call 'setCategories' callback with initialCategories", () => {
       expect(props.setCategories).toHaveBeenCalledWith(initialCategories);
-    });
-
-    it("and when 'categories' in localStorage exists, should call 'setCategories' with 'categories' from localStorage", () => {
-      saveCategories([categoryFour]);
-      jest.clearAllMocks();
-      useEffect();
-      expect(props.setCategories).toHaveBeenCalledWith([categoryFour]);
     });
   });
 

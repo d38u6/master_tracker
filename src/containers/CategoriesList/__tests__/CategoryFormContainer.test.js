@@ -10,6 +10,7 @@ const props = {
   editCategory: jest.fn(),
   removeCategory: jest.fn(),
   onSave: jest.fn(),
+  onPick: jest.fn(),
   render: jest.fn(),
 };
 let useEffect;
@@ -61,20 +62,20 @@ describe("'CategoryFormContainer' component", () => {
   });
 
   //save
-  it("should call 'render' function with 'onSaveClick'", () => {
-    const { onSaveClick } = props.render.mock.calls[0][0];
-    expect(typeof onSaveClick).toBe("function");
+  it("should call 'render' function with 'onApplyClick'", () => {
+    const { onApplyClick } = props.render.mock.calls[0][0];
+    expect(typeof onApplyClick).toBe("function");
   });
 
   it("should call 'onSave' callback", () => {
-    const { onSaveClick } = props.render.mock.calls[0][0];
-    onSaveClick();
+    const { onApplyClick } = props.render.mock.calls[0][0];
+    onApplyClick();
     expect(props.onSave).toHaveBeenCalled();
   });
 
   it("should call 'editCategory' callback with correctly categoryId", () => {
-    const { onSaveClick } = props.render.mock.calls[0][0];
-    onSaveClick();
+    const { onApplyClick } = props.render.mock.calls[0][0];
+    onApplyClick();
     expect(props.editCategory.mock.calls[0][0]).toBe(categoryFour.id);
   });
 
@@ -96,8 +97,8 @@ describe("'CategoryFormContainer' component", () => {
     });
 
     it("should call 'editCategory' callback with correctly data", () => {
-      const { onSaveClick } = [...props.render.mock.calls].pop()[0];
-      onSaveClick();
+      const { onApplyClick } = [...props.render.mock.calls].pop()[0];
+      onApplyClick();
       expect([...props.editCategory.mock.calls].pop()[1]).toMatchObject(
         newData
       );
@@ -115,16 +116,6 @@ describe("'CategoryFormContainer' component", () => {
     onRemoveClick();
 
     expect(props.removeCategory.mock.calls[0][0]).toBe(categoryFour.id);
-  });
-
-  it("when 'categories' length is 1, should not call removeCategory", () => {
-    props.removeCategory.mockClear();
-    shallow(<CategoryFormContainer {...props} categories={[categoryFour]} />);
-
-    const { onRemoveClick } = [...props.render.mock.calls].pop()[0];
-    onRemoveClick();
-
-    expect(props.removeCategory).toHaveBeenCalledTimes(0);
   });
 
   describe("when 'categoryId' exists inside 'categories'", () => {
@@ -171,9 +162,5 @@ describe("'CategoryFormContainer' component", () => {
       const { src } = [...props.render.mock.calls].pop()[0].imageConf;
       expect(src).toBe("");
     });
-  });
-
-  it("d38u6", () => {
-    console.log(categoryFormContainer.debug());
   });
 });

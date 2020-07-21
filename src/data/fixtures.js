@@ -64,7 +64,7 @@ export const categoryFormConf = {
   titleConf,
   descConf,
   imageConf,
-  onSaveClick: isTest ? jest.fn() : null,
+  onApplyClick: isTest ? jest.fn() : null,
   onRemoveClick: isTest ? jest.fn() : null,
 };
 
