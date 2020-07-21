@@ -5,6 +5,7 @@ import classes from "./SubjectsList.module.css";
 
 import TableWithTheme from "../../Utility/TableWithTheme/TableWithTheme";
 import SubjectRowEditable from "./SubjectRowEditable/SubjectRowEditable";
+import AddButton from "./AddButton/AddButton";
 
 function SubjectsList({ subjects }) {
   return (
@@ -13,6 +14,7 @@ function SubjectsList({ subjects }) {
         {subjects.map((subject) => (
           <SubjectRowEditable key={subject.id} {...subject} />
         ))}
+        <AddButton />
       </tbody>
     </TableWithTheme>
   );
