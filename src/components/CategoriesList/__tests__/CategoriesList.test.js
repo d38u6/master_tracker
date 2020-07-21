@@ -23,11 +23,17 @@ describe("'CategoriesList' component", () => {
 
   categoiresList
     .find("Memo(CategoryBoxEditable)")
-    .forEach((categoryBoxEditable, i) =>
+    .forEach((categoryBoxEditable, i) => {
       it(`Component 'CategoryBoxEditable' ${i}, should containt proper props`, () => {
         expect(categoryBoxEditable.props()).toMatchObject(props.categories[i]);
-      })
-    );
+      });
+
+      it(`Component 'CategoryBoxEditable' ${i}, should containt 'onPickCategory' callback`, () => {
+        expect(categoryBoxEditable.prop("onPickCategory")).toBe(
+          props.pickCategory
+        );
+      });
+    });
 
   //AddButton
   it("render 'AddButton' component", () => {

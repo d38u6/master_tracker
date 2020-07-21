@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 import CategoryBoxWrapper from "./CategoryBoxWrapper/CategoryBoxWrapper";
 import EditButton from "./EditButton/EditButton";
@@ -9,7 +10,6 @@ import CategoryImage from "./CategoryImage/CategoryImage";
 import TimeCounter from "./TimeCounter/TimeCounter";
 
 import classes from "./CategoryBox.module.css";
-import { Link } from "react-router-dom";
 
 function CategoryBox({ id, imageSrc, title, desc, time, onPick, onEditClick }) {
   return (

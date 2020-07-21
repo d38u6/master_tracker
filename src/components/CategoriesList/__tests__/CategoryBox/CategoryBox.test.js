@@ -38,8 +38,24 @@ describe("'CategoryBox' component", () => {
     expect(categoryBox.find("CategoryImage").exists()).toBe(true);
   });
 
-  it("render 'CategoryImage' contain proper 'src' prop", () => {
+  it("'CategoryImage' contain proper 'src' prop", () => {
     expect(categoryBox.find("CategoryImage").prop("src")).toBe(props.imageSrc);
+  });
+
+  //Link
+  it("render 'Link' component", () => {
+    expect(categoryBox.find("Link").exists()).toBe(true);
+  });
+
+  it("'Link' component contain proper 'to' prop", () => {
+    expect(categoryBox.find("Link").prop("to")).toBe(
+      `/category/${props.title}/${props.id}`
+    );
+  });
+
+  it("should call 'onPick' callback", () => {
+    categoryBox.find("Link").simulate("click");
+    expect(props.onPick).toHaveBeenCalled();
   });
 
   //CardBody

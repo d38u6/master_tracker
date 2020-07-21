@@ -20,6 +20,11 @@ describe("'CategoryBoxEditable' component", () => {
     );
   });
 
+  it("When pick category, should call 'onPickCategory' callback with categoryId", () => {
+    categoryBoxEditable.find("CategoryBox").prop("onPick")();
+    expect(props.onPickCategory).toHaveBeenCalledWith(props.id);
+  });
+
   describe("when click edit", () => {
     let categoryBoxEditable;
     beforeEach(() => {
