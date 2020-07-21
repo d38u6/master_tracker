@@ -1,20 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-function SubjectFormContainer({ subjectId, onSave, render }) {
+import { editSubject, removeSubject } from "../../../../store/actions";
+
+function SubjectFormContainer({
+  subjectId,
+  subjects,
+  editSubject,
+  removeSubject,
+  onSave,
+  render,
+}) {
   const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    const subject = subjects.find(({ id }) => id === subjectId);
+    if (subject) {
+      setTitle(subject.title);
+    }
+  }, [subjectId, subjects]);
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
   };
 
   const onSaveHandler = () => {
-    console.log("save subject form");
+    editSubject(subjectId, { title });
     onSave();
   };
 
   const onRemoveHandler = () => {
-    console.log("remove subject");
+    removeSubject(subjectId);
   };
 
   return render({
@@ -28,6 +45,16 @@ SubjectFormContainer.propTypes = {
   subjectId: PropTypes.string.isRequired,
   onSave: PropTypes.func.isRequired,
   render: PropTypes.func.isRequired,
+  //redux
+  subjects: PropTypes.array.isRequired,
+  editSubject: PropTypes.func.isRequired,
+  removeSubject: PropTypes.func.isRequired,
 };
 
-export default SubjectFormContainer;
+function mapStateToProps({ subjects }) {
+  return { subjects };
+}
+
+export default connect(mapStateToProps, { editSubject, removeSubject })(
+  SubjectFormContainer
+);
