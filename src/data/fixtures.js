@@ -88,3 +88,9 @@ export const subTwo = {
 };
 
 export const subjects = [subOne, subTwo];
+
+export const subjectFormConf = {
+  titleConf,
+  onApplyClick: isTest ? jest.fn() : null,
+  onRemoveClick: isTest ? jest.fn() : null,
+};
