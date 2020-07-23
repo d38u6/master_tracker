@@ -27,6 +27,11 @@ describe("'EditButton' component", () => {
     expect(editButton.find("div").props()).toMatchObject(desiredProps);
   });
 
+  it("should call 'onClick' callback", () => {
+    editButton.find("div").simulate("click");
+    expect(props.onClick).toHaveBeenCalled();
+  });
+
   //FaPencilAlt icon
   it("render 'FaPencilAlt' icon inside 'div'", () => {
     expect(editButton.find("div > FaPencilAlt").exists()).toBe(true);

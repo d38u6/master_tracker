@@ -27,6 +27,11 @@ describe("'ApplyButton' component", () => {
     expect(applyButton.find("div").props()).toMatchObject(desiredProps);
   });
 
+  it("should call 'onClick' callback", () => {
+    applyButton.find("div").simulate("click");
+    expect(props.onClick).toHaveBeenCalled();
+  });
+
   //FaCheck icon
   it("render 'FaCheck' icon inside 'div'", () => {
     expect(applyButton.find("div > FaCheck").exists()).toBe(true);
