@@ -10,7 +10,7 @@ export function TableWithTheme({ className, theme, children, ...props }) {
   return (
     <Table
       {...props}
-      className={[className, classes[themeClassName]].join(" ")}
+      className={[className || "", classes[themeClassName]].join(" ")}
     >
       {children}
     </Table>
