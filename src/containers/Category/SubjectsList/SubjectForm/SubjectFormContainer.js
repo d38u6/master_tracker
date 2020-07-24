@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { editSubject, removeSubject } from "../../../../store/actions";
 
-function SubjectFormContainer({
+export function SubjectFormContainer({
   subjectId,
   subjects,
   editSubject,

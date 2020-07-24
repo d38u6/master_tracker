@@ -17,7 +17,7 @@ let useEffect;
 jest.spyOn(React, "useEffect").mockImplementation((f) => (useEffect = f));
 
 describe("'CategoryFormContainer' component", () => {
-  const categoryFormContainer = shallow(<CategoryFormContainer {...props} />);
+  shallow(<CategoryFormContainer {...props} />);
 
   //title
   it("should call 'render' function with 'titleChangeHandler'", () => {
