@@ -1,11 +1,11 @@
 import React from "react";
 import SubjectsList from "./SubjectsList/SubjectsList";
-import SubjectsListsContainer from "../../containers/Category/SubjectsList/SubjectsListsContainer";
+import SubjectsListContainer from "../../containers/Category/SubjectsList/SubjectsListContainer";
 
 function Category(props) {
   return (
     <>
-      <SubjectsListsContainer
+      <SubjectsListContainer
         render={({ subjects, addSubject }) => (
           <SubjectsList subjects={subjects} onAddClick={addSubject} />
         )}

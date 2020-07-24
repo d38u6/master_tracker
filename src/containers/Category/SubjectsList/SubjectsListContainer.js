@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import { pickCategory, addSubject } from "../../../store/actions";
 
-function SubjectsListsContainer({
+function SubjectsListContainer({
   subjects,
   categories,
   currentCategory,
@@ -54,7 +54,7 @@ function SubjectsListsContainer({
   );
 }
 
-SubjectsListsContainer.propTypes = {
+SubjectsListContainer.propTypes = {
   render: PropTypes.func.isRequired,
   //redux
   subjects: PropTypes.array.isRequired,
@@ -71,4 +71,4 @@ function mapStateToProps({ categories, subjects, app: { currentCategory } }) {
 export default compose(
   withRouter,
   connect(mapStateToProps, { pickCategory, addSubject })
-)(SubjectsListsContainer);
+)(SubjectsListContainer);
