@@ -75,14 +75,14 @@ export const theme = {
 
 export const subOne = {
   id: "sub0",
-  categoryId: "0",
+  categoryId: "1",
   title: "Dziennik Uczuć",
   summaryTime: "50h 35min",
 };
 
 export const subTwo = {
   id: "sub1",
-  categoryId: "0",
+  categoryId: "1",
   title: "Master Tracker",
   summaryTime: "15h 35min",
 };

@@ -55,26 +55,30 @@ describe("'CategoriesListContainer' component", () => {
     });
   });
 
-  //addCategory
-  it("should call 'addCategory' callback with newCategory", () => {
-    shallow(<CategoriesListContainer {...props} />);
-    props.render.mock.calls[0][0].addCategory();
-    expect(props.addCategory.mock.calls[0][0]).toMatchObject(newCategory);
-  });
+  describe("'render' function callbacks", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<CategoriesListContainer {...props} />);
+    });
 
-  it("should create valid id for newCategory", () => {
-    shallow(<CategoriesListContainer {...props} />);
-    props.render.mock.calls[0][0].addCategory();
+    //addCategory
+    it("should call 'addCategory' callback with newCategory", () => {
+      props.render.mock.calls[0][0].addCategory();
+      expect(props.addCategory.mock.calls[0][0]).toMatchObject(newCategory);
+    });
 
-    const id = props.addCategory.mock.calls[0][0].id;
-    expect(shortid.isValid(id)).toBe(true);
-  });
+    it("should create valid id for newCategory", () => {
+      props.render.mock.calls[0][0].addCategory();
 
-  //pickCategory
-  it("should call 'pickCategory' callback with categoryId", () => {
-    const categoryId = "testId";
-    shallow(<CategoriesListContainer {...props} />);
-    props.render.mock.calls[0][0].pickCategory(categoryId);
-    expect(props.pickCategory.mock.calls[0][0]).toBe(categoryId);
+      const id = props.addCategory.mock.calls[0][0].id;
+      expect(shortid.isValid(id)).toBe(true);
+    });
+
+    //pickCategory
+    it("should call 'pickCategory' callback with categoryId", () => {
+      const categoryId = "testId";
+      props.render.mock.calls[0][0].pickCategory(categoryId);
+      expect(props.pickCategory.mock.calls[0][0]).toBe(categoryId);
+    });
   });
 });

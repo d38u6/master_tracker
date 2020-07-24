@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -6,8 +6,9 @@ import shortid from "shortid";
 import PropTypes from "prop-types";
 
 import { pickCategory, addSubject } from "../../../store/actions";
+import { newSubject } from "../../../data/subjects";
 
-function SubjectsListContainer({
+export function SubjectsListContainer({
   subjects,
   categories,
   currentCategory,
@@ -17,37 +18,33 @@ function SubjectsListContainer({
   ...props
 }) {
   const categoryId = props.match.params.id;
-
-  const [categoryExist, setCategoryExist] = useState(true);
-  useEffect(() => {
-    setCategoryExist(Boolean(categories.find(({ id }) => id === categoryId)));
-  }, [categories, categoryId]);
-
-  useEffect(() => {
-    if (currentCategory !== categoryId) {
-      pickCategory(categoryId);
-    }
-  }, [currentCategory, categoryId, pickCategory]);
-
+  const [categoryExists, setCategoryExists] = useState(true);
   const [categorySubjects, setCategorySubjects] = useState([]);
-  useEffect(() => {
-    if (currentCategory === categoryId) {
+
+  React.useEffect(() => {
+    const categoryExists = Boolean(
+      categories.find(({ id }) => id === categoryId)
+    );
+    if (!categoryExists) {
+      setCategoryExists(false);
+    } else if (currentCategory !== categoryId) {
+      pickCategory(categoryId);
+    } else {
       setCategorySubjects(
         subjects.filter((subject) => subject.categoryId === categoryId)
       );
     }
-  }, [currentCategory, categoryId, subjects]);
+  }, [categories, subjects, categoryId, currentCategory, pickCategory]);
 
   const addSubjectHandler = () => {
     addSubject({
       id: shortid.generate(),
       categoryId: currentCategory,
-      title: "New Subject",
-      summaryTime: "0h 00min",
+      ...newSubject,
     });
   };
 
-  return categoryExist ? (
+  return categoryExists ? (
     render({ subjects: categorySubjects, addSubject: addSubjectHandler })
   ) : (
     <Redirect to="/" />
