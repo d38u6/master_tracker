@@ -4,7 +4,7 @@ import * as actions from "../../actions/index";
 import { categories, categoryOne } from "../../../data/fixtures";
 
 describe("categories reducer", () => {
-  it("should return default with unknown action", () => {
+  it("should return default state with unknown action", () => {
     expect(reducer(categories, { type: "unknown" })).toBe(categories);
   });
 
