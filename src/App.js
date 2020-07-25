@@ -12,10 +12,11 @@ import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
 import CategoriesListContainer from "./containers/CategoriesList/CategoriesListContainer";
 import CategoriesList from "./components/CategoriesList/CategoriesList";
-import Category from "./components/Category/Category";
 
 import { initialCategories } from "./data/categories";
 import { subjects as fixturesSubjects } from "./data/fixtures";
+import CategoryContainer from "./containers/Category/CategoryContianer";
+import SubjectsList from "./components/Category/SubjectsList/SubjectsList";
 
 const categories = (
   <Route
@@ -36,7 +37,19 @@ const categories = (
 );
 
 const category = (
-  <Route path="/category/:title/:id" exact render={() => <Category />} />
+  <Route
+    path="/category/:title/:id"
+    exact
+    render={() => (
+      <CategoryContainer
+        render={({ subjects, records, addSubject }) => (
+          <>
+            <SubjectsList subjects={subjects} onAddClick={addSubject} />
+          </>
+        )}
+      />
+    )}
+  />
 );
 
 export function App({ setCategories, setSubjects }) {

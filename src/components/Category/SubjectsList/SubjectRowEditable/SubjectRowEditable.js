@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import SubjectRow from "../SubjectRow/SubjectRow";
 import SubjectRowForm from "../SubjectRowForm/SubjectRowForm";
-import SubjectFormContainer from "../../../../containers/Category/SubjectsList/SubjectForm/SubjectFormContainer";
+import SubjectFormContainer from "../../../../containers/Category/SubjectForm/SubjectFormContainer";
 
 export function SubjectRowEditable(props) {
   const [editMode, setEditMode] = useState(false);

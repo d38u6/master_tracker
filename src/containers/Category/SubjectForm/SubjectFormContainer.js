@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { editSubject, removeSubject } from "../../../../store/actions";
+import { editSubject, removeSubject } from "../../../store/actions";
 
 export function SubjectFormContainer({
   subjectId,
