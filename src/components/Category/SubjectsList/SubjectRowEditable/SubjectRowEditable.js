@@ -25,7 +25,7 @@ SubjectRowEditable.propTypes = {
   id: PropTypes.string.isRequired,
   categoryId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  summaryTime: PropTypes.string.isRequired,
+  summaryTime: PropTypes.number.isRequired,
 };
 
 export default memo(SubjectRowEditable);

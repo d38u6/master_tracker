@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 
-import { setCategories, setSubjects } from "./store/actions";
+import { setCategories, setSubjects, setRecords } from "./store/actions";
 import {
   getCategories,
   getSubjects,
@@ -17,6 +17,8 @@ import SubjectsList from "./components/Category/SubjectsList/SubjectsList";
 
 import { initialCategories } from "./data/categories";
 import { subjects as fixturesSubjects } from "./data/fixtures";
+
+import { generateRecords } from "./data/recordsGenerator";
 
 const categories = (
   <Route
@@ -52,7 +54,7 @@ const category = (
   />
 );
 
-export function App({ setCategories, setSubjects }) {
+export function App({ setCategories, setSubjects, setRecords }) {
   useEffect(() => {
     const categoriesLS = getCategories();
     if (categoriesLS && categoriesLS.length > 0) {
@@ -69,7 +71,11 @@ export function App({ setCategories, setSubjects }) {
     } else {
       setSubjects(fixturesSubjects);
     }
-  });
+  }, [setSubjects]);
+
+  useEffect(() => {
+    setRecords([...generateRecords("0", "1", 250)]);
+  }, [setRecords]);
 
   return (
     <Theme>
@@ -81,4 +87,4 @@ export function App({ setCategories, setSubjects }) {
   );
 }
 
-export default connect(null, { setCategories, setSubjects })(App);
+export default connect(null, { setCategories, setSubjects, setRecords })(App);

@@ -2,14 +2,15 @@ import React from "react";
 import { shallow } from "enzyme";
 import shortid from "shortid";
 
-import { CategoryContainer } from "../CategoryContainer";
-import { subjects, categories } from "../../../data/fixtures";
+import { CategoryContainer, calculateSummaryTime } from "../CategoryContainer";
+import { subjects, categories, records } from "../../../data/fixtures";
 import { newSubject } from "../../../data/subjects";
 
 const categoryId = categories[0].id;
 const props = {
   categories,
   subjects,
+  records,
   currentCategory: categoryId,
   match: { params: { id: categoryId } },
   pickCategory: jest.fn(),
@@ -27,7 +28,6 @@ describe("'CategoryContainer' component", () => {
       useEffect = jest.spyOn(React, "useEffect");
       jest.clearAllMocks();
       mockUseEffect(); //useExists
-      mockUseEffect(); //useSubjects
       mockUseEffect(); //useRecords
       shallow(<CategoryContainer {...props} />);
     });
@@ -38,8 +38,22 @@ describe("'CategoryContainer' component", () => {
       );
     });
 
+    it(`should correctly calculate summary time for each subject`, () => {
+      const categoryRecords = props.records.filter(
+        (r) => r.categoryId === categoryId
+      );
+      props.render.mock.calls[1][0].subjects.forEach(({ id, summaryTime }) => {
+        expect(summaryTime).toBe(calculateSummaryTime(id, categoryRecords));
+      });
+    });
+
     it("should call 'render' function with 'records'", () => {
-      expect(props.render.mock.calls[1][0].records).toMatchObject(["1"]);
+      const categoryRecords = props.records.filter(
+        (r) => r.categoryId === categoryId
+      );
+      expect(props.render.mock.calls[1][0].records).toMatchObject(
+        categoryRecords
+      );
     });
 
     it("should call 'render' function with 'addSubject' function", () => {

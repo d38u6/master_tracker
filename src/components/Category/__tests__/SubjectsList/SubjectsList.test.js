@@ -2,9 +2,9 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import SubjectsList from "../../SubjectsList/SubjectsList";
-import { subjects } from "../../../../data/fixtures";
+import { subOne, subTwo } from "../../../../data/fixtures";
 
-const props = { subjects, onAddClick: jest.fn() };
+const props = { subjects: [subTwo, subOne], onAddClick: jest.fn() };
 
 describe("'SubjectsList' component", () => {
   const subjectsList = shallow(<SubjectsList {...props} />);

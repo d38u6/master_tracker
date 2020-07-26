@@ -7,10 +7,17 @@ import PropTypes from "prop-types";
 
 import { pickCategory, addSubject } from "../../store/actions";
 import { newSubject } from "../../data/subjects";
-import { generateRecords } from "../../data/recordsGenerator";
+
+export function calculateSummaryTime(subId, records) {
+  return records
+    .filter(({ subjectId }) => subId === subjectId)
+    .reduce((pv, { value }) => pv + value, 0);
+}
 
 export function CategoryContainer({
   categories,
+  subjects,
+  records,
   currentCategory,
   pickCategory,
   addSubject,
@@ -19,8 +26,8 @@ export function CategoryContainer({
 }) {
   const id = props.match.params.id;
   const [exists, setExists] = useState(true);
-  const [subjects, setSubjects] = useState([]);
-  const [records, setRecords] = useState([]);
+  const [prevRecords, setPrevRecords] = useState(null);
+  const [categoryRecords, setCategoryRecords] = useState([]);
 
   //setExists
   React.useEffect(() => {
@@ -31,17 +38,19 @@ export function CategoryContainer({
     }
   }, [id, categories, pickCategory, currentCategory]);
 
-  //setSubjects
-  React.useEffect(
-    () =>
-      setSubjects(
-        props.subjects.filter((subject) => subject.categoryId === id)
-      ),
-    [props.subjects, id]
-  );
+  if (prevRecords !== records) {
+    setCategoryRecords(
+      records.filter(({ categoryId }) => categoryId === currentCategory)
+    );
+    setPrevRecords(records);
+  }
 
-  //setRecords
-  React.useEffect(() => setRecords([generateRecords("1", "1", 1000)]), []);
+  const categorySubjects = subjects
+    .filter((subject) => subject.categoryId === currentCategory)
+    .map((sub) => ({
+      ...sub,
+      summaryTime: calculateSummaryTime(sub.id, categoryRecords),
+    }));
 
   const addSubjectHandler = () => {
     addSubject({
@@ -52,7 +61,11 @@ export function CategoryContainer({
   };
 
   return exists ? (
-    render({ subjects, records, addSubject: addSubjectHandler })
+    render({
+      subjects: categorySubjects,
+      records: categoryRecords,
+      addSubject: addSubjectHandler,
+    })
   ) : (
     <Redirect to="/" />
   );
@@ -63,13 +76,19 @@ CategoryContainer.propTypes = {
   //redux
   categories: PropTypes.array.isRequired,
   subjects: PropTypes.array.isRequired,
+  records: PropTypes.array.isRequired,
   currentCategory: PropTypes.string,
   pickCategory: PropTypes.func.isRequired,
   addSubject: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ categories, subjects, app: { currentCategory } }) {
-  return { categories, subjects, currentCategory };
+function mapStateToProps({
+  categories,
+  subjects,
+  records,
+  app: { currentCategory },
+}) {
+  return { categories, subjects, records, currentCategory };
 }
 
 export default compose(

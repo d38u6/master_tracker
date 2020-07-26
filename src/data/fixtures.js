@@ -1,6 +1,7 @@
 import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
+import { generateRecords } from "./recordsGenerator";
 
 const isTest = process.env.NODE_ENV === "test";
 
@@ -74,23 +75,38 @@ export const theme = {
 };
 
 export const subOne = {
-  id: "sub0",
-  categoryId: "1",
+  id: "0",
+  categoryId: "0",
   title: "Dziennik Uczuć",
-  summaryTime: "50h 35min",
+  summaryTime: 21325,
 };
 
 export const subTwo = {
-  id: "sub1",
-  categoryId: "1",
+  id: "1",
+  categoryId: "0",
   title: "Master Tracker",
-  summaryTime: "15h 35min",
+  summaryTime: 215,
 };
 
-export const subjects = [subOne, subTwo];
+export const subjects = [
+  ...[subOne, subTwo].map(({ summaryTime, ...rest }) => ({
+    ...rest,
+  })),
+  ...[subOne, subTwo].map(({ summaryTime, ...rest }) => ({
+    ...rest,
+    categoryId: "1",
+  })),
+];
 
 export const subjectFormConf = {
   titleConf,
   onApplyClick: isTest ? jest.fn() : null,
   onRemoveClick: isTest ? jest.fn() : null,
 };
+
+export const records = [
+  ...generateRecords("1", "0", 10),
+  ...generateRecords("1", "1", 15),
+  ...generateRecords("2", "0", 15),
+  ...generateRecords("3", "1", 15),
+];

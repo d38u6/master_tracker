@@ -18,7 +18,7 @@ function SubjectRow({ id, title, summaryTime, onEditClick }) {
 SubjectRow.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  summaryTime: PropTypes.string.isRequired,
+  summaryTime: PropTypes.number.isRequired,
   onEditClick: PropTypes.func,
 };
 

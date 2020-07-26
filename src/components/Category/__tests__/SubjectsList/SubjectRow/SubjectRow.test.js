@@ -21,7 +21,9 @@ describe("'SubjectRow' component", () => {
 
   //td summaryTime
   it("render 'td' element with 'summaryTime' text", () => {
-    expect(subjectRow.find("td").at(1).text()).toBe(props.summaryTime);
+    expect(subjectRow.find("td").at(1).text()).toBe(
+      props.summaryTime.toString()
+    );
   });
 
   //AddTimeButton
