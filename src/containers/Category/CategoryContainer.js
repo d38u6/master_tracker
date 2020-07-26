@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -22,7 +22,7 @@ export function CategoryContainer({
   const [records, setRecords] = useState([]);
 
   //setExists
-  useEffect(() => {
+  React.useEffect(() => {
     if (!Boolean(categories.find((category) => category.id === id))) {
       setExists(false);
     } else if (currentCategory !== id) {
@@ -31,7 +31,7 @@ export function CategoryContainer({
   }, [id, categories, pickCategory, currentCategory]);
 
   //setSubjects
-  useEffect(
+  React.useEffect(
     () =>
       setSubjects(
         props.subjects.filter((subject) => subject.categoryId === id)
@@ -40,7 +40,7 @@ export function CategoryContainer({
   );
 
   //setRecords
-  useEffect(() => setRecords(["1"]), []);
+  React.useEffect(() => setRecords(["1"]), []);
 
   const addSubjectHandler = () => {
     addSubject({

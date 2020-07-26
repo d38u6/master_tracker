@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { SubjectFormContainer } from "../../SubjectsList/SubjectForm/SubjectFormContainer";
-import { subjects, subOne } from "../../../../data/fixtures";
+import { SubjectFormContainer } from "../SubjectForm/SubjectFormContainer";
+import { subjects, subOne } from "../../../data/fixtures";
 
 const props = {
   subjectId: subOne.id,
@@ -98,9 +98,5 @@ describe("'SubjectFormContainer' component", () => {
       const { value } = [...props.render.mock.calls].pop()[0].titleConf;
       expect(value).toBe("");
     });
-  });
-
-  it("d38u6", () => {
-    console.log(wrapper.debug());
   });
 });

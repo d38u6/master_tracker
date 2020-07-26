@@ -12,11 +12,11 @@ import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
 import CategoriesListContainer from "./containers/CategoriesList/CategoriesListContainer";
 import CategoriesList from "./components/CategoriesList/CategoriesList";
+import CategoryContainer from "./containers/Category/CategoryContainer";
+import SubjectsList from "./components/Category/SubjectsList/SubjectsList";
 
 import { initialCategories } from "./data/categories";
 import { subjects as fixturesSubjects } from "./data/fixtures";
-import CategoryContainer from "./containers/Category/CategoryContianer";
-import SubjectsList from "./components/Category/SubjectsList/SubjectsList";
 
 const categories = (
   <Route
