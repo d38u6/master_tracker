@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 import { pickCategory, addSubject } from "../../store/actions";
 import { newSubject } from "../../data/subjects";
+import { generateRecords } from "../../data/recordsGenerator";
 
 export function CategoryContainer({
   categories,
@@ -40,7 +41,7 @@ export function CategoryContainer({
   );
 
   //setRecords
-  React.useEffect(() => setRecords(["1"]), []);
+  React.useEffect(() => setRecords([generateRecords("1", "1", 1000)]), []);
 
   const addSubjectHandler = () => {
     addSubject({
