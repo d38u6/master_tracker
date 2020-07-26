@@ -1,3 +1,5 @@
+export { pickCategory } from "./app/app";
+
 export {
   setCategories,
   addCategory,
@@ -12,4 +14,9 @@ export {
   removeSubject,
 } from "./subjects/subjects";
 
-export { pickCategory } from "./app/app";
+export {
+  setRecords,
+  addRecord,
+  editRecord,
+  removeRecord,
+} from "./records/records";

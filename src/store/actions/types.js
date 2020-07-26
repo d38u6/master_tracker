@@ -1,3 +1,6 @@
+//APP
+export const PICK_CATEGORY = "PICK_CATEGORY";
+
 //CATEGORIES
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const ADD_CATEGORY = "ADD_CATEGORY";
@@ -10,5 +13,8 @@ export const ADD_SUBJECT = "ADD_SUBJECT";
 export const EDIT_SUBJECT = "EDIT_SUBJECT";
 export const REMOVE_SUBJECT = "REMOVE_SUBJECT";
 
-//APP
-export const PICK_CATEGORY = "PICK_CATEGORY";
+//RECORDS
+export const SET_RECORDS = "SET_RECORDS";
+export const ADD_RECORD = "ADD_RECORD";
+export const EDIT_RECORD = "EDIT_RECORD";
+export const REMOVE_RECORD = "REMOVE_RECORD";
