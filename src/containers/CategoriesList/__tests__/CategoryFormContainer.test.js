@@ -9,7 +9,7 @@ const props = {
   categoryId: categoryFour.id,
   editCategory: jest.fn(),
   removeCategory: jest.fn(),
-  onSave: jest.fn(),
+  setEditMode: jest.fn(),
   onPick: jest.fn(),
   render: jest.fn(),
 };
@@ -67,10 +67,10 @@ describe("'CategoryFormContainer' component", () => {
     expect(typeof onApplyClick).toBe("function");
   });
 
-  it("should call 'onSave' callback", () => {
+  it("should call 'setEditMode' callback with false", () => {
     const { onApplyClick } = props.render.mock.calls[0][0];
     onApplyClick();
-    expect(props.onSave).toHaveBeenCalled();
+    expect(props.setEditMode).toHaveBeenCalledWith(false);
   });
 
   it("should call 'editCategory' callback with correctly categoryId", () => {

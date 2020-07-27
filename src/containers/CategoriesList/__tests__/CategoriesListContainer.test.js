@@ -10,7 +10,6 @@ const props = {
   categories,
   setCategories: jest.fn(),
   addCategory: jest.fn(),
-  pickCategory: jest.fn(),
   render: jest.fn(),
 };
 let useEffect;
@@ -30,12 +29,6 @@ describe("'CategoriesListContainer' component", () => {
 
     it("should call 'render' function with 'addCategory' function", () => {
       expect(typeof props.render.mock.calls[0][0].addCategory).toBe("function");
-    });
-
-    it("should call 'render' function with 'pickCategory' function", () => {
-      expect(typeof props.render.mock.calls[0][0].pickCategory).toBe(
-        "function"
-      );
     });
 
     it("should not call 'setCategories' callback", () => {
@@ -72,13 +65,6 @@ describe("'CategoriesListContainer' component", () => {
 
       const id = props.addCategory.mock.calls[0][0].id;
       expect(shortid.isValid(id)).toBe(true);
-    });
-
-    //pickCategory
-    it("should call 'pickCategory' callback with categoryId", () => {
-      const categoryId = "testId";
-      props.render.mock.calls[0][0].pickCategory(categoryId);
-      expect(props.pickCategory.mock.calls[0][0]).toBe(categoryId);
     });
   });
 });

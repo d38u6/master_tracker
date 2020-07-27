@@ -4,7 +4,11 @@ import { shallow } from "enzyme";
 import CategoryBox from "../../CategoryBox/CategoryBox";
 import { categoryOne } from "../../../../data/fixtures";
 
-const props = { ...categoryOne, onEditClick: jest.fn(), onPick: jest.fn() };
+const props = {
+  ...categoryOne,
+  onPick: jest.fn(),
+  setEditMode: jest.fn(),
+};
 
 describe("'CategoryBox' component", () => {
   const categoryBox = shallow(<CategoryBox {...props} />);
@@ -23,9 +27,9 @@ describe("'CategoryBox' component", () => {
     expect(categoryBox.find("EditButton").hasClass("EditButton")).toBe(true);
   });
 
-  it("should call 'onEditClick' callback", () => {
+  it("should call 'setEditMode' callback with true param", () => {
     categoryBox.find("EditButton").simulate("click");
-    expect(props.onEditClick).toHaveBeenCalled();
+    expect(props.setEditMode).toHaveBeenCalledWith(true);
   });
 
   //CardWithTheme
@@ -53,9 +57,9 @@ describe("'CategoryBox' component", () => {
     );
   });
 
-  it("should call 'onPick' callback", () => {
+  it("should call 'onPick' callback with 'id' param", () => {
     categoryBox.find("Link").simulate("click");
-    expect(props.onPick).toHaveBeenCalled();
+    expect(props.onPick).toHaveBeenCalledWith(props.id);
   });
 
   //CardBody

@@ -8,7 +8,7 @@ import CategoryFormContainer from "../../containers/CategoriesList/CategoryForm/
 import CategoryBoxForm from "./CategoryBoxForm/CategoryBoxForm";
 import CategoryBox from "./CategoryBox/CategoryBox";
 
-function CategoriesList({ categories, onAddClick, pickCategory }) {
+function CategoriesList({ categories, onAddClick }) {
   return (
     <>
       <Row>
@@ -49,7 +49,6 @@ CategoriesList.propTypes = {
     })
   ).isRequired,
   onAddClick: PropTypes.func.isRequired,
-  pickCategory: PropTypes.func.isRequired,
 };
 
 export default CategoriesList;
