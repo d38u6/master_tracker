@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
@@ -11,13 +11,24 @@ import TimeCounter from "./TimeCounter/TimeCounter";
 
 import classes from "./CategoryBox.module.css";
 
-function CategoryBox({ id, imageSrc, title, desc, time, onPick, onEditClick }) {
+export function CategoryBox({
+  id,
+  imageSrc,
+  title,
+  desc,
+  time,
+  onPick,
+  setEditMode,
+}) {
   return (
     <CategoryBoxWrapper className={classes.CategoryBox}>
-      <EditButton className={classes.EditButton} onClick={onEditClick} />
+      <EditButton
+        className={classes.EditButton}
+        onClick={() => setEditMode(true)}
+      />
       <CardWithTheme>
         <CategoryImage src={imageSrc} />
-        <Link to={`/category/${title}/${id}`} onClick={onPick}>
+        <Link to={`/category/${title}/${id}`} onClick={() => onPick(id)}>
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>{desc}</Card.Text>
@@ -36,7 +47,7 @@ CategoryBox.propTypes = {
   description: PropTypes.string,
   time: PropTypes.number,
   onPick: PropTypes.func.isRequired,
-  onEditClick: PropTypes.func,
+  setEditMode: PropTypes.func.isRequired,
 };
 
-export default CategoryBox;
+export default memo(CategoryBox);

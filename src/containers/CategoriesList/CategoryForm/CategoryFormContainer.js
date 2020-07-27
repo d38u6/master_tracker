@@ -12,7 +12,7 @@ export function CategoryFormContainer({
   categoryId,
   editCategory,
   removeCategory,
-  onSave,
+  setEditMode,
   render,
 }) {
   const [title, setTitle] = useState("");
@@ -42,7 +42,7 @@ export function CategoryFormContainer({
 
   const onSaveHandler = () => {
     editCategory(categoryId, { imageSrc, title, desc });
-    onSave();
+    setEditMode(false);
   };
 
   const onRemoveHandler = () => {
@@ -61,7 +61,7 @@ export function CategoryFormContainer({
 CategoryFormContainer.propTypes = {
   categoryId: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
+  setEditMode: PropTypes.func.isRequired,
   //redux
   categories: PropTypes.array.isRequired,
   editCategory: PropTypes.func.isRequired,

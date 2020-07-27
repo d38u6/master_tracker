@@ -2,18 +2,34 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Row } from "react-bootstrap";
 
-import CategoryBoxEditable from "./CategoryBoxEditable/CategoryBoxEditable";
 import AddButton from "../Utility/AddButton/AddButton";
+import CategoryEditableContainer from "../../containers/CategoriesList/CategoryEditable/CategoryEditableContainer";
+import CategoryFormContainer from "../../containers/CategoriesList/CategoryForm/CategoryFormContainer";
+import CategoryBoxForm from "./CategoryBoxForm/CategoryBoxForm";
+import CategoryBox from "./CategoryBox/CategoryBox";
 
 function CategoriesList({ categories, onAddClick, pickCategory }) {
   return (
     <>
       <Row>
         {categories.map((category) => (
-          <CategoryBoxEditable
+          <CategoryEditableContainer
             key={category.id}
-            {...category}
-            onPickCategory={pickCategory}
+            render={({ editMode, setEditMode, pickCategory }) =>
+              editMode ? (
+                <CategoryFormContainer
+                  categoryId={category.id}
+                  setEditMode={setEditMode}
+                  render={(formConf) => <CategoryBoxForm {...formConf} />}
+                />
+              ) : (
+                <CategoryBox
+                  {...category}
+                  setEditMode={setEditMode}
+                  onPick={pickCategory}
+                />
+              )
+            }
           />
         ))}
         <AddButton onClick={onAddClick} />
