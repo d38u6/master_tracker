@@ -17,7 +17,7 @@ export function CategoryBox({
   title,
   desc,
   time,
-  onPick,
+  pickCategory,
   setEditMode,
 }) {
   return (
@@ -28,7 +28,7 @@ export function CategoryBox({
       />
       <CardWithTheme>
         <CategoryImage src={imageSrc} />
-        <Link to={`/category/${title}/${id}`} onClick={() => onPick(id)}>
+        <Link to={`/category/${title}/${id}`} onClick={() => pickCategory(id)}>
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>{desc}</Card.Text>
@@ -46,7 +46,7 @@ CategoryBox.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   time: PropTypes.number,
-  onPick: PropTypes.func.isRequired,
+  pickCategory: PropTypes.func.isRequired,
   setEditMode: PropTypes.func.isRequired,
 };
 

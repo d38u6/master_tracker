@@ -1,16 +1,23 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 
 import AddTimeButton from "./AddTimeButton/AddTimeButton";
 import EditButton from "./EditButton/EditButton";
 
-function SubjectRow({ id, title, summaryTime, onEditClick }) {
+export function SubjectRow({
+  id,
+  title,
+  summaryTime,
+  pickSubject,
+  setEditMode,
+  setShowTimeForm,
+}) {
   return (
-    <tr>
+    <tr onClick={() => pickSubject(id)}>
       <td>{title}</td>
       <td>{summaryTime}</td>
-      <AddTimeButton />
-      <EditButton onClick={onEditClick} />
+      <AddTimeButton onClick={() => setShowTimeForm(true)} />
+      <EditButton onClick={() => setEditMode(true)} />
     </tr>
   );
 }
@@ -19,7 +26,9 @@ SubjectRow.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   summaryTime: PropTypes.number.isRequired,
-  onEditClick: PropTypes.func,
+  pickSubject: PropTypes.func.isRequired,
+  setEditMode: PropTypes.func.isRequired,
+  setShowTimeForm: PropTypes.func.isRequired,
 };
 
-export default SubjectRow;
+export default memo(SubjectRow);

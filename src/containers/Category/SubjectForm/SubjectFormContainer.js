@@ -9,7 +9,7 @@ export function SubjectFormContainer({
   subjects,
   editSubject,
   removeSubject,
-  onSave,
+  setEditMode,
   render,
 }) {
   const [title, setTitle] = useState("");
@@ -27,7 +27,7 @@ export function SubjectFormContainer({
 
   const onSaveHandler = () => {
     editSubject(subjectId, { title });
-    onSave();
+    setEditMode(false);
   };
 
   const onRemoveHandler = () => {
@@ -43,7 +43,7 @@ export function SubjectFormContainer({
 
 SubjectFormContainer.propTypes = {
   subjectId: PropTypes.string.isRequired,
-  onSave: PropTypes.func.isRequired,
+  setEditMode: PropTypes.func.isRequired,
   render: PropTypes.func.isRequired,
   //redux
   subjects: PropTypes.array.isRequired,

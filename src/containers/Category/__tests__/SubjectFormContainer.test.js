@@ -9,7 +9,7 @@ const props = {
   subjects,
   editSubject: jest.fn(),
   removeSubject: jest.fn(),
-  onSave: jest.fn(),
+  setEditMode: jest.fn(),
   render: jest.fn(),
 };
 let mockUseEffect;
@@ -38,10 +38,10 @@ describe("'SubjectFormContainer' component", () => {
     expect(typeof onApplyClick).toBe("function");
   });
 
-  it("should call 'onSave' callback", () => {
+  it("should call 'setEditMode' callback with false", () => {
     const { onApplyClick } = props.render.mock.calls[0][0];
     onApplyClick();
-    expect(props.onSave).toHaveBeenCalled();
+    expect(props.setEditMode).toHaveBeenCalledWith(false);
   });
 
   //edit

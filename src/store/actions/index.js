@@ -1,4 +1,4 @@
-export { pickCategory } from "./app/app";
+export { pickCategory, pickSubject } from "./app/app";
 
 export {
   setCategories,

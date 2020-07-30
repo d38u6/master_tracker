@@ -1,5 +1,6 @@
 //APP
 export const PICK_CATEGORY = "PICK_CATEGORY";
+export const PICK_SUBJECT = "PICK_SUBJECT";
 
 //CATEGORIES
 export const SET_CATEGORIES = "SET_CATEGORIES";

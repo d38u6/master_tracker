@@ -10,7 +10,6 @@ const props = {
   editCategory: jest.fn(),
   removeCategory: jest.fn(),
   setEditMode: jest.fn(),
-  onPick: jest.fn(),
   render: jest.fn(),
 };
 let useEffect;

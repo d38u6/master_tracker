@@ -6,7 +6,7 @@ import { categoryOne } from "../../../../data/fixtures";
 
 const props = {
   ...categoryOne,
-  onPick: jest.fn(),
+  pickCategory: jest.fn(),
   setEditMode: jest.fn(),
 };
 
@@ -57,9 +57,9 @@ describe("'CategoryBox' component", () => {
     );
   });
 
-  it("should call 'onPick' callback with 'id' param", () => {
+  it("should call 'pickCategory' callback with 'id' param", () => {
     categoryBox.find("Link").simulate("click");
-    expect(props.onPick).toHaveBeenCalledWith(props.id);
+    expect(props.pickCategory).toHaveBeenCalledWith(props.id);
   });
 
   //CardBody

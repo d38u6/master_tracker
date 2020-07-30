@@ -4,7 +4,12 @@ import { shallow } from "enzyme";
 import SubjectRow from "../../../SubjectsList/SubjectRow/SubjectRow";
 import { subTwo } from "../../../../../data/fixtures";
 
-const props = { ...subTwo, onEditClick: jest.fn() };
+const props = {
+  ...subTwo,
+  pickSubject: jest.fn(),
+  setEditMode: jest.fn(),
+  setShowTimeForm: jest.fn(),
+};
 
 describe("'SubjectRow' component", () => {
   const subjectRow = shallow(<SubjectRow {...props} />);
@@ -12,6 +17,11 @@ describe("'SubjectRow' component", () => {
   //tr
   it("render 'tr' element", () => {
     expect(subjectRow.find("tr").exists()).toBe(true);
+  });
+
+  it("should call 'pickSubject' callback with 'subjectId' param", () => {
+    subjectRow.find("tr").simulate("click");
+    expect(props.pickSubject).toHaveBeenCalledWith(props.id);
   });
 
   //td title
@@ -31,13 +41,18 @@ describe("'SubjectRow' component", () => {
     expect(subjectRow.find("AddTimeButton").exists()).toBe(true);
   });
 
+  it("should call 'setShowTimeForm' callback with true param", () => {
+    subjectRow.find("AddTimeButton").simulate("click");
+    expect(props.setShowTimeForm).toHaveBeenCalledWith(true);
+  });
+
   //EditButton
   it("render 'EditButton' component", () => {
     expect(subjectRow.find("EditButton").exists()).toBe(true);
   });
 
-  it("should call 'onEditClick' callback", () => {
+  it("should call 'setEditMode' callback with true param", () => {
     subjectRow.find("EditButton").simulate("click");
-    expect(props.onEditClick).toHaveBeenCalled();
+    expect(props.setEditMode).toHaveBeenCalledWith(true);
   });
 });

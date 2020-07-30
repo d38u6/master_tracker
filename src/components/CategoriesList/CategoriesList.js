@@ -26,7 +26,7 @@ function CategoriesList({ categories, onAddClick }) {
                 <CategoryBox
                   {...category}
                   setEditMode={setEditMode}
-                  onPick={pickCategory}
+                  pickCategory={pickCategory}
                 />
               )
             }
