@@ -1,0 +1,13 @@
+.Widget {
+  min-height: 40px;
+}
+.MenuButton {
+  position: absolute;
+  left: calc(100% - 8px);
+  transform: translate(-50%);
+}
+.Name {
+  color: inherit;
+  position: absolute;
+  font-size: 16px;
+}
