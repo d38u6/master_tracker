@@ -39,9 +39,7 @@ export function CategoryContainer({
   }, [id, categories, pickCategory, currentCategory]);
 
   if (prevRecords !== records) {
-    setCategoryRecords(
-      records.filter(({ categoryId }) => categoryId === currentCategory)
-    );
+    setCategoryRecords(records.filter(({ categoryId }) => categoryId === id));
     setPrevRecords(records);
   }
 

@@ -105,6 +105,15 @@ describe("'CategoryContainer' component", () => {
     it("should call 'pickCategory' callback with 'categoryId'", () => {
       expect(props.pickCategory).toHaveBeenCalledWith(categoryId);
     });
+
+    it("should call 'render' function with 'records'", () => {
+      const categoryRecords = props.records.filter(
+        (r) => r.categoryId === categoryId
+      );
+      expect(props.render.mock.calls[1][0].records).toMatchObject(
+        categoryRecords
+      );
+    });
   });
 
   describe("When category does not exists", () => {
