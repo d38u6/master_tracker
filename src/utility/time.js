@@ -2,30 +2,48 @@ export function parseMinutes(minutes) {
   return `${Math.floor(minutes / 60)}h ${minutes % 60}min`;
 }
 
-export const DAILY = "daily",
-  WEEKLY = "weekly",
-  MONTHLY = "monthly",
-  YEARLY = "yearly";
-export function createTimeFilter(filterName) {
-  let minDate = 0;
-  switch (filterName) {
-    case DAILY:
-      minDate = new Date(Date.now()).setHours(0, 0, 0, 0);
-      break;
-    case WEEKLY:
-      const weekDay = new Date(2020, 1, 2).getDay() || 7;
+export const THIS_DAY = "THIS_DAY",
+  THIS_WEEK = "THIS_WEEK",
+  THIS_MONTH = "THIS_MONTH",
+  THIS_YEAR = "THIS_YEAR",
+  LAST_DAYS = "LAST_DAYS";
+
+function defineDate({ name, numbOfDays }) {
+  switch (name) {
+    case THIS_DAY:
+      return new Date(Date.now()).setHours(0, 0, 0, 0);
+    case THIS_WEEK:
+      const weekDay = new Date(Date.now()).getDay() || 7;
       const today = new Date(Date.now()).setHours(0, 0, 0, 0);
-      minDate = new Date(today - (weekDay - 1) * 24 * 60 * 60 * 1000);
-      break;
-    case MONTHLY:
+      return new Date(today - (weekDay - 1) * 24 * 60 * 60 * 1000).getTime();
+    case THIS_MONTH:
       const firstDayOfMonth = new Date(Date.now()).setDate(1);
-      minDate = new Date(firstDayOfMonth).setHours(0, 0, 0, 0);
-      break;
-    case YEARLY:
+      return new Date(firstDayOfMonth).setHours(0, 0, 0, 0);
+    case THIS_YEAR:
       const firstDayOfYear = new Date(Date.now()).setMonth(0, 1);
-      minDate = new Date(firstDayOfYear).setHours(0, 0, 0, 0);
-      break;
+      return new Date(firstDayOfYear).setHours(0, 0, 0, 0);
+    case LAST_DAYS:
+      return (
+        new Date(Date.now()).setHours(0, 0, 0, 0) -
+        (numbOfDays - 1 || 0) * 24 * 60 * 60 * 1000
+      );
     default:
+      return 0;
   }
-  return (date) => date >= minDate && date <= Date.now();
+}
+
+export function createTimeFilter(filter) {
+  const filterDate = defineDate(filter);
+  const dateNow = Date.now();
+  return (date) => date >= filterDate && date <= dateNow;
+}
+
+export function* createDays(filter) {
+  for (
+    let date = defineDate(filter);
+    date <= new Date(Date.now()).setHours(0, 0, 0, 0);
+    date += 24 * 60 * 60 * 1000
+  ) {
+    yield date;
+  }
 }
