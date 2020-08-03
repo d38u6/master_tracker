@@ -1,0 +1,5 @@
+1. Added Store handler - RemoveAllSubjectsFromCategory
+2. Added Store handler - RemoveAllRecordsFromCategory
+3. Added Store handler - RemoveAllRecordsFromSubject
+4. Added RemoveAllSubjectsFromCategory, RemoveAllRecordsFromCategory inside remove category function
+5. Added RemoveAllRecordsFromSubject inside remove subject function

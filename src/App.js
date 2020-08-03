@@ -7,52 +7,14 @@ import {
   getCategories,
   getSubjects,
 } from "./utility/localStorageManager/localStorageManager";
+import { initialCategories } from "./data/categories";
+import { subjects as fixturesSubjects } from "./data/fixtures";
+import { generateRecords } from "./data/recordsGenerator";
 
 import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
-import CategoriesListContainer from "./containers/CategoriesList/CategoriesListContainer";
-import CategoriesList from "./components/CategoriesList/CategoriesList";
-import CategoryContainer from "./containers/Category/CategoryContainer";
-import SubjectsList from "./components/Category/SubjectsList/SubjectsList";
-
-import { initialCategories } from "./data/categories";
-import { subjects as fixturesSubjects } from "./data/fixtures";
-
-import { generateRecords } from "./data/recordsGenerator";
-
-const categories = (
-  <Route
-    path="/"
-    exact
-    render={() => (
-      <CategoriesListContainer
-        render={({ categories, addCategory, pickCategory }) => (
-          <CategoriesList
-            categories={categories}
-            onAddClick={addCategory}
-            pickCategory={pickCategory}
-          />
-        )}
-      />
-    )}
-  />
-);
-
-const category = (
-  <Route
-    path="/category/:title/:id"
-    exact
-    render={() => (
-      <CategoryContainer
-        render={({ subjects, records, addSubject }) => (
-          <>
-            <SubjectsList subjects={subjects} onAddClick={addSubject} />
-          </>
-        )}
-      />
-    )}
-  />
-);
+import Home from "./routes/Home";
+import Category from "./routes/Category";
 
 export function App({ setCategories, setSubjects, setRecords }) {
   useEffect(() => {
@@ -80,8 +42,8 @@ export function App({ setCategories, setSubjects, setRecords }) {
   return (
     <Theme>
       <Layout>
-        {categories}
-        {category}
+        <Route path="/" exact component={Home} />
+        <Route path="/category/:title/:id" exact component={Category} />
       </Layout>
     </Theme>
   );
