@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SubjectRow from "../../../SubjectsList/SubjectRow/SubjectRow";
-import { subTwo } from "../../../../../data/fixtures";
+import SubjectRow from "../../SubjectRow/SubjectRow";
+import { subTwo } from "../../../../data/fixtures";
 
 const props = {
   ...subTwo,

@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SubjectsList from "../../SubjectsList/SubjectsList";
-import { subOne, subTwo, subjectFormConf } from "../../../../data/fixtures";
+import SubjectsList from "../SubjectsList";
+import { subOne, subTwo, subjectFormConf } from "../../../data/fixtures";
 
 const props = { subjects: [subTwo, subOne], onAddClick: jest.fn() };
 

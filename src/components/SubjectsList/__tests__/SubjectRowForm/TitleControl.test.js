@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import TitleControl from "../../../SubjectsList/SubjectRowForm/TitleControl/TitleControl";
-import { titleConf } from "../../../../../data/fixtures";
+import TitleControl from "../../SubjectRowForm/TitleControl/TitleControl";
+import { titleConf } from "../../../../data/fixtures";
 
 const props = { ...titleConf };
 

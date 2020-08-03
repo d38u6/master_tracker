@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import AddTimeButton from "../../../SubjectsList/SubjectRow/AddTimeButton/AddTimeButton";
+import AddTimeButton from "../../SubjectRow/AddTimeButton/AddTimeButton";
 
 const props = { onClick: jest.fn() };
 

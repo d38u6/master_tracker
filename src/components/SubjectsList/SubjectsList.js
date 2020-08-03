@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import classes from "./SubjectsList.module.css";
 
-import TableWithTheme from "../../Utility/TableWithTheme/TableWithTheme";
+import TableWithTheme from "../Utility/TableWithTheme/TableWithTheme";
 
-import SubjectEditableContainer from "../../../containers/Category/SubjectEditable/SubjectEditableContainer";
-import SubjectFormContainer from "../../../containers/Category/SubjectForm/SubjectFormContainer";
+import SubjectEditableContainer from "../../containers/Category/SubjectEditable/SubjectEditableContainer";
+import SubjectFormContainer from "../../containers/Category/SubjectForm/SubjectFormContainer";
 import SubjectRow from "./SubjectRow/SubjectRow";
 import SubjectRowForm from "./SubjectRowForm/SubjectRowForm";
 

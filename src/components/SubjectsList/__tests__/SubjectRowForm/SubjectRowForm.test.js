@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SubjectRowForm from "../../../SubjectsList/SubjectRowForm/SubjectRowForm";
-import { subjectFormConf } from "../../../../../data/fixtures";
+import SubjectRowForm from "../..//SubjectRowForm/SubjectRowForm";
+import { subjectFormConf } from "../../../../data/fixtures";
 
 const props = { ...subjectFormConf };
 

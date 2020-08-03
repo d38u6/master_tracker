@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import EditButton from "../../../SubjectsList/SubjectRow/EditButton/EditButton";
+import EditButton from "../../SubjectRow/EditButton/EditButton";
 
 const props = { onClick: jest.fn() };
 

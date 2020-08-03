@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RemoveButton from "../../../SubjectsList/SubjectRowForm/RemoveButton/RemoveButton";
+import RemoveButton from "../../SubjectRowForm/RemoveButton/RemoveButton";
 
 const props = { onClick: jest.fn() };
 
