@@ -1,29 +1,15 @@
 import React from "react";
 
 import CategoryContainer from "../containers/Category/CategoryContainer";
-import GoalChartContainer from "../containers/GoalChart/GoalChartContainer";
-import Widget from "../components/Utility/Widget/Widget";
-import CircleProgressBar from "../components/Utility/CircleProgressBar/CircleProgressBar";
 import SubjectsList from "../components/SubjectsList/SubjectsList";
+import Dashboard from "../components/Dashboard/Dashboard";
 
 function Category() {
   return (
     <CategoryContainer
       render={({ subjects, records, addSubject }) => (
         <>
-          <GoalChartContainer
-            records={records}
-            render={({ name, menuItems, selectItem, progressBarConf }) => (
-              <Widget md="6" lg="4" name={name}>
-                <Widget.ContextMenu
-                  id={"GoalChartContextMenu"}
-                  items={menuItems}
-                  onSelect={selectItem}
-                ></Widget.ContextMenu>
-                <CircleProgressBar {...progressBarConf} />
-              </Widget>
-            )}
-          />
+          <Dashboard records={records} />
           <SubjectsList subjects={subjects} onAddClick={addSubject} />
         </>
       )}
