@@ -28,12 +28,11 @@ describe("'CategoryContainer' component", () => {
       useEffect = jest.spyOn(React, "useEffect");
       jest.clearAllMocks();
       mockUseEffect(); //useExists
-      mockUseEffect(); //useRecords
       shallow(<CategoryContainer {...props} />);
     });
 
     it("should call 'render' function with 'subjects'", () => {
-      expect(props.render.mock.calls[1][0].subjects).toMatchObject(
+      expect(props.render.mock.calls[0][0].subjects).toMatchObject(
         props.subjects.filter((sub) => sub.categoryId === categoryId)
       );
     });
@@ -42,22 +41,22 @@ describe("'CategoryContainer' component", () => {
       const categoryRecords = props.records.filter(
         (r) => r.categoryId === categoryId
       );
-      props.render.mock.calls[1][0].subjects.forEach(({ id, summaryTime }) => {
+      props.render.mock.calls[0][0].subjects.forEach(({ id, summaryTime }) => {
         expect(summaryTime).toBe(calculateSummaryTime(id, categoryRecords));
       });
     });
 
     it("should call 'render' function with 'records'", () => {
-      const categoryRecords = props.records.filter(
-        (r) => r.categoryId === categoryId
-      );
-      expect(props.render.mock.calls[1][0].records).toMatchObject(
+      const categoryRecords = props.records
+        .filter((r) => r.categoryId === categoryId)
+        .sort((a, b) => b.date - a.date);
+      expect(props.render.mock.calls[0][0].records).toMatchObject(
         categoryRecords
       );
     });
 
     it("should call 'render' function with 'addSubject' function", () => {
-      expect(typeof props.render.mock.calls[1][0].addSubject).toBe("function");
+      expect(typeof props.render.mock.calls[0][0].addSubject).toBe("function");
     });
 
     it("should not call 'pickCategory' callback", () => {
@@ -98,21 +97,13 @@ describe("'CategoryContainer' component", () => {
       useEffect = jest.spyOn(React, "useEffect");
       jest.clearAllMocks();
       mockUseEffect(); //useExists
+      mockUseEffect(); //useExists
 
       shallow(<CategoryContainer {...props} currentCategory="" />);
     });
 
     it("should call 'pickCategory' callback with 'categoryId'", () => {
       expect(props.pickCategory).toHaveBeenCalledWith(categoryId);
-    });
-
-    it("should call 'render' function with 'records'", () => {
-      const categoryRecords = props.records.filter(
-        (r) => r.categoryId === categoryId
-      );
-      expect(props.render.mock.calls[1][0].records).toMatchObject(
-        categoryRecords
-      );
     });
   });
 

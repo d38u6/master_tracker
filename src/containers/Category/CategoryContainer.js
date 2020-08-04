@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -26,8 +26,6 @@ export function CategoryContainer({
 }) {
   const id = props.match.params.id;
   const [exists, setExists] = useState(true);
-  const [prevRecords, setPrevRecords] = useState(null);
-  const [categoryRecords, setCategoryRecords] = useState([]);
 
   //setExists
   React.useEffect(() => {
@@ -38,17 +36,24 @@ export function CategoryContainer({
     }
   }, [id, categories, pickCategory, currentCategory]);
 
-  if (prevRecords !== records) {
-    setCategoryRecords(records.filter(({ categoryId }) => categoryId === id));
-    setPrevRecords(records);
-  }
+  const categoryRecords = useMemo(
+    () =>
+      records
+        .filter(({ categoryId }) => categoryId === currentCategory)
+        .sort((a, b) => b.date - a.date),
+    [records, currentCategory]
+  );
 
-  const categorySubjects = subjects
-    .filter((subject) => subject.categoryId === currentCategory)
-    .map((sub) => ({
-      ...sub,
-      summaryTime: calculateSummaryTime(sub.id, categoryRecords),
-    }));
+  const categorySubjects = useMemo(
+    () =>
+      subjects
+        .filter((subject) => subject.categoryId === currentCategory)
+        .map((sub) => ({
+          ...sub,
+          summaryTime: calculateSummaryTime(sub.id, categoryRecords),
+        })),
+    [subjects, currentCategory, categoryRecords]
+  );
 
   const addSubjectHandler = () => {
     addSubject({
