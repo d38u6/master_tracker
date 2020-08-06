@@ -2,6 +2,7 @@ import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
 import { generateRecords } from "./recordsGenerator";
+import menuItems from "../containers/TimeChart/menuItems";
 
 const isTest = process.env.NODE_ENV === "test";
 
@@ -110,3 +111,29 @@ export const records = [
   ...generateRecords("2", "0", 15),
   ...generateRecords("3", "1", 15),
 ];
+
+export const widgetProps = {
+  name: "Test name",
+  menuItems,
+  selectItem: isTest ? jest.fn() : null,
+};
+
+export const circleProgressBarConf = {
+  value: 1235,
+  goalValue: 2000,
+  diff: 100,
+};
+
+export const timeChartConf = {
+  axes: [
+    { primary: true, type: "time", position: "bottom" },
+    { type: "linear", position: "left" },
+  ],
+  data: [
+    [
+      [1, 10],
+      [2, 10],
+      [3, 10],
+    ],
+  ],
+};
