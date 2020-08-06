@@ -10,7 +10,7 @@ function Widget({ name, className, children, ...props }) {
     React.cloneElement(child, { classes })
   );
   return (
-    <Col {...props} className={[classes.Widget, className].join(" ")}>
+    <Col {...props} className={[classes.Widget, className || ""].join(" ")}>
       <span className={classes.Name}>{name}</span>
       {compoundChildren}
     </Col>
