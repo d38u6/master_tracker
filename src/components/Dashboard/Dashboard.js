@@ -21,7 +21,7 @@ function Dashboard({ records }) {
               id={"GoalChartContextMenu"}
               items={menuItems}
               onSelect={selectItem}
-            ></Widget.ContextMenu>
+            />
             <CircleProgressBar {...progressBarConf} />
           </Widget>
         )}
@@ -29,8 +29,13 @@ function Dashboard({ records }) {
 
       <TimeChartContainer
         records={records}
-        render={({ chartConf }) => (
-          <Widget md="6" name="Last 7 days">
+        render={({ name, menuItems, selectItem, chartConf }) => (
+          <Widget md="6" name={name}>
+            <Widget.ContextMenu
+              id={"TimeChartContextMenu"}
+              items={menuItems}
+              onSelect={selectItem}
+            />
             <ChartWrapper>
               <ChartWithTheme {...chartConf} />
             </ChartWrapper>
