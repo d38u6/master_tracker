@@ -137,3 +137,8 @@ export const timeChartConf = {
     ],
   ],
 };
+
+export const subjectsWithSummaryTime = subjects.map((s) => ({
+  ...s,
+  summaryTime: Math.floor(Math.random() * 100),
+}));
