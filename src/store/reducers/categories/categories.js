@@ -16,7 +16,7 @@ export default (state = [], { type, payload }) => {
         if (category.id !== payload.categoryId) {
           return category;
         }
-        return { ...category, ...payload.data };
+        return { ...category, ...payload.data, id: category.id };
       });
     case REMOVE_CATEGORY:
       return state.filter(({ id }) => id !== payload);

@@ -15,7 +15,7 @@ export default (state = [], { type, payload }) => {
         if (record.id !== payload.recordId) {
           return record;
         }
-        return { ...record, ...payload.data };
+        return { ...record, ...payload.data, id: record.id };
       });
     case REMOVE_RECORD:
       return state.filter(({ id }) => id !== payload);

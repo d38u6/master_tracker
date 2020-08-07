@@ -16,7 +16,7 @@ export default (state = [], { type, payload }) => {
         if (subject.id !== payload.subjectId) {
           return subject;
         }
-        return { ...subject, ...payload.data };
+        return { ...subject, ...payload.data, id: subject.id };
       });
     case REMOVE_SUBJECT:
       return state.filter(({ id }) => id !== payload);
