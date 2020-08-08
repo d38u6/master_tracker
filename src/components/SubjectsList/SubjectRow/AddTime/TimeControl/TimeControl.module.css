@@ -1,0 +1,10 @@
+.TimeControl {
+  display: inline-flex;
+}
+.TimeControl input {
+  width: 70px;
+}
+.TimeControl label {
+  line-height: 2.3;
+  margin-left: 0.44rem;
+}
