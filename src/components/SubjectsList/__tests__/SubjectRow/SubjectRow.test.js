@@ -19,14 +19,14 @@ describe("'SubjectRow' component", () => {
     expect(subjectRow.find("tr").exists()).toBe(true);
   });
 
-  it("should call 'pickSubject' callback with 'subjectId' param", () => {
-    subjectRow.find("tr").simulate("click");
-    expect(props.pickSubject).toHaveBeenCalledWith(props.id);
-  });
-
   //td title
   it("render 'td' element with 'title' text", () => {
     expect(subjectRow.find("td").at(0).text()).toBe(props.title);
+  });
+
+  it("should call 'pickSubject' callback with 'subjectId' param", () => {
+    subjectRow.find("td").at(0).simulate("click");
+    expect(props.pickSubject).toHaveBeenCalledWith(props.id);
   });
 
   //td summaryTime
@@ -36,14 +36,18 @@ describe("'SubjectRow' component", () => {
     );
   });
 
-  //AddTimeButton
-  it("render 'AddTimeButton' component", () => {
-    expect(subjectRow.find("AddTimeButton").exists()).toBe(true);
+  //AddTime
+  it("render 'AddTime' component", () => {
+    expect(subjectRow.find("AddTime").exists()).toBe(true);
   });
 
-  it("should call 'setShowTimeForm' callback with true param", () => {
-    subjectRow.find("AddTimeButton").simulate("click");
-    expect(props.setShowTimeForm).toHaveBeenCalledWith(true);
+  it("'AddTime' should contain proper props", () => {
+    const desiredProps = {
+      categoryId: props.categoryId,
+      subjectId: props.id,
+      title: props.title,
+    };
+    expect(subjectRow.find("AddTime").props()).toMatchObject(desiredProps);
   });
 
   //EditButton

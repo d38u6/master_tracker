@@ -51,45 +51,10 @@ describe("'SubjectsList' component", () => {
         expect(subjectFormContainer.props.subjectId).toBe(props.subjects[i].id);
       });
 
-      it("should render 'TimeForm'", () => {
-        const timeForm = shallow(
-          subjectEditableContainer.prop("render")({
-            editMode: false,
-            showTimeForm: true,
-          }).props.children[0]
-        );
-
-        expect(timeForm.text()).toBe("TimeForm");
-      });
-
-      it("should call 'setShowTimeForm' callback with false", () => {
-        const setShowTimeForm = jest.fn();
-        const timeForm = shallow(
-          subjectEditableContainer.prop("render")({
-            editMode: false,
-            showTimeForm: true,
-            setShowTimeForm,
-          }).props.children[0]
-        );
-        timeForm.simulate("click");
-
-        expect(setShowTimeForm).toHaveBeenCalledWith(false);
-      });
-
-      it("should not render 'TimeForm'", () => {
-        const wrapper = subjectEditableContainer.prop("render")({
-          editMode: false,
-          showTimeForm: false,
-        }).props.children[0];
-
-        expect(wrapper).toBe(false);
-      });
-
       it(`should correctly pass 'subject' props to 'SubjectRow' for subject ${i}`, () => {
         const subjectRow = subjectEditableContainer.prop("render")({
           editMode: false,
-          showTimeForm: false,
-        }).props.children[1];
+        });
 
         expect(subjectRow.props).toMatchObject(props.subjects[i]);
       });
