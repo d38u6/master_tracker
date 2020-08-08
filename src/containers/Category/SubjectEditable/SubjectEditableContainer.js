@@ -6,13 +6,10 @@ import { pickSubject } from "../../../store/actions";
 
 export function SubjectEditableContainer({ pickSubject, render }) {
   const [editMode, setEditMode] = useState(false);
-  const [showTimeForm, setShowTimeForm] = useState(false);
 
   return render({
     editMode,
     setEditMode,
-    showTimeForm,
-    setShowTimeForm,
     pickSubject,
   });
 }

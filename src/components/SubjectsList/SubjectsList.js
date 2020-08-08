@@ -19,13 +19,7 @@ function SubjectsList({ subjects, onAddClick }) {
         {subjects.map((subject) => (
           <SubjectEditableContainer
             key={subject.id}
-            render={({
-              editMode,
-              setEditMode,
-              showTimeForm,
-              setShowTimeForm,
-              pickSubject,
-            }) =>
+            render={({ editMode, setEditMode, pickSubject }) =>
               editMode ? (
                 <SubjectFormContainer
                   subjectId={subject.id}
@@ -33,17 +27,11 @@ function SubjectsList({ subjects, onAddClick }) {
                   render={(formConf) => <SubjectRowForm {...formConf} />}
                 />
               ) : (
-                <>
-                  {showTimeForm && (
-                    <h1 onClick={() => setShowTimeForm(false)}>TimeForm</h1>
-                  )}
-                  <SubjectRow
-                    {...subject}
-                    pickSubject={pickSubject}
-                    setEditMode={setEditMode}
-                    setShowTimeForm={setShowTimeForm}
-                  />
-                </>
+                <SubjectRow
+                  {...subject}
+                  pickSubject={pickSubject}
+                  setEditMode={setEditMode}
+                />
               )
             }
           />
