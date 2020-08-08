@@ -7,16 +7,14 @@ import classes from "./AddTimeButton.module.css";
 
 function AddTimeButton({ onClick }) {
   return (
-    <td>
-      <Button
-        variant="success"
-        size="sm"
-        className={classes.AddTimeButton}
-        onClick={onClick}
-      >
-        Add Time <BsPlus className={classes.Icon} />
-      </Button>
-    </td>
+    <Button
+      variant="success"
+      size="sm"
+      className={classes.AddTimeButton}
+      onClick={onClick}
+    >
+      Add Time <BsPlus className={classes.Icon} />
+    </Button>
   );
 }
 

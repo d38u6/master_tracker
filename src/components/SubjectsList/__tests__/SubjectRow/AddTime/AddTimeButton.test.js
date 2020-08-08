@@ -1,17 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import AddTimeButton from "../../SubjectRow/AddTimeButton/AddTimeButton";
+import AddTimeButton from "../../../SubjectRow/AddTime/AddTimeButton/AddTimeButton";
 
 const props = { onClick: jest.fn() };
 
 describe("'AddTimeButton' component", () => {
   const addTimeButton = shallow(<AddTimeButton {...props} />);
-
-  //td
-  it("render 'td' element", () => {
-    expect(addTimeButton.find("td").exists()).toBe(true);
-  });
 
   //Button
   it("render 'Button' component", () => {
