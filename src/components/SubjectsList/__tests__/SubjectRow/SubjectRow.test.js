@@ -6,6 +6,7 @@ import { subTwo } from "../../../../data/fixtures";
 
 const props = {
   ...subTwo,
+  acitve: false,
   pickSubject: jest.fn(),
   setEditMode: jest.fn(),
   setShowTimeForm: jest.fn(),
@@ -24,9 +25,8 @@ describe("'SubjectRow' component", () => {
     expect(subjectRow.find("td").at(0).text()).toBe(props.title);
   });
 
-  it("should call 'pickSubject' callback with 'subjectId' param", () => {
-    subjectRow.find("td").at(0).simulate("click");
-    expect(props.pickSubject).toHaveBeenCalledWith(props.id);
+  it("'td' element should contain 'Title' class", () => {
+    expect(subjectRow.find("td").at(0).hasClass("Title")).toBe(true);
   });
 
   //td summaryTime
@@ -58,5 +58,29 @@ describe("'SubjectRow' component", () => {
   it("should call 'setEditMode' callback with true param", () => {
     subjectRow.find("EditButton").simulate("click");
     expect(props.setEditMode).toHaveBeenCalledWith(true);
+  });
+
+  describe("when subject is not active", () => {
+    it("when subject is not active 'tr' element should not contain 'Active' class", () => {
+      expect(subjectRow.find("tr").hasClass("Active")).toBe(false);
+    });
+
+    it("should call 'pickSubject' callback with 'subjectId' param", () => {
+      subjectRow.find("td").at(0).simulate("click");
+      expect(props.pickSubject).toHaveBeenCalledWith(props.id);
+    });
+  });
+
+  describe("when subject is active", () => {
+    const subjectRow = shallow(<SubjectRow {...props} active />);
+
+    it("when subject is active 'tr' element should contain 'Active' class", () => {
+      expect(subjectRow.find("tr").hasClass("Active")).toBe(true);
+    });
+
+    it("should call 'pickSubject' callback with 'null' param", () => {
+      subjectRow.find("td").at(0).simulate("click");
+      expect(props.pickSubject).toHaveBeenCalledWith(null);
+    });
   });
 });

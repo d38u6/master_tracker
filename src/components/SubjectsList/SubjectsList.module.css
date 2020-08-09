@@ -2,3 +2,7 @@
   border: none;
   vertical-align: middle;
 }
+.SubjectsList {
+  border-collapse: separate;
+  border-spacing: 0 0.3rem;
+}

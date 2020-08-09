@@ -5,7 +5,7 @@ import { compose } from "redux";
 import shortid from "shortid";
 import PropTypes from "prop-types";
 
-import { pickCategory, addSubject } from "../../store/actions";
+import { pickCategory, addSubject, pickSubject } from "../../store/actions";
 import { newSubject } from "../../data/subjects";
 
 export function calculateSummaryTime(subId, records) {
@@ -19,7 +19,9 @@ export function CategoryContainer({
   subjects,
   records,
   currentCategory,
+  currentSubject,
   pickCategory,
+  pickSubject,
   addSubject,
   render,
   ...props
@@ -36,6 +38,11 @@ export function CategoryContainer({
     }
   }, [id, categories, pickCategory, currentCategory]);
 
+  //setCurrentSubject
+  React.useEffect(() => {
+    pickSubject(null);
+  }, [pickSubject]);
+
   const categoryRecords = useMemo(
     () =>
       records
@@ -51,8 +58,17 @@ export function CategoryContainer({
         .map((sub) => ({
           ...sub,
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
+          active: sub.id === currentSubject,
         })),
-    [subjects, currentCategory, categoryRecords]
+    [subjects, currentCategory, categoryRecords, currentSubject]
+  );
+
+  const filteredRecords = useMemo(
+    () =>
+      categoryRecords.filter(
+        ({ subjectId }) => subjectId === currentSubject || !currentSubject
+      ),
+    [currentSubject, categoryRecords]
   );
 
   const addSubjectHandler = () => {
@@ -66,7 +82,7 @@ export function CategoryContainer({
   return exists ? (
     render({
       subjects: categorySubjects,
-      records: categoryRecords,
+      records: filteredRecords,
       addSubject: addSubjectHandler,
     })
   ) : (
@@ -81,6 +97,7 @@ CategoryContainer.propTypes = {
   subjects: PropTypes.array.isRequired,
   records: PropTypes.array.isRequired,
   currentCategory: PropTypes.string,
+  currentSubject: PropTypes.string,
   pickCategory: PropTypes.func.isRequired,
   addSubject: PropTypes.func.isRequired,
 };
@@ -89,12 +106,12 @@ function mapStateToProps({
   categories,
   subjects,
   records,
-  app: { currentCategory },
+  app: { currentCategory, currentSubject },
 }) {
-  return { categories, subjects, records, currentCategory };
+  return { categories, subjects, records, currentCategory, currentSubject };
 }
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, { pickCategory, addSubject })
+  connect(mapStateToProps, { pickCategory, pickSubject, addSubject })
 )(CategoryContainer);
