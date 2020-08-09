@@ -12,8 +12,10 @@ const props = {
   subjects,
   records,
   currentCategory: categoryId,
+  currentSubject: null,
   match: { params: { id: categoryId } },
   pickCategory: jest.fn(),
+  pickSubject: jest.fn(),
   addSubject: jest.fn(),
   render: jest.fn(),
 };
@@ -24,72 +26,49 @@ const mockUseEffect = () => {
 
 describe("'CategoryContainer' component", () => {
   describe("When category exists and picked", () => {
+    let renderProperties;
     beforeEach(() => {
       useEffect = jest.spyOn(React, "useEffect");
       jest.clearAllMocks();
       mockUseEffect(); //useExists
+      mockUseEffect(); //setCurrentSubject
       shallow(<CategoryContainer {...props} />);
+      renderProperties = [...props.render.mock.calls].pop()[0];
     });
 
     it("should call 'render' function with 'subjects'", () => {
-      expect(props.render.mock.calls[0][0].subjects).toMatchObject(
-        props.subjects.filter((sub) => sub.categoryId === categoryId)
-      );
-    });
-
-    it(`should correctly calculate summary time for each subject`, () => {
       const categoryRecords = props.records.filter(
         (r) => r.categoryId === categoryId
       );
-      props.render.mock.calls[0][0].subjects.forEach(({ id, summaryTime }) => {
-        expect(summaryTime).toBe(calculateSummaryTime(id, categoryRecords));
-      });
+
+      const catSubjects = props.subjects
+        .filter((sub) => sub.categoryId === categoryId)
+        .map((sub) => ({
+          ...sub,
+          summaryTime: calculateSummaryTime(sub.id, categoryRecords),
+          active: sub.id === props.currentSubject,
+        }));
+      expect(renderProperties.subjects).toStrictEqual(catSubjects);
     });
 
     it("should call 'render' function with 'records'", () => {
       const categoryRecords = props.records
         .filter((r) => r.categoryId === categoryId)
         .sort((a, b) => b.date - a.date);
-      expect(props.render.mock.calls[0][0].records).toMatchObject(
-        categoryRecords
-      );
+      expect(renderProperties.records).toMatchObject(categoryRecords);
     });
 
     it("should call 'render' function with 'addSubject' function", () => {
-      expect(typeof props.render.mock.calls[0][0].addSubject).toBe("function");
+      expect(typeof renderProperties.addSubject).toBe("function");
     });
 
     it("should not call 'pickCategory' callback", () => {
       expect(props.pickCategory).toHaveBeenCalledTimes(0);
     });
-  });
 
-  describe("'render' function callbacks", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      shallow(<CategoryContainer {...props} />);
+    it("should call 'pickSubject' callback with 'null'", () => {
+      expect(props.pickSubject).toHaveBeenCalledWith(null);
     });
-
-    //addSubject
-    it("should call 'addSubject' callback with newSubject data", () => {
-      props.render.mock.calls[0][0].addSubject();
-      expect(props.addSubject.mock.calls[0][0]).toMatchObject(newSubject);
-    });
-
-    it("should create valid id for newSubject", () => {
-      props.render.mock.calls[0][0].addSubject();
-
-      const id = props.addSubject.mock.calls[0][0].id;
-      expect(shortid.isValid(id)).toBe(true);
-    });
-
-    it("should call 'addSubject' callback with proper 'categoryId'", () => {
-      props.render.mock.calls[0][0].addSubject();
-
-      expect(props.addSubject.mock.calls[0][0].categoryId).toBe(categoryId);
-    });
-
-    //addRecord in future
   });
 
   describe("When category exists but not picked", () => {
@@ -128,6 +107,48 @@ describe("'CategoryContainer' component", () => {
 
     it("'Redirect' component should redirect  to '/' path", () => {
       expect(wrapper.find("Redirect").prop("to")).toBe("/");
+    });
+  });
+
+  describe("When subjects is picked", () => {
+    const subjectId = subjects[3].id;
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<CategoryContainer {...props} currentSubject={subjectId} />);
+    });
+
+    it("should call 'render' function with filtered 'records'", () => {
+      const categoryRecords = props.records
+        .filter((r) => r.categoryId === categoryId && r.subjectId === subjectId)
+        .sort((a, b) => b.date - a.date);
+      expect([...props.render.mock.calls].pop()[0].records).toMatchObject(
+        categoryRecords
+      );
+    });
+  });
+
+  describe("'AddSubject' function callback", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<CategoryContainer {...props} />);
+    });
+
+    it("should call 'addSubject' callback with newSubject data", () => {
+      props.render.mock.calls[0][0].addSubject();
+      expect(props.addSubject.mock.calls[0][0]).toMatchObject(newSubject);
+    });
+
+    it("should create valid id for newSubject", () => {
+      props.render.mock.calls[0][0].addSubject();
+
+      const id = props.addSubject.mock.calls[0][0].id;
+      expect(shortid.isValid(id)).toBe(true);
+    });
+
+    it("should call 'addSubject' callback with proper 'categoryId'", () => {
+      props.render.mock.calls[0][0].addSubject();
+
+      expect(props.addSubject.mock.calls[0][0].categoryId).toBe(categoryId);
     });
   });
 });

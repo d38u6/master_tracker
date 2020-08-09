@@ -2,18 +2,25 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 import EditButton from "./EditButton/EditButton";
 import AddTime from "./AddTime/AddTime";
+import classes from "./SubjectRow.module.css";
 
 export function SubjectRow({
   id,
   categoryId,
+  active,
   title,
   summaryTime,
   pickSubject,
   setEditMode,
 }) {
   return (
-    <tr>
-      <td onClick={() => pickSubject(id)}>{title}</td>
+    <tr className={active ? classes.Active : ""}>
+      <td
+        className={classes.Title}
+        onClick={() => pickSubject(active ? null : id)}
+      >
+        {title}
+      </td>
       <td>{summaryTime}</td>
       <AddTime categoryId={categoryId} subjectId={id} title={title} />
       <EditButton onClick={() => setEditMode(true)} />
@@ -24,6 +31,7 @@ export function SubjectRow({
 SubjectRow.propTypes = {
   id: PropTypes.string.isRequired,
   categoryId: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   summaryTime: PropTypes.number.isRequired,
   pickSubject: PropTypes.func.isRequired,

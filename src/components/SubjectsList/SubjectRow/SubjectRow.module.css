@@ -1,0 +1,7 @@
+.Title {
+  cursor: pointer;
+}
+.Active {
+  box-shadow: 0 0 0 0.3rem rgba(38, 143, 255, 0.5);
+  border-radius: 0.2rem;
+}
