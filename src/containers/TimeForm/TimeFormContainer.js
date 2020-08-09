@@ -5,14 +5,19 @@ import shortid from "shortid";
 
 import { addRecord } from "../../store/actions";
 
-function TimeFormContainer({ categoryId, subjectId, render, addRecord }) {
+export function TimeFormContainer({
+  categoryId,
+  subjectId,
+  render,
+  addRecord,
+}) {
   const [hours, setHours] = useState(0);
   const [min, setMin] = useState(0);
 
   const setHoursHandler = (value) => {
     const valueNumb = Number(value);
     if (!isNaN(valueNumb)) {
-      setHours(valueNumb < 24 ? valueNumb : 23);
+      setHours(valueNumb < 24 ? Math.floor(valueNumb) : 23);
     } else {
       setHours(0);
     }
@@ -21,7 +26,7 @@ function TimeFormContainer({ categoryId, subjectId, render, addRecord }) {
   const setMinHandler = (value) => {
     const valueNumb = Number(value);
     if (!isNaN(valueNumb)) {
-      setMin(valueNumb < 60 ? valueNumb : 59);
+      setMin(valueNumb < 60 ? Math.floor(valueNumb) : 59);
     } else {
       setMin(0);
     }
