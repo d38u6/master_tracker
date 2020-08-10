@@ -84,4 +84,13 @@ describe("'SubjectRow' component", () => {
       expect(props.pickSubject).toHaveBeenCalledWith(null);
     });
   });
+
+  describe("when subject is general", () => {
+    const subjectRow = shallow(<SubjectRow {...props} id="general" />);
+
+    it("should call 'pickSubject' callback with 'null' param", () => {
+      subjectRow.find("td").at(0).simulate("click");
+      expect(props.pickSubject).toHaveBeenCalledWith(null);
+    });
+  });
 });
