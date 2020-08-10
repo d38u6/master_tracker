@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 
 import SubjectRow from "../../SubjectRow/SubjectRow";
 import { subTwo } from "../../../../data/fixtures";
+import { parseMinutes } from "../../../../utility/time";
 
 const props = {
   ...subTwo,
@@ -32,7 +33,7 @@ describe("'SubjectRow' component", () => {
   //td summaryTime
   it("render 'td' element with 'summaryTime' text", () => {
     expect(subjectRow.find("td").at(1).text()).toBe(
-      props.summaryTime.toString()
+      parseMinutes(props.summaryTime)
     );
   });
 
