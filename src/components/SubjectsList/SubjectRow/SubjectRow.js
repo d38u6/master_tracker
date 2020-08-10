@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import EditButton from "./EditButton/EditButton";
 import AddTime from "./AddTime/AddTime";
 import classes from "./SubjectRow.module.css";
+import { parseMinutes } from "../../../utility/time";
 
 export function SubjectRow({
   id,
@@ -21,7 +22,7 @@ export function SubjectRow({
       >
         {title}
       </td>
-      <td>{summaryTime}</td>
+      <td>{parseMinutes(summaryTime)}</td>
       <AddTime categoryId={categoryId} subjectId={id} title={title} />
       <EditButton onClick={() => setEditMode(true)} />
     </tr>
