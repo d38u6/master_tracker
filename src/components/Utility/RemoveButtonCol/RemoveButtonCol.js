@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 
-import classes from "./RemoveButton.module.css";
+import classes from "./RemoveButtonCol.module.css";
 
-function RemoveButton({ onClick }) {
+function RemoveButtonCol({ onClick }) {
   return (
     <td>
       <Button
@@ -20,8 +20,8 @@ function RemoveButton({ onClick }) {
   );
 }
 
-RemoveButton.propTypes = {
+RemoveButtonCol.propTypes = {
   onClick: PropTypes.func,
 };
 
-export default RemoveButton;
+export default RemoveButtonCol;

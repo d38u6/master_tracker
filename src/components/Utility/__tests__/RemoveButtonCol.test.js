@@ -1,21 +1,21 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RemoveButton from "../../SubjectRowForm/RemoveButton/RemoveButton";
+import RemoveButtonCol from "../RemoveButtonCol/RemoveButtonCol";
 
 const props = { onClick: jest.fn() };
 
-describe("'RemoveButton' component", () => {
-  const removeButton = shallow(<RemoveButton {...props} />);
+describe("'RemoveButtonCol' component", () => {
+  const removeButtonCol = shallow(<RemoveButtonCol {...props} />);
 
   //td
   it("render 'td' element", () => {
-    expect(removeButton.find("td").exists()).toBe(true);
+    expect(removeButtonCol.find("td").exists()).toBe(true);
   });
 
   //Button
   it("render 'Button' component", () => {
-    expect(removeButton.find("Button").exists()).toBe(true);
+    expect(removeButtonCol.find("Button").exists()).toBe(true);
   });
 
   it("Button' component should contain proper props", () => {
@@ -25,24 +25,26 @@ describe("'RemoveButton' component", () => {
       className: "RemoveButton",
       onClick: props.onClick,
     };
-    expect(removeButton.find("Button").props()).toMatchObject(desiredProps);
+    expect(removeButtonCol.find("Button").props()).toMatchObject(desiredProps);
   });
 
   it("'Button' component should contain 'Remove' text", () => {
-    expect(removeButton.find("Button").text()).toMatch("Remove");
+    expect(removeButtonCol.find("Button").text()).toMatch("Remove");
   });
 
   // Button > FaTrash
   it("inside 'Button' should render 'FaTrash' icon", () => {
-    expect(removeButton.find("Button > FaTrash").exists()).toBe(true);
+    expect(removeButtonCol.find("Button > FaTrash").exists()).toBe(true);
   });
 
   it("'FaTrash' should contain 'Icon' class", () => {
-    expect(removeButton.find("Button > FaTrash").hasClass("Icon")).toBe(true);
+    expect(removeButtonCol.find("Button > FaTrash").hasClass("Icon")).toBe(
+      true
+    );
   });
 
   it("should call onClick callback", () => {
-    removeButton.find("Button").simulate("click");
+    removeButtonCol.find("Button").simulate("click");
     expect(props.onClick).toHaveBeenCalled();
   });
 });
