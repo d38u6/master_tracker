@@ -9,28 +9,9 @@ const props = { subjects: [subTwo, subOne], onAddClick: jest.fn() };
 describe("'SubjectsList' component", () => {
   const subjectsList = shallow(<SubjectsList {...props} />);
 
-  //TabelWithTheme
-  it("render 'TabeleWithTheme' component", () => {
-    expect(subjectsList.find("WithTheme(TableWithTheme)").exists()).toBe(true);
-  });
-
-  it("'TabelWithTheme' should contain propre props", () => {
-    const desiredProps = {
-      className: "SubjectsList",
-      striped: true,
-      hover: true,
-      size: "sm",
-    };
-    expect(
-      subjectsList.find("WithTheme(TableWithTheme)").props()
-    ).toMatchObject(desiredProps);
-  });
-
-  //tbody
-  it("render 'tbody' element", () => {
-    expect(
-      subjectsList.find("WithTheme(TableWithTheme) > tbody").exists()
-    ).toBe(true);
+  //TableStriped
+  it("render 'TableStriped' component", () => {
+    expect(subjectsList.find("TableStriped").exists()).toBe(true);
   });
 
   //SubjectRowEditable
