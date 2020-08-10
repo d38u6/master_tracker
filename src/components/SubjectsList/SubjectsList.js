@@ -1,44 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import classes from "./SubjectsList.module.css";
-
-import TableWithTheme from "../Utility/TableWithTheme/TableWithTheme";
-
 import SubjectEditableContainer from "../../containers/Category/SubjectEditable/SubjectEditableContainer";
 import SubjectFormContainer from "../../containers/Category/SubjectForm/SubjectFormContainer";
 import SubjectRow from "./SubjectRow/SubjectRow";
 import SubjectRowForm from "./SubjectRowForm/SubjectRowForm";
 
 import AddButton from "./AddButton/AddButton";
+import TableStriped from "../Utility/TableStriped/TableStriped";
 
 function SubjectsList({ subjects, onAddClick }) {
   return (
-    <TableWithTheme className={classes.SubjectsList} striped hover size="sm">
-      <tbody>
-        {subjects.map((subject) => (
-          <SubjectEditableContainer
-            key={subject.id}
-            render={({ editMode, setEditMode, pickSubject }) =>
-              editMode ? (
-                <SubjectFormContainer
-                  subjectId={subject.id}
-                  setEditMode={setEditMode}
-                  render={(formConf) => <SubjectRowForm {...formConf} />}
-                />
-              ) : (
-                <SubjectRow
-                  {...subject}
-                  pickSubject={pickSubject}
-                  setEditMode={setEditMode}
-                />
-              )
-            }
-          />
-        ))}
-        <AddButton onClick={onAddClick} />
-      </tbody>
-    </TableWithTheme>
+    <TableStriped>
+      {subjects.map((subject) => (
+        <SubjectEditableContainer
+          key={subject.id}
+          render={({ editMode, setEditMode, pickSubject }) =>
+            editMode ? (
+              <SubjectFormContainer
+                subjectId={subject.id}
+                setEditMode={setEditMode}
+                render={(formConf) => <SubjectRowForm {...formConf} />}
+              />
+            ) : (
+              <SubjectRow
+                {...subject}
+                pickSubject={pickSubject}
+                setEditMode={setEditMode}
+              />
+            )
+          }
+        />
+      ))}
+      <AddButton onClick={onAddClick} />
+    </TableStriped>
   );
 }
 
