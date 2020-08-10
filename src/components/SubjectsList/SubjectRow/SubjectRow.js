@@ -18,7 +18,9 @@ export function SubjectRow({
     <tr className={active ? classes.Active : ""}>
       <td
         className={classes.Title}
-        onClick={() => pickSubject(active ? null : id)}
+        onClick={() =>
+          pickSubject(active ? null : id === "general" ? null : id)
+        }
       >
         {title}
       </td>

@@ -40,7 +40,14 @@ describe("'CategoryContainer' component", () => {
       const categoryRecords = props.records.filter(
         (r) => r.categoryId === categoryId
       );
-
+      const catTime = categoryRecords.reduce((pv, { value }) => pv + value, 0);
+      const generalSubject = {
+        id: "general",
+        title: "Genral",
+        categoryId: props.currentCategory || "",
+        summaryTime: catTime,
+        active: props.currentSubject === "general" || !props.currentSubject,
+      };
       const catSubjects = props.subjects
         .filter((sub) => sub.categoryId === categoryId)
         .map((sub) => ({
@@ -48,7 +55,11 @@ describe("'CategoryContainer' component", () => {
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === props.currentSubject,
         }));
-      expect(renderProperties.subjects).toStrictEqual(catSubjects);
+
+      expect(renderProperties.subjects).toStrictEqual([
+        generalSubject,
+        ...catSubjects,
+      ]);
     });
 
     it("should call 'render' function with 'enriched records'", () => {
@@ -122,9 +133,37 @@ describe("'CategoryContainer' component", () => {
 
   describe("When subjects is picked", () => {
     const subjectId = subjects[3].id;
+    let renderProperties;
     beforeEach(() => {
       jest.clearAllMocks();
       shallow(<CategoryContainer {...props} currentSubject={subjectId} />);
+      renderProperties = [...props.render.mock.calls].pop()[0];
+    });
+
+    it("should call 'render' function with subjects", () => {
+      const categoryRecords = props.records.filter(
+        (r) => r.categoryId === categoryId
+      );
+      const catTime = categoryRecords.reduce((pv, { value }) => pv + value, 0);
+      const generalSubject = {
+        id: "general",
+        title: "Genral",
+        categoryId: props.currentCategory || "",
+        summaryTime: catTime,
+        active: subjectId === "general" || !subjectId,
+      };
+      const catSubjects = props.subjects
+        .filter((sub) => sub.categoryId === categoryId)
+        .map((sub) => ({
+          ...sub,
+          summaryTime: calculateSummaryTime(sub.id, categoryRecords),
+          active: sub.id === subjectId,
+        }));
+
+      expect(renderProperties.subjects).toStrictEqual([
+        generalSubject,
+        ...catSubjects,
+      ]);
     });
 
     it("should call 'render' function with filtered 'records'", () => {
@@ -141,9 +180,7 @@ describe("'CategoryContainer' component", () => {
             "General",
         }));
 
-      expect([...props.render.mock.calls].pop()[0].records).toStrictEqual(
-        categoryRecords
-      );
+      expect(renderProperties.records).toStrictEqual(categoryRecords);
     });
   });
 

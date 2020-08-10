@@ -51,6 +51,22 @@ export function CategoryContainer({
     [records, currentCategory]
   );
 
+  const categorySummaryTime = useMemo(
+    () => categoryRecords.reduce((pv, { value }) => pv + value, 0),
+    [categoryRecords]
+  );
+
+  const generalSubject = useMemo(
+    () => ({
+      id: "general",
+      title: "Genral",
+      categoryId: currentCategory || "",
+      summaryTime: categorySummaryTime,
+      active: currentSubject === "general" || !currentSubject,
+    }),
+    [categorySummaryTime, currentSubject, currentCategory]
+  );
+
   const categorySubjects = useMemo(
     () =>
       subjects
@@ -92,7 +108,7 @@ export function CategoryContainer({
 
   return exists ? (
     render({
-      subjects: categorySubjects,
+      subjects: [generalSubject, ...categorySubjects],
       records: filteredRecords,
       addSubject: addSubjectHandler,
     })
