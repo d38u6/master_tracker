@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import TitleControl from "./TitleControl/TitleControl";
-import RemoveButton from "./RemoveButton/RemoveButton";
+import RemoveButtonCol from "../../Utility/RemoveButtonCol/RemoveButtonCol";
 import ApplyButton from "./ApplyButton/ApplyButton";
 
 function SubjectRowForm({ titleConf, onApplyClick, onRemoveClick }) {
   return (
     <tr>
       <TitleControl {...titleConf} />
-      <RemoveButton onClick={onRemoveClick} />
+      <RemoveButtonCol onClick={onRemoveClick} />
       <ApplyButton onClick={onApplyClick} />
     </tr>
   );

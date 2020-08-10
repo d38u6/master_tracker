@@ -31,13 +31,13 @@ describe("'SubjectRowForm' component", () => {
     expect(props.titleConf.onChange).toHaveBeenCalledWith(newValue);
   });
 
-  //RemoveButton
-  it("render 'RemoveButton' component", () => {
-    expect(subjectRowForm.find("RemoveButton").exists()).toBe(true);
+  //RemoveButtonCol
+  it("render 'RemoveButtonCol' component", () => {
+    expect(subjectRowForm.find("RemoveButtonCol").exists()).toBe(true);
   });
 
   it("should call 'onRemoveClick' callback", () => {
-    subjectRowForm.find("RemoveButton").simulate("click");
+    subjectRowForm.find("RemoveButtonCol").simulate("click");
     expect(props.onRemoveClick).toHaveBeenCalled();
   });
 
