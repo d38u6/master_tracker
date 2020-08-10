@@ -1,0 +1,10 @@
+.Nav {
+  justify-content: center;
+}
+.Nav a {
+  margin: 0 0.2rem;
+  color: inherit;
+}
+.Content {
+  margin-top: 0.44rem;
+}
