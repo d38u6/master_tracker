@@ -51,11 +51,21 @@ describe("'CategoryContainer' component", () => {
       expect(renderProperties.subjects).toStrictEqual(catSubjects);
     });
 
-    it("should call 'render' function with 'records'", () => {
+    it("should call 'render' function with 'enriched records'", () => {
+      const catSubjects = props.subjects.filter(
+        (sub) => sub.categoryId === categoryId
+      );
       const categoryRecords = props.records
         .filter((r) => r.categoryId === categoryId)
-        .sort((a, b) => b.date - a.date);
-      expect(renderProperties.records).toMatchObject(categoryRecords);
+        .sort((a, b) => b.date - a.date)
+        .map((r) => ({
+          ...r,
+          subjectTitle:
+            catSubjects.find(({ id }) => id === r.subjectId)?.title ||
+            "General",
+        }));
+
+      expect(renderProperties.records).toStrictEqual(categoryRecords);
     });
 
     it("should call 'render' function with 'addSubject' function", () => {
@@ -118,12 +128,49 @@ describe("'CategoryContainer' component", () => {
     });
 
     it("should call 'render' function with filtered 'records'", () => {
+      const catSubjects = props.subjects.filter(
+        (sub) => sub.categoryId === categoryId
+      );
       const categoryRecords = props.records
         .filter((r) => r.categoryId === categoryId && r.subjectId === subjectId)
-        .sort((a, b) => b.date - a.date);
-      expect([...props.render.mock.calls].pop()[0].records).toMatchObject(
+        .sort((a, b) => b.date - a.date)
+        .map((r) => ({
+          ...r,
+          subjectTitle:
+            catSubjects.find(({ id }) => id === r.subjectId)?.title ||
+            "General",
+        }));
+
+      expect([...props.render.mock.calls].pop()[0].records).toStrictEqual(
         categoryRecords
       );
+    });
+  });
+
+  describe("Whene records still exist, and subjects removed", () => {
+    let renderProperties;
+    beforeEach(() => {
+      useEffect = jest.spyOn(React, "useEffect");
+      jest.clearAllMocks();
+      mockUseEffect(); //useExists
+      mockUseEffect(); //setCurrentSubject
+      shallow(<CategoryContainer {...props} subjects={[]} />);
+      renderProperties = [...props.render.mock.calls].pop()[0];
+    });
+
+    it("should call 'render' function with 'enriched records'", () => {
+      const catSubjects = [];
+      const categoryRecords = props.records
+        .filter((r) => r.categoryId === categoryId)
+        .sort((a, b) => b.date - a.date)
+        .map((r) => ({
+          ...r,
+          subjectTitle:
+            catSubjects.find(({ id }) => id === r.subjectId)?.title ||
+            "General",
+        }));
+
+      expect(renderProperties.records).toStrictEqual(categoryRecords);
     });
   });
 

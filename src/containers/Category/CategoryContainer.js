@@ -63,12 +63,23 @@ export function CategoryContainer({
     [subjects, currentCategory, categoryRecords, currentSubject]
   );
 
+  const enrichedRecords = useMemo(
+    () =>
+      categoryRecords.map((record) => ({
+        ...record,
+        subjectTitle:
+          categorySubjects.find(({ id }) => id === record.subjectId)?.title ||
+          "General",
+      })),
+    [categoryRecords, categorySubjects]
+  );
+
   const filteredRecords = useMemo(
     () =>
-      categoryRecords.filter(
+      enrichedRecords.filter(
         ({ subjectId }) => subjectId === currentSubject || !currentSubject
       ),
-    [currentSubject, categoryRecords]
+    [currentSubject, enrichedRecords]
   );
 
   const addSubjectHandler = () => {
