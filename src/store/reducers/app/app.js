@@ -7,7 +7,10 @@ export default (state = initState, { type, payload }) => {
     case PICK_CATEGORY:
       return { ...state, currentCategory: payload };
     case PICK_SUBJECT:
-      return { ...state, currentSubject: payload };
+      return {
+        ...state,
+        currentSubject: payload === "general" ? null : payload,
+      };
     default:
       return state;
   }

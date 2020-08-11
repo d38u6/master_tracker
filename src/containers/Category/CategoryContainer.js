@@ -63,6 +63,7 @@ export function CategoryContainer({
       categoryId: currentCategory || "",
       summaryTime: categorySummaryTime,
       active: currentSubject === "general" || !currentSubject,
+      editable: false,
     }),
     [categorySummaryTime, currentSubject, currentCategory]
   );
@@ -75,6 +76,7 @@ export function CategoryContainer({
           ...sub,
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === currentSubject,
+          editable: true,
         })),
     [subjects, currentCategory, categoryRecords, currentSubject]
   );

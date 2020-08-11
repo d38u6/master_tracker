@@ -8,6 +8,7 @@ import { parseMinutes } from "../../../../utility/time";
 const props = {
   ...subTwo,
   acitve: false,
+  editable: true,
   pickSubject: jest.fn(),
   setEditMode: jest.fn(),
   setShowTimeForm: jest.fn(),
@@ -56,6 +57,12 @@ describe("'SubjectRow' component", () => {
     expect(subjectRow.find("EditButton").exists()).toBe(true);
   });
 
+  it("'editButton' should contain 'disable' prop opposed to editable prop", () => {
+    expect(subjectRow.find("EditButton").prop("disabled")).toBe(
+      !props.editable
+    );
+  });
+
   it("should call 'setEditMode' callback with true param", () => {
     subjectRow.find("EditButton").simulate("click");
     expect(props.setEditMode).toHaveBeenCalledWith(true);
@@ -85,12 +92,12 @@ describe("'SubjectRow' component", () => {
     });
   });
 
-  describe("when subject is general", () => {
-    const subjectRow = shallow(<SubjectRow {...props} id="general" />);
+  describe("when subject is not editable", () => {
+    const editable = false;
+    const subjectRow = shallow(<SubjectRow {...props} editable={editable} />);
 
-    it("should call 'pickSubject' callback with 'null' param", () => {
-      subjectRow.find("td").at(0).simulate("click");
-      expect(props.pickSubject).toHaveBeenCalledWith(null);
+    it("'editButton' should contain 'disable' prop opposed to editable prop", () => {
+      expect(subjectRow.find("EditButton").prop("disabled")).toBe(!editable);
     });
   });
 });

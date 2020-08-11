@@ -13,20 +13,19 @@ export function SubjectRow({
   summaryTime,
   pickSubject,
   setEditMode,
+  editable,
 }) {
   return (
     <tr className={active ? classes.Active : ""}>
       <td
         className={classes.Title}
-        onClick={() =>
-          pickSubject(active ? null : id === "general" ? null : id)
-        }
+        onClick={() => pickSubject(active ? null : id)}
       >
         {title}
       </td>
       <td>{parseMinutes(summaryTime)}</td>
       <AddTime categoryId={categoryId} subjectId={id} title={title} />
-      <EditButton onClick={() => setEditMode(true)} />
+      <EditButton onClick={() => setEditMode(true)} disabled={!editable} />
     </tr>
   );
 }
@@ -39,6 +38,7 @@ SubjectRow.propTypes = {
   summaryTime: PropTypes.number.isRequired,
   pickSubject: PropTypes.func.isRequired,
   setEditMode: PropTypes.func.isRequired,
+  editable: PropTypes.bool.isRequired,
 };
 
 export default memo(SubjectRow);
