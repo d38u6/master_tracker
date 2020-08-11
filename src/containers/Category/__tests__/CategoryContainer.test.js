@@ -47,6 +47,7 @@ describe("'CategoryContainer' component", () => {
         categoryId: props.currentCategory || "",
         summaryTime: catTime,
         active: props.currentSubject === "general" || !props.currentSubject,
+        editable: false,
       };
       const catSubjects = props.subjects
         .filter((sub) => sub.categoryId === categoryId)
@@ -54,6 +55,7 @@ describe("'CategoryContainer' component", () => {
           ...sub,
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === props.currentSubject,
+          editable: true,
         }));
 
       expect(renderProperties.subjects).toStrictEqual([
@@ -151,6 +153,7 @@ describe("'CategoryContainer' component", () => {
         categoryId: props.currentCategory || "",
         summaryTime: catTime,
         active: subjectId === "general" || !subjectId,
+        editable: false,
       };
       const catSubjects = props.subjects
         .filter((sub) => sub.categoryId === categoryId)
@@ -158,6 +161,7 @@ describe("'CategoryContainer' component", () => {
           ...sub,
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === subjectId,
+          editable: true,
         }));
 
       expect(renderProperties.subjects).toStrictEqual([

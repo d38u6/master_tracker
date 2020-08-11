@@ -4,17 +4,20 @@ import { FaPencilAlt } from "react-icons/fa";
 
 import classes from "./EditButton.module.css";
 
-function EditButton({ onClick }) {
+function EditButton({ disabled, onClick }) {
   return (
     <td className={classes.EditButton}>
-      <div className={classes.Button} onClick={onClick}>
-        <FaPencilAlt />
-      </div>
+      {!disabled && (
+        <div className={classes.Button} onClick={onClick}>
+          <FaPencilAlt />
+        </div>
+      )}
     </td>
   );
 }
 
 EditButton.propTypes = {
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

@@ -36,4 +36,12 @@ describe("'EditButton' component", () => {
   it("render 'FaPencilAlt' icon inside 'div'", () => {
     expect(editButton.find("div > FaPencilAlt").exists()).toBe(true);
   });
+
+  describe("Whene button is disabled", () => {
+    const editButton = shallow(<EditButton {...props} disabled={true} />);
+
+    it("'td' element should be empty", () => {
+      expect(editButton.find("td").children().isEmptyRender()).toBe(true);
+    });
+  });
 });
