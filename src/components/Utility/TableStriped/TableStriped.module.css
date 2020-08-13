@@ -1,0 +1,8 @@
+.TableStriped td {
+  border: none;
+  vertical-align: middle;
+}
+.TableStriped {
+  border-collapse: separate;
+  border-spacing: 0 0.3rem;
+}

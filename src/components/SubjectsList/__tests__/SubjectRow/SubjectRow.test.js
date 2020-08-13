@@ -3,10 +3,12 @@ import { shallow } from "enzyme";
 
 import SubjectRow from "../../SubjectRow/SubjectRow";
 import { subTwo } from "../../../../data/fixtures";
+import { parseMinutes } from "../../../../utility/time";
 
 const props = {
   ...subTwo,
   acitve: false,
+  editable: true,
   pickSubject: jest.fn(),
   setEditMode: jest.fn(),
   setShowTimeForm: jest.fn(),
@@ -32,7 +34,7 @@ describe("'SubjectRow' component", () => {
   //td summaryTime
   it("render 'td' element with 'summaryTime' text", () => {
     expect(subjectRow.find("td").at(1).text()).toBe(
-      props.summaryTime.toString()
+      parseMinutes(props.summaryTime)
     );
   });
 
@@ -53,6 +55,12 @@ describe("'SubjectRow' component", () => {
   //EditButton
   it("render 'EditButton' component", () => {
     expect(subjectRow.find("EditButton").exists()).toBe(true);
+  });
+
+  it("'editButton' should contain 'disable' prop opposed to editable prop", () => {
+    expect(subjectRow.find("EditButton").prop("disabled")).toBe(
+      !props.editable
+    );
   });
 
   it("should call 'setEditMode' callback with true param", () => {
@@ -81,6 +89,15 @@ describe("'SubjectRow' component", () => {
     it("should call 'pickSubject' callback with 'null' param", () => {
       subjectRow.find("td").at(0).simulate("click");
       expect(props.pickSubject).toHaveBeenCalledWith(null);
+    });
+  });
+
+  describe("when subject is not editable", () => {
+    const editable = false;
+    const subjectRow = shallow(<SubjectRow {...props} editable={editable} />);
+
+    it("'editButton' should contain 'disable' prop opposed to editable prop", () => {
+      expect(subjectRow.find("EditButton").prop("disabled")).toBe(!editable);
     });
   });
 });

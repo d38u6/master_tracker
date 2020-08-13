@@ -1,8 +1,8 @@
 import React from "react";
 
 import CategoryContainer from "../containers/Category/CategoryContainer";
-import SubjectsList from "../components/SubjectsList/SubjectsList";
 import Dashboard from "../components/Dashboard/Dashboard";
+import SubjectsAndRecordsListTabs from "../components/SubjectsAndRecordsListTabs/SubjectsAndRecordsListTabs";
 
 function Category() {
   return (
@@ -10,7 +10,11 @@ function Category() {
       render={({ subjects, records, addSubject }) => (
         <>
           <Dashboard records={records} />
-          <SubjectsList subjects={subjects} onAddClick={addSubject} />
+          <SubjectsAndRecordsListTabs
+            subjects={subjects}
+            addSubject={addSubject}
+            records={records}
+          />
         </>
       )}
     />

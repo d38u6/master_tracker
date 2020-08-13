@@ -33,16 +33,19 @@ export function TimeFormContainer({
   };
 
   const applyHander = () => {
-    const record = {
-      id: shortid.generate(),
-      categoryId,
-      subjectId,
-      date: Date.now(),
-      value: hours * 60 + min,
-    };
-    setHours(0);
-    setMin(0);
-    addRecord(record);
+    const value = hours * 60 + min;
+    if (value > 0) {
+      const record = {
+        id: shortid.generate(),
+        categoryId,
+        subjectId,
+        date: Date.now(),
+        value,
+      };
+      setHours(0);
+      setMin(0);
+      addRecord(record);
+    }
   };
 
   return render({

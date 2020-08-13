@@ -4,7 +4,8 @@ import { shallow } from "enzyme";
 import Category from "../Category";
 import { subjectsWithSummaryTime, records } from "../../data/fixtures";
 import Dashboard from "../../components/Dashboard/Dashboard";
-import SubjectsList from "../../components/SubjectsList/SubjectsList";
+import SubjectsAndRecordsListTabs from "../../components/SubjectsAndRecordsListTabs/SubjectsAndRecordsListTabs";
+
 const addSubject = jest.fn();
 
 describe("'Category' component", () => {
@@ -36,11 +37,13 @@ describe("'Category' component", () => {
       );
     });
 
-    it("render 'SubjectList' with proper props", () => {
+    //SubjectsAndRecordsListTabs
+    it("render 'SubjectsAndRecordsListTabs' with proper props", () => {
       expect(wrapper.props.children[1]).toStrictEqual(
-        <SubjectsList
+        <SubjectsAndRecordsListTabs
           subjects={subjectsWithSummaryTime}
-          onAddClick={addSubject}
+          addSubject={addSubject}
+          records={records}
         />
       );
     });
