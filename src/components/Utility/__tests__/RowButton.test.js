@@ -13,13 +13,17 @@ describe("'RowButton' component", () => {
     expect(rowButton.find("tr").exists()).toBe(true);
   });
 
+  it("'tr' element should contain 'RowButton' class", () => {
+    expect(rowButton.find("tr").hasClass("RowButton")).toBe(true);
+  });
+
   //td
   it("render 'td' element", () => {
     expect(rowButton.find("td").exists()).toBe(true);
   });
 
   it("'td' element should contain proper props", () => {
-    const desiredProps = { colSpan: "4", className: "RowButton" };
+    const desiredProps = { colSpan: "4" };
     expect(rowButton.find("td").props()).toMatchObject(desiredProps);
   });
 
