@@ -40,9 +40,6 @@ describe("'CategoryContainer' component", () => {
       const categoryRecords = props.records.filter(
         (r) => r.categoryId === categoryId
       );
-<<<<<<< HEAD
-
-=======
       const catTime = categoryRecords.reduce((pv, { value }) => pv + value, 0);
       const generalSubject = {
         id: "general",
@@ -52,17 +49,12 @@ describe("'CategoryContainer' component", () => {
         active: props.currentSubject === "general" || !props.currentSubject,
         editable: false,
       };
->>>>>>> list_of_records
       const catSubjects = props.subjects
         .filter((sub) => sub.categoryId === categoryId)
         .map((sub) => ({
           ...sub,
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === props.currentSubject,
-<<<<<<< HEAD
-        }));
-      expect(renderProperties.subjects).toStrictEqual(catSubjects);
-=======
           editable: true,
         }));
 
@@ -70,7 +62,6 @@ describe("'CategoryContainer' component", () => {
         generalSubject,
         ...catSubjects,
       ]);
->>>>>>> list_of_records
     });
 
     it("should call 'render' function with 'enriched records'", () => {
@@ -79,10 +70,6 @@ describe("'CategoryContainer' component", () => {
       );
       const categoryRecords = props.records
         .filter((r) => r.categoryId === categoryId)
-<<<<<<< HEAD
-        .sort((a, b) => b.date - a.date);
-      expect(renderProperties.records).toMatchObject(categoryRecords);
-=======
         .sort((a, b) => b.date - a.date)
         .map((r) => ({
           ...r,
@@ -92,7 +79,6 @@ describe("'CategoryContainer' component", () => {
         }));
 
       expect(renderProperties.records).toStrictEqual(categoryRecords);
->>>>>>> list_of_records
     });
 
     it("should call 'render' function with 'addSubject' function", () => {
@@ -149,20 +135,6 @@ describe("'CategoryContainer' component", () => {
 
   describe("When subjects is picked", () => {
     const subjectId = subjects[3].id;
-<<<<<<< HEAD
-    beforeEach(() => {
-      jest.clearAllMocks();
-      shallow(<CategoryContainer {...props} currentSubject={subjectId} />);
-    });
-
-    it("should call 'render' function with filtered 'records'", () => {
-      const categoryRecords = props.records
-        .filter((r) => r.categoryId === categoryId && r.subjectId === subjectId)
-        .sort((a, b) => b.date - a.date);
-      expect([...props.render.mock.calls].pop()[0].records).toMatchObject(
-        categoryRecords
-      );
-=======
     let renderProperties;
     beforeEach(() => {
       jest.clearAllMocks();
@@ -240,7 +212,6 @@ describe("'CategoryContainer' component", () => {
         }));
 
       expect(renderProperties.records).toStrictEqual(categoryRecords);
->>>>>>> list_of_records
     });
   });
 
