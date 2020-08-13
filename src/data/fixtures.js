@@ -1,7 +1,7 @@
 import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
-import { generateRecords } from "./recordsGenerator";
+import { generateRecords, generateRecord } from "./recordsGenerator";
 import menuItems from "../containers/TimeChart/menuItems";
 
 const isTest = process.env.NODE_ENV === "test";
@@ -104,6 +104,8 @@ export const subjectFormConf = {
   onApplyClick: isTest ? jest.fn() : null,
   onRemoveClick: isTest ? jest.fn() : null,
 };
+
+export const record = generateRecord("1", "1");
 
 export const records = [
   ...generateRecords("1", "0", 10),
