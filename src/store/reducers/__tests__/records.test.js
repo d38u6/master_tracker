@@ -1,6 +1,6 @@
 import reducer from "../records/records";
 import * as actions from "../../actions/records/records";
-import { records } from "../../../data/fixtures";
+import { records, categoryOne, subOne } from "../../../data/fixtures";
 const record = records[0],
   recordTwo = records[1];
 
@@ -36,6 +36,25 @@ describe("records reducer", () => {
 
     expect(state).toStrictEqual(
       records.filter(({ id }) => id !== recordTwo.id)
+    );
+  });
+
+  it("should remove records for category from state", () => {
+    const state = reducer(
+      records,
+      actions.removeRecordsForCategory(categoryOne.id)
+    );
+
+    expect(state).toStrictEqual(
+      records.filter(({ categoryId }) => categoryId !== categoryOne.id)
+    );
+  });
+
+  it("should remove records for subject from state", () => {
+    const state = reducer(records, actions.removeRecordsForSubject(subOne.id));
+
+    expect(state).toStrictEqual(
+      records.filter(({ subjectId }) => subjectId !== subOne.id)
     );
   });
 });

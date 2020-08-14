@@ -3,6 +3,8 @@ import {
   ADD_RECORD,
   EDIT_RECORD,
   REMOVE_RECORD,
+  REMOVE_RECORDS_FOR_CATEGORY,
+  REMOVE_RECORDS_FOR_SUBJECT,
 } from "../../actions/types";
 export default (state = [], { type, payload }) => {
   switch (type) {
@@ -19,6 +21,10 @@ export default (state = [], { type, payload }) => {
       });
     case REMOVE_RECORD:
       return state.filter(({ id }) => id !== payload);
+    case REMOVE_RECORDS_FOR_CATEGORY:
+      return state.filter(({ categoryId }) => categoryId !== payload);
+    case REMOVE_RECORDS_FOR_SUBJECT:
+      return state.filter(({ subjectId }) => subjectId !== payload);
     default:
       return state;
   }

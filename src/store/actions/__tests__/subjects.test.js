@@ -4,9 +4,10 @@ import {
   ADD_SUBJECT,
   EDIT_SUBJECT,
   REMOVE_SUBJECT,
+  REMOVE_SUBJECTS_FOR_CATEGORY,
 } from "../types";
 
-import { subjects, subOne, subTwo } from "../../../data/fixtures";
+import { subjects, subOne, subTwo, categoryOne } from "../../../data/fixtures";
 
 describe("subjects actions", () => {
   describe("creates an action to set subjects", () => {
@@ -70,6 +71,21 @@ describe("subjects actions", () => {
 
     it("action should contain proper payload propertie", () => {
       expect(action.payload).toBe(subOne.id);
+    });
+  });
+
+  describe("creates an action to remove subject for category", () => {
+    let action;
+    beforeEach(() => {
+      action = actions.removeSubjectsForCategory(categoryOne.id);
+    });
+
+    it("action should contain correctly type `REMOVE_SUBJECT`", () => {
+      expect(action.type).toEqual(REMOVE_SUBJECTS_FOR_CATEGORY);
+    });
+
+    it("action should contain proper payload propertie", () => {
+      expect(action.payload).toBe(categoryOne.id);
     });
   });
 });

@@ -3,6 +3,7 @@ import {
   ADD_SUBJECT,
   EDIT_SUBJECT,
   REMOVE_SUBJECT,
+  REMOVE_SUBJECTS_FOR_CATEGORY,
 } from "../types";
 
 export function setSubjects(subjects) {
@@ -19,4 +20,8 @@ export function editSubject(subjectId, data) {
 
 export function removeSubject(subjectId) {
   return { type: REMOVE_SUBJECT, payload: subjectId };
+}
+
+export function removeSubjectsForCategory(categoryId) {
+  return { type: REMOVE_SUBJECTS_FOR_CATEGORY, payload: categoryId };
 }

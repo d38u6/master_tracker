@@ -1,7 +1,7 @@
 import reducer from "../subjects/subjects";
 import * as actions from "../../actions/subjects/subjects";
 
-import { subjects, subOne } from "../../../data/fixtures";
+import { subjects, subOne, categoryOne } from "../../../data/fixtures";
 
 describe("subjects reducer", () => {
   it("should return default state with unknown action", () => {
@@ -33,5 +33,14 @@ describe("subjects reducer", () => {
     const state = reducer(subjects, actions.removeSubject(subjectId));
 
     expect(state).toStrictEqual(subjects.filter(({ id }) => id !== subjectId));
+  });
+
+  it("should remove subjects for category from state", () => {
+    const catId = categoryOne.id;
+    const state = reducer(subjects, actions.removeSubjectsForCategory(catId));
+
+    expect(state).toStrictEqual(
+      subjects.filter(({ categoryId }) => categoryId !== catId)
+    );
   });
 });

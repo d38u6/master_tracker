@@ -12,6 +12,7 @@ export {
   addSubject,
   editSubject,
   removeSubject,
+  removeSubjectsForCategory,
 } from "./subjects/subjects";
 
 export {
@@ -19,4 +20,6 @@ export {
   addRecord,
   editRecord,
   removeRecord,
+  removeRecordsForCategory,
+  removeRecordsForSubject,
 } from "./records/records";

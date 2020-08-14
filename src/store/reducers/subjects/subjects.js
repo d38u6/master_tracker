@@ -3,6 +3,7 @@ import {
   ADD_SUBJECT,
   EDIT_SUBJECT,
   REMOVE_SUBJECT,
+  REMOVE_SUBJECTS_FOR_CATEGORY,
 } from "../../actions/types";
 
 export default (state = [], { type, payload }) => {
@@ -20,6 +21,8 @@ export default (state = [], { type, payload }) => {
       });
     case REMOVE_SUBJECT:
       return state.filter(({ id }) => id !== payload);
+    case REMOVE_SUBJECTS_FOR_CATEGORY:
+      return state.filter(({ categoryId }) => categoryId !== payload);
     default:
       return state;
   }
