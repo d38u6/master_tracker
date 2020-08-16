@@ -2,13 +2,20 @@ import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { editSubject, removeSubject } from "../../../store/actions";
+import {
+  editSubject,
+  removeSubject,
+  removeRecordsForSubject,
+} from "../../../store/actions";
+import { showAlert } from "../../../components/Utility/Alert/showAlert";
+import Alerts from "../../../components/Alerts";
 
 export function SubjectFormContainer({
   subjectId,
   subjects,
   editSubject,
   removeSubject,
+  removeRecordsForSubject,
   setEditMode,
   render,
 }) {
@@ -28,10 +35,24 @@ export function SubjectFormContainer({
   const onSaveHandler = () => {
     editSubject(subjectId, { title });
     setEditMode(false);
+    showAlert(Alerts.ChangesSaved);
+  };
+
+  const removeSubjectHandler = () => {
+    removeSubject(subjectId);
+    showAlert(Alerts.SubjectRemoved);
+  };
+
+  const removeSubjectAndRecordsHandler = () => {
+    removeRecordsForSubject(subjectId);
+    removeSubjectHandler();
   };
 
   const onRemoveHandler = () => {
-    removeSubject(subjectId);
+    showAlert(Alerts.SubjectRemoveConfirm, {
+      onRemove: removeSubjectAndRecordsHandler,
+      onRemoveWithoutRecords: removeSubjectHandler,
+    });
   };
 
   return render({
@@ -49,12 +70,15 @@ SubjectFormContainer.propTypes = {
   subjects: PropTypes.array.isRequired,
   editSubject: PropTypes.func.isRequired,
   removeSubject: PropTypes.func.isRequired,
+  removeRecordsForSubject: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ subjects }) {
   return { subjects };
 }
 
-export default connect(mapStateToProps, { editSubject, removeSubject })(
-  SubjectFormContainer
-);
+export default connect(mapStateToProps, {
+  editSubject,
+  removeSubject,
+  removeRecordsForSubject,
+})(SubjectFormContainer);
