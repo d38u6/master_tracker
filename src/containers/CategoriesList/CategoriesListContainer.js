@@ -5,6 +5,8 @@ import shortId from "shortid";
 
 import { setCategories, addCategory } from "../../store/actions";
 import { initialCategories, newCategory } from "../../data/categories";
+import { showAlert } from "../../components/Utility/Alert/showAlert";
+import Alerts from "../../components/Alerts";
 
 export function CategoriesListContainer({
   categories,
@@ -20,6 +22,7 @@ export function CategoriesListContainer({
 
   const addCategoryHandler = () => {
     addCategory({ ...newCategory, id: shortId.generate() });
+    showAlert(Alerts.NewCategoryAdded);
   };
 
   return render({
