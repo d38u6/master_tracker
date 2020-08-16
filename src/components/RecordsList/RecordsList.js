@@ -18,9 +18,9 @@ function RecordsList({ records }) {
         .map(({ id, subjectTitle, date, value }) => (
           <RecordContainer
             key={id}
+            id={id}
             render={({ removeRecord }) => (
               <RecordRow
-                id={id}
                 subjectTitle={subjectTitle}
                 date={date}
                 value={value}

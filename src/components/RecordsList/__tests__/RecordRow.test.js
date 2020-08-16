@@ -49,8 +49,8 @@ describe("'RecordRow' component", () => {
     expect(recordRow.find("RemoveButtonCol").exists()).toBe(true);
   });
 
-  it("should call 'removeRecord' callback with recod id", () => {
+  it("should call 'removeRecord' callback ", () => {
     recordRow.find("RemoveButtonCol").simulate("click");
-    expect(props.removeRecord).toHaveBeenCalledWith(props.id);
+    expect(props.removeRecord).toHaveBeenCalled();
   });
 });
