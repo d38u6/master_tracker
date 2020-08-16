@@ -23,8 +23,11 @@ describe("'RecordsList' component", () => {
     );
   });
 
-  //RecordRow inside RecordContainer render prop
   recordsList.find("Connect(RecordContainer)").forEach((recordContainer, i) => {
+    it(`'recordContainer' ${i} should contain proper id prop`, () => {
+      expect(recordContainer.prop("id")).toBe(props.records[i].id);
+    });
+    //RecordRow inside RecordContainer render prop
     const removeRecord = jest.fn();
     const recordRow = recordContainer.prop("render")({ removeRecord });
     it(`should correctly pass record props to recordRow coponents for record ${i}`, () => {
