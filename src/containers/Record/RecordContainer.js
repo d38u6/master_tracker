@@ -14,7 +14,7 @@ export function RecordContainer({ id, removeRecord, render }) {
         showAlert(Alerts.RecordRemoved);
       },
     });
-  }, [removeRecord]);
+  }, [removeRecord, id]);
 
   return render({ removeRecord: removeRecordHandler });
 }
