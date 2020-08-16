@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 
 import { pickCategory, addSubject, pickSubject } from "../../store/actions";
 import { newSubject } from "../../data/subjects";
+import { showAlert } from "../../components/Utility/Alert/showAlert";
+import Alerts from "../../components/Alerts";
 
 export function calculateSummaryTime(subId, records) {
   return records
@@ -106,6 +108,7 @@ export function CategoryContainer({
       categoryId: id,
       ...newSubject,
     });
+    showAlert(Alerts.NewSubjectAdded);
   };
 
   return exists ? (

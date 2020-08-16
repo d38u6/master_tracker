@@ -5,6 +5,10 @@ import shortid from "shortid";
 import { CategoryContainer, calculateSummaryTime } from "../CategoryContainer";
 import { subjects, categories, records } from "../../../data/fixtures";
 import { newSubject } from "../../../data/subjects";
+import * as alert from "../../../components/Utility/Alert/showAlert";
+import Alerts from "../../../components/Alerts";
+
+alert.showAlert = jest.fn();
 
 const categoryId = categories[0].id;
 const props = {
@@ -219,24 +223,24 @@ describe("'CategoryContainer' component", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       shallow(<CategoryContainer {...props} />);
+      props.render.mock.calls[0][0].addSubject();
     });
 
     it("should call 'addSubject' callback with newSubject data", () => {
-      props.render.mock.calls[0][0].addSubject();
       expect(props.addSubject.mock.calls[0][0]).toMatchObject(newSubject);
     });
 
     it("should create valid id for newSubject", () => {
-      props.render.mock.calls[0][0].addSubject();
-
       const id = props.addSubject.mock.calls[0][0].id;
       expect(shortid.isValid(id)).toBe(true);
     });
 
     it("should call 'addSubject' callback with proper 'categoryId'", () => {
-      props.render.mock.calls[0][0].addSubject();
-
       expect(props.addSubject.mock.calls[0][0].categoryId).toBe(categoryId);
+    });
+
+    it("should call 'showAlert' fn with 'NewSubjectAdded' alert", () => {
+      expect(alert.showAlert).toHaveBeenLastCalledWith(Alerts.NewSubjectAdded);
     });
   });
 });
