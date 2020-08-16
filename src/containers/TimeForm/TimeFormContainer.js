@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import shortid from "shortid";
 
 import { addRecord } from "../../store/actions";
+import { showAlert } from "../../components/Utility/Alert/showAlert";
+import Alerts from "../../components/Alerts";
 
 export function TimeFormContainer({
   categoryId,
@@ -45,6 +47,7 @@ export function TimeFormContainer({
       setHours(0);
       setMin(0);
       addRecord(record);
+      showAlert(Alerts.TimeAdded);
     }
   };
 

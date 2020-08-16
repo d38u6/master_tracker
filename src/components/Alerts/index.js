@@ -5,6 +5,7 @@ import AlertCategoryRemoved from "./AlertCategoryRemoved";
 import AlertNewSubjectAdded from "./AlertNewSubjectAdded";
 import AlertSubjectRemoveConfirm from "./AlertSubjectRemoveConfirm";
 import AlertSubjectRemoved from "./AlertSubjectRemoved";
+import AlertTimeAdded from "./AlertTimeAdded";
 
 export default {
   ChangesSaved: AlertChangesSaved,
@@ -16,4 +17,6 @@ export default {
   NewSubjectAdded: AlertNewSubjectAdded,
   SubjectRemoveConfirm: AlertSubjectRemoveConfirm,
   SubjectRemoved: AlertSubjectRemoved,
+
+  TimeAdded: AlertTimeAdded,
 };

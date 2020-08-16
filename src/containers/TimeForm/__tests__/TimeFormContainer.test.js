@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 import shortid from "shortid";
 
 import { TimeFormContainer } from "../TimeFormContainer";
+import * as alert from "../../../components/Utility/Alert/showAlert";
+import Alerts from "../../../components/Alerts";
+
+alert.showAlert = jest.fn();
 
 const props = {
   categoryId: "categoryId",
@@ -172,54 +176,71 @@ describe("'TimeFormContainer' component", () => {
 
   //apply
   describe("when apply the form", () => {
-    let minValue = "44";
-    let hoursValue = "23";
     beforeEach(() => {
       jest.clearAllMocks();
       shallow(<TimeFormContainer {...props} />);
-      props.render.mock.calls[0][0].hoursConf.onChange({
-        target: { value: hoursValue },
+    });
+
+    describe("and when value is less than 1", () => {
+      beforeEach(() => [...props.render.mock.calls].pop()[0].apply());
+
+      it("should not call 'addRecord' callback", () => {
+        expect(props.addRecord).not.toHaveBeenCalled();
       });
-      props.render.mock.calls[0][0].minConf.onChange({
-        target: { value: minValue },
+    });
+
+    describe("and when value is greater than 0", () => {
+      let minValue = "44";
+      let hoursValue = "23";
+      beforeEach(() => {
+        props.render.mock.calls[0][0].hoursConf.onChange({
+          target: { value: hoursValue },
+        });
+        props.render.mock.calls[0][0].minConf.onChange({
+          target: { value: minValue },
+        });
+        [...props.render.mock.calls].pop()[0].apply();
       });
-      [...props.render.mock.calls].pop()[0].apply();
-    });
 
-    it("should call 'addRecord' callback", () => {
-      expect(props.addRecord).toHaveBeenCalled();
-    });
+      it("should call 'addRecord' callback", () => {
+        expect(props.addRecord).toHaveBeenCalled();
+      });
 
-    it("should call 'addRecord' callback with a proper new record object", () => {
-      const desiredRecord = {
-        categoryId: props.categoryId,
-        subjectId: props.subjectId,
-        value: +hoursValue * 60 + +minValue,
-      };
-      const record = props.addRecord.mock.calls[0][0];
-      expect(record).toMatchObject(desiredRecord);
-    });
+      it("should call 'addRecord' callback with a proper new record object", () => {
+        const desiredRecord = {
+          categoryId: props.categoryId,
+          subjectId: props.subjectId,
+          value: +hoursValue * 60 + +minValue,
+        };
+        const record = props.addRecord.mock.calls[0][0];
+        expect(record).toMatchObject(desiredRecord);
+      });
 
-    it("a new record should contain correctly date", () => {
-      const recordDate = new Date(
-        props.addRecord.mock.calls[0][0].date
-      ).setMilliseconds(0);
-      expect(recordDate).toBe(new Date(Date.now()).setMilliseconds(0));
-    });
+      it("a new record should contain correctly date", () => {
+        const recordDate = new Date(
+          props.addRecord.mock.calls[0][0].date
+        ).setMilliseconds(0);
+        expect(recordDate).toBe(new Date(Date.now()).setMilliseconds(0));
+      });
 
-    it("a new record object should contain valid id", () => {
-      const id = props.addRecord.mock.calls[0][0].id;
-      expect(shortid.isValid(id)).toBe(true);
-    });
+      it("a new record object should contain valid id", () => {
+        const id = props.addRecord.mock.calls[0][0].id;
+        expect(shortid.isValid(id)).toBe(true);
+      });
 
-    it("should reset hours value to '0'", () => {
-      const value = [...props.render.mock.calls].pop()[0].hoursConf.value;
-      expect(value).toBe(0);
-    });
+      it("should reset hours value to '0'", () => {
+        const value = [...props.render.mock.calls].pop()[0].hoursConf.value;
+        expect(value).toBe(0);
+      });
 
-    it("should reset miutes value to '0'", () => {
-      const value = [...props.render.mock.calls].pop()[0].minConf.value;
-      expect(value).toBe(0);
+      it("should reset minutes value to '0'", () => {
+        const value = [...props.render.mock.calls].pop()[0].minConf.value;
+        expect(value).toBe(0);
+      });
+
+      it("should call 'showAlert' fn with 'TimeAdded' alert", () => {
+        expect(alert.showAlert).toHaveBeenCalledWith(Alerts.TimeAdded);
+      });
     });
   });
 });
