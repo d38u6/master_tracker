@@ -3,17 +3,23 @@ import { shallow } from "enzyme";
 
 import { CategoryFormContainer } from "../CategoryForm/CategoryFormContainer";
 import { categories, categoryFour } from "../../../data/fixtures";
+import * as alert from "../../../components/Utility/Alert/showAlert";
+import Alerts from "../../../components/Alerts";
 
 const props = {
   categories,
   categoryId: categoryFour.id,
   editCategory: jest.fn(),
   removeCategory: jest.fn(),
+  removeSubjectsForCategory: jest.fn(),
+  removeRecordsForCategory: jest.fn(),
   setEditMode: jest.fn(),
   render: jest.fn(),
 };
 let useEffect;
 jest.spyOn(React, "useEffect").mockImplementation((f) => (useEffect = f));
+
+alert.showAlert = jest.fn();
 
 describe("'CategoryFormContainer' component", () => {
   shallow(<CategoryFormContainer {...props} />);
@@ -85,6 +91,9 @@ describe("'CategoryFormContainer' component", () => {
       desc: "this is new desc",
     };
     beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<CategoryFormContainer {...props} />);
+
       const lastRenderParam = [...props.render.mock.calls].pop()[0];
       lastRenderParam.titleConf.onChange({
         target: { value: newData.title },
@@ -93,14 +102,17 @@ describe("'CategoryFormContainer' component", () => {
         target: { value: newData.desc },
       });
       lastRenderParam.imageConf.onChange(newData.imageSrc);
+      [...props.render.mock.calls].pop()[0].onApplyClick();
     });
 
     it("should call 'editCategory' callback with correctly data", () => {
-      const { onApplyClick } = [...props.render.mock.calls].pop()[0];
-      onApplyClick();
       expect([...props.editCategory.mock.calls].pop()[1]).toMatchObject(
         newData
       );
+    });
+
+    it("should call 'showAlert' fn with 'ChangesSaved' alert", () => {
+      expect(alert.showAlert).toHaveBeenCalledWith(Alerts.ChangesSaved);
     });
   });
 
@@ -110,11 +122,51 @@ describe("'CategoryFormContainer' component", () => {
     expect(typeof onRemoveClick).toBe("function");
   });
 
-  it("should call 'removeCategory' callback with correctly categoryId", () => {
-    const { onRemoveClick } = props.render.mock.calls[0][0];
-    onRemoveClick();
+  describe("when call 'onRemoveClick' callback", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<CategoryFormContainer {...props} />);
+      const { onRemoveClick } = props.render.mock.calls[0][0];
+      onRemoveClick();
+    });
 
-    expect(props.removeCategory.mock.calls[0][0]).toBe(categoryFour.id);
+    it("should call 'showAlert' fn with 'CategoryRemoveConfirm' alert", () => {
+      expect(alert.showAlert.mock.calls[0][0]).toBe(
+        Alerts.CategoryRemoveConfirm
+      );
+    });
+
+    it("should call 'showAlert' fn with 'onRemove' fn", () => {
+      expect(typeof alert.showAlert.mock.calls[0][1].onRemove).toBe("function");
+    });
+
+    describe("and when call 'onRemove fn'", () => {
+      beforeEach(() => {
+        alert.showAlert.mock.calls[0][1].onRemove();
+      });
+
+      it("should call 'removeCategory' callback with correctly categoryId", () => {
+        expect(props.removeCategory).toHaveBeenCalledWith(categoryFour.id);
+      });
+
+      it("should call 'removeSubjectsForCategory' callback with correctly categoryId", () => {
+        expect(props.removeSubjectsForCategory).toHaveBeenCalledWith(
+          categoryFour.id
+        );
+      });
+
+      it("should call 'removeRecordsForCategory' callback with correctly categoryId", () => {
+        expect(props.removeRecordsForCategory).toHaveBeenCalledWith(
+          categoryFour.id
+        );
+      });
+
+      it("should call 'showAlert' fn with 'CategoryRemoved' alert", () => {
+        expect(alert.showAlert).toHaveBeenLastCalledWith(
+          Alerts.CategoryRemoved
+        );
+      });
+    });
   });
 
   describe("when 'categoryId' exists inside 'categories'", () => {

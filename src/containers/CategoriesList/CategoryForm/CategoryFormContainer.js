@@ -5,13 +5,19 @@ import PropTypes from "prop-types";
 import {
   editCategory,
   removeCategory,
-} from "../../../store/actions/categories/categories";
+  removeSubjectsForCategory,
+  removeRecordsForCategory,
+} from "../../../store/actions";
+import { showAlert } from "../../../components/Utility/Alert/showAlert";
+import Alerts from "../../../components/Alerts";
 
 export function CategoryFormContainer({
   categories,
   categoryId,
   editCategory,
   removeCategory,
+  removeSubjectsForCategory,
+  removeRecordsForCategory,
   setEditMode,
   render,
 }) {
@@ -43,10 +49,20 @@ export function CategoryFormContainer({
   const onSaveHandler = () => {
     editCategory(categoryId, { imageSrc, title, desc });
     setEditMode(false);
+    showAlert(Alerts.ChangesSaved);
+  };
+
+  const removeCategoryHandler = () => {
+    removeCategory(categoryId);
+    removeSubjectsForCategory(categoryId);
+    removeRecordsForCategory(categoryId);
+    showAlert(Alerts.CategoryRemoved);
   };
 
   const onRemoveHandler = () => {
-    removeCategory(categoryId);
+    showAlert(Alerts.CategoryRemoveConfirm, {
+      onRemove: removeCategoryHandler,
+    });
   };
 
   return render({
@@ -66,12 +82,17 @@ CategoryFormContainer.propTypes = {
   categories: PropTypes.array.isRequired,
   editCategory: PropTypes.func.isRequired,
   removeCategory: PropTypes.func.isRequired,
+  removeSubjectsForCategory: PropTypes.func.isRequired,
+  removeRecordsForCategory: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ categories }) {
   return { categories };
 }
 
-export default connect(mapStateToProps, { editCategory, removeCategory })(
-  CategoryFormContainer
-);
+export default connect(mapStateToProps, {
+  editCategory,
+  removeCategory,
+  removeSubjectsForCategory,
+  removeRecordsForCategory,
+})(CategoryFormContainer);
