@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactAll from "react";
 import { shallow } from "enzyme";
 
-import ToggleThemeButton from "../ToggleThemeButton";
+import ToggleThemeButton from "../ToggleThemeButton/ToggleThemeButton";
 
 const contextValue = { theme: "dark", toggleTheme: jest.fn() };
 
@@ -11,18 +11,19 @@ jest.spyOn(ReactAll, "useContext").mockImplementation(() => contextValue);
 describe("'ToggleThemeButton' component", () => {
   const toggleThemeButton = shallow(<ToggleThemeButton />);
 
-  //Button
-  it("render 'Button' component", () => {
-    expect(toggleThemeButton.find("Button").exists()).toBe(true);
+  //div
+  it("render 'div' element", () => {
+    expect(toggleThemeButton.find("div").exists()).toBe(true);
   });
 
-  it("'Button' should contain proper 'variant' prop", () => {
-    const variant = contextValue.theme === "dark" ? "light" : "dark";
-    expect(toggleThemeButton.find("Button").prop("variant")).toBe(variant);
+  it("'div' element should contain 'ToggleThemeButton' class", () => {
+    expect(toggleThemeButton.find("div").hasClass("ToggleThemeButton")).toBe(
+      true
+    );
   });
 
   it("should call 'toggleTheme' callback", () => {
-    toggleThemeButton.find("Button").simulate("click");
+    toggleThemeButton.find("div").simulate("click");
     expect(contextValue.toggleTheme).toHaveBeenCalled();
   });
 
@@ -31,12 +32,12 @@ describe("'ToggleThemeButton' component", () => {
     expect(toggleThemeButton.find("span").exists()).toBe(true);
   });
 
-  it("render 'variant' text inside 'span'", () => {
+  it("render 'icon' inside 'span'", () => {
     const contextValue = { theme: "light", toggleTheme: jest.fn() };
-    const variant = contextValue.theme === "dark" ? "light" : "dark";
+    const icon = contextValue.theme === "dark" ? "FiSun" : "FiMoon";
     jest.spyOn(ReactAll, "useContext").mockImplementation(() => contextValue);
     const toggleThemeButton = shallow(<ToggleThemeButton />);
 
-    expect(toggleThemeButton.find("span").text()).toBe(variant);
+    expect(toggleThemeButton.find(`span > ${icon}`).exists()).toBe(true);
   });
 });
