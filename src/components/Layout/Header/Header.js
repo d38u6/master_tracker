@@ -1,18 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
-import ToggleThemeButton from "../../Theme/ToggleThemeButton";
+
+import ToggleThemeButton from "../../Theme/ToggleThemeButton/ToggleThemeButton";
 import withTheme from "../../../HOC/withTheme";
+import Navigation from "./Navigation/Navigation";
 
 export function Header({ theme }) {
   return (
     <Navbar
+      collapseOnSelect={true}
+      expand="sm"
       bg={theme.bg}
       variant={theme.bg}
       className="justify-content-between"
     >
-      <Navbar.Brand href="/">Master Tracker</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/">
+        Master Tracker
+      </Navbar.Brand>
+      <Navigation />
       <ToggleThemeButton />
     </Navbar>
   );

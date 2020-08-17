@@ -33,12 +33,17 @@ describe("'Header' component", () => {
     expect(header.find("NavbarBrand").exists()).toBe(true);
   });
 
-  it("'NavbarBrand' should contain '/' 'href' prop", () => {
-    expect(header.find("NavbarBrand").prop("href")).toBe("/");
+  it("'NavbarBrand' should contain '/' 'to' prop", () => {
+    expect(header.find("NavbarBrand").prop("to")).toBe("/");
   });
 
   it("'NavbarBrand' should contain 'Master Tracker' text", () => {
     expect(header.find("NavbarBrand").text()).toBe("Master Tracker");
+  });
+
+  //Navigation
+  it("render 'Navigation' component", () => {
+    expect(header.find("Navigation").exists()).toBe(true);
   });
 
   //ToggleThemeButton
