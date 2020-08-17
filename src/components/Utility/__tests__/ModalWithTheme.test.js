@@ -11,27 +11,25 @@ describe("'ModalWithTheme' component", () => {
 
   //Modal
   it("render 'Modal' component", () => {
-    expect(modalWithTheme.find("Bootstrap(Modal)").exists()).toBe(true);
+    expect(modalWithTheme.find("Modal").exists()).toBe(true);
   });
 
   it("'Moda' should containt proper props", () => {
     const { theme, ...desiredProps } = props;
-    expect(modalWithTheme.find("Bootstrap(Modal)").props()).toMatchObject(
-      desiredProps
-    );
+    expect(modalWithTheme.find("Modal").props()).toMatchObject(desiredProps);
   });
 
   //div
   it("redner 'div' element inside 'Modal'", () => {
-    expect(modalWithTheme.find("Bootstrap(Modal) > div").exists()).toBe(true);
+    expect(modalWithTheme.find("Modal > div").exists()).toBe(true);
   });
 
   it("'div' contain correctly class", () => {
     const themeClassName =
       props.theme.bg.charAt(0).toUpperCase() + props.theme.bg.slice(1);
 
-    expect(
-      modalWithTheme.find("Bootstrap(Modal) > div").hasClass(themeClassName)
-    ).toBe(true);
+    expect(modalWithTheme.find("Modal > div").hasClass(themeClassName)).toBe(
+      true
+    );
   });
 });
