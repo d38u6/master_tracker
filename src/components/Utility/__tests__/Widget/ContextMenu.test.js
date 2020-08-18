@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 
 import ContextMenu from "../../Widget/ContextMenu/ContextMenu";
 import DotsButton from "../../Widget/ContextMenu/DotsButton/DotsButton";
-import items from "../../../../containers/TimeChart/menuItems";
+import { timeChartMenuItems as items } from "../../../../data/fixtures";
 
 const menuItems = items.map((item, i) => ({ ...item, active: i === 0 }));
 

@@ -2,7 +2,7 @@ import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
 import { generateRecords, generateRecord } from "./recordsGenerator";
-import menuItems from "../containers/TimeChart/menuItems";
+import menuItems from "../containers/Charts/TimeChart/menuItems";
 
 const isTest = process.env.NODE_ENV === "test";
 
@@ -144,3 +144,5 @@ export const subjectsWithSummaryTime = subjects.map((s) => ({
   ...s,
   summaryTime: Math.floor(Math.random() * 100),
 }));
+
+export const timeChartMenuItems = [...menuItems];

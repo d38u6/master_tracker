@@ -3,9 +3,9 @@ import { shallow } from "enzyme";
 
 import TimeChartContainer from "../TimeChartContainer";
 import menuItems from "../menuItems";
-import { records } from "../../../data/fixtures";
-import mapRecordsToDays from "../../../utility/mapRecordsToDays";
-import { createTimeFilter, createDays } from "../../../utility/time";
+import { records } from "../../../../data/fixtures";
+import mapRecordsToDays from "../../../../utility/mapRecordsToDays";
+import { createTimeFilter, createDays } from "../../../../utility/time";
 
 const props = { records, render: jest.fn() };
 

@@ -3,7 +3,7 @@ import {
   THIS_MONTH,
   THIS_YEAR,
   LAST_DAYS,
-} from "../../utility/time";
+} from "../../../utility/time";
 export default [
   { id: "weekly", caption: "Weekly", filter: { name: THIS_WEEK } },
   {

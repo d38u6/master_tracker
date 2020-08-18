@@ -2,8 +2,8 @@ import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
 import menuItems from "./menuItems";
-import { createTimeFilter, createDays } from "../../utility/time";
-import mapRecordsToDays from "../../utility/mapRecordsToDays";
+import { createTimeFilter, createDays } from "../../../utility/time";
+import mapRecordsToDays from "../../../utility/mapRecordsToDays";
 
 function TimeChartContainer({ records, render }) {
   const days = useMemo(() => mapRecordsToDays(records), [records]);

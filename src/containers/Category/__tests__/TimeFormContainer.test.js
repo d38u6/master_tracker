@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import shortid from "shortid";
 
-import { TimeFormContainer } from "../TimeFormContainer";
+import { TimeFormContainer } from "../TimeForm/TimeFormContainer";
 import * as alert from "../../../components/Utility/Alert/showAlert";
 import Alerts from "../../../components/Alerts";
 

@@ -35,7 +35,4 @@ describe("'DotsButton' component", () => {
   it("render three 'dots'", () => {
     expect(dotsButton.find("span.Dot").length).toBe(3);
   });
-  it("d38u6", () => {
-    console.log(dotsButton.debug());
-  });
 });

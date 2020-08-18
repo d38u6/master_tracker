@@ -125,9 +125,5 @@ describe("'Tabs' component", () => {
         }
       });
     });
-
-    it("d38u6", () => {
-      console.log(tabs.debug());
-    });
   });
 });

@@ -1,4 +1,9 @@
-import { THIS_DAY, THIS_WEEK, THIS_MONTH, THIS_YEAR } from "../../utility/time";
+import {
+  THIS_DAY,
+  THIS_WEEK,
+  THIS_MONTH,
+  THIS_YEAR,
+} from "../../../utility/time";
 export default [
   { id: "levels", caption: "Levels", filter: "" },
   { id: "daily", caption: "Daily", filter: { name: THIS_DAY } },

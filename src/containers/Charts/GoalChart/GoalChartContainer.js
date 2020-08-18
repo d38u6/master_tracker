@@ -2,8 +2,8 @@ import { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 
 import menuItems from "./menuItems";
-import { defaultGoals, goalsLevels } from "../../data/goals";
-import { createTimeFilter } from "../../utility/time";
+import { defaultGoals, goalsLevels } from "../../../data/goals";
+import { createTimeFilter } from "../../../utility/time";
 
 function GoalChartContainer({ records, render }) {
   const [selectedItem, setSelectedItem] = useState(menuItems[0]);

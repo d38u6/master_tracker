@@ -2,10 +2,10 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import GoalChartContainer from "../GoalChartContainer";
-import { records } from "../../../data/fixtures";
-import { createTimeFilter } from "../../../utility/time";
+import { records } from "../../../../data/fixtures";
+import { createTimeFilter } from "../../../../utility/time";
 import menuItems from "../menuItems";
-import { goalsLevels, defaultGoals } from "../../../data/goals";
+import { goalsLevels, defaultGoals } from "../../../../data/goals";
 
 const props = { records, render: jest.fn() };
 
