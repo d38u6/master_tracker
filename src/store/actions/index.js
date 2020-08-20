@@ -23,3 +23,10 @@ export {
   removeRecordsForCategory,
   removeRecordsForSubject,
 } from "./records/records";
+
+export {
+  setSettings,
+  setDefaultGoalChartType,
+  setDefaultTimeChartType,
+  setGoals,
+} from "./settings/settings";
