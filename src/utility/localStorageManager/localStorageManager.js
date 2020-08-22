@@ -1,5 +1,6 @@
 export const CATEGORIES = "CATEGORIES";
 export const SUBJECTS = "SUBJECTS";
+export const RECORDS = "RECORDS";
 
 export function getItem(key) {
   try {
@@ -31,6 +32,8 @@ export const getCategories = () => getItem(CATEGORIES);
 export const saveCategories = (categories) => setItem(CATEGORIES, categories);
 export const getSubjects = () => getItem(SUBJECTS);
 export const saveSubjects = (subjects) => setItem(SUBJECTS, subjects);
+export const getRecords = () => getItem(RECORDS);
+export const saveRecords = (records) => setItem(RECORDS, records);
 
 export function saveStoreSubscriber(store) {
   let prevState = store.getState();
@@ -43,6 +46,9 @@ export function saveStoreSubscriber(store) {
     }
     if (prevState.subjects !== state.subjects) {
       saveSubjects(state.subjects);
+    }
+    if (prevState.records !== state.records) {
+      saveRecords(state.records);
     }
 
     prevState = state;
