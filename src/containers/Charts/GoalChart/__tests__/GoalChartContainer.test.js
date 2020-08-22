@@ -1,13 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import GoalChartContainer from "../GoalChartContainer";
+import { GoalChartContainer } from "../GoalChartContainer";
 import { records } from "../../../../data/fixtures";
 import { createTimeFilter } from "../../../../utility/time";
 import menuItems from "../menuItems";
 import { goalsLevels, defaultGoals } from "../../../../data/goals";
 
-const props = { records, render: jest.fn() };
+const props = {
+  records,
+  defaultChartType: menuItems[1].id,
+  goals: defaultGoals,
+  render: jest.fn(),
+};
 
 const calcSummaryTime = (filter) => {
   const timeFilter = createTimeFilter(filter);
@@ -18,11 +23,23 @@ const calcSummaryTime = (filter) => {
 
 describe("'GoalChartContainer' component", () => {
   shallow(<GoalChartContainer {...props} />);
+  let properties;
+  beforeEach(() => {
+    properties = [...props.render.mock.calls].pop()[0];
+  });
+
+  const selectedItem = menuItems.find(
+    ({ id }) => id === props.defaultChartType
+  );
 
   //selectItem fn
   it("should call render fn with, 'selectItem' property", () => {
     const properties = props.render.mock.calls[0][0];
     expect(typeof properties.selectItem).toBe("function");
+  });
+
+  it("should call render fn with, correctly 'name' property", () => {
+    expect(properties.name).toBe(selectedItem.caption);
   });
 
   describe("when the levels is chosen", () => {
@@ -38,7 +55,6 @@ describe("'GoalChartContainer' component", () => {
     });
 
     it("should call render fn with, correctly 'menuItem' property", () => {
-      const properties = props.render.mock.calls[0][0];
       expect(properties.menuItems).toEqual(
         menuItems.map((i) => ({ ...i, active: i.id === selectedItem.id }))
       );
@@ -91,7 +107,7 @@ describe("'GoalChartContainer' component", () => {
 
     it("should call render fn with, correctly 'goalValue' property insied progressBarConf", () => {
       expect(properties.progressBarConf.goalValue).toBe(
-        defaultGoals[selectedItem.id]
+        props.goals[selectedItem.id]
       );
     });
 

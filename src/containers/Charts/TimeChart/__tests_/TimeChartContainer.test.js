@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import TimeChartContainer from "../TimeChartContainer";
+import { TimeChartContainer } from "../TimeChartContainer";
 import menuItems from "../menuItems";
 import { records } from "../../../../data/fixtures";
 import mapRecordsToDays from "../../../../utility/mapRecordsToDays";
 import { createTimeFilter, createDays } from "../../../../utility/time";
 
-const props = { records, render: jest.fn() };
+const props = { records, defaultChartType: menuItems[1].id, render: jest.fn() };
 
 const days = mapRecordsToDays(records);
 
@@ -31,11 +31,14 @@ const clacData = (filter) => {
 describe("'TimeChartContainer' component", () => {
   shallow(<TimeChartContainer {...props} />);
 
-  const selectedItem = menuItems[0];
   let properties;
   beforeEach(() => {
     properties = [...props.render.mock.calls].pop()[0];
   });
+
+  const selectedItem = menuItems.find(
+    ({ id }) => id === props.defaultChartType
+  );
 
   //selectItem fn
   it("should call render fn with, 'selectItem' property", () => {
@@ -43,14 +46,17 @@ describe("'TimeChartContainer' component", () => {
   });
 
   //name
-  it("should call render fn with, 'name' property", () => {
+  it("should call render fn with correctly 'name' property", () => {
     expect(properties.name).toBe(selectedItem.caption);
   });
 
   //menuItems
   it("should call render fn with, 'menuItems' property", () => {
     expect(properties.menuItems).toEqual(
-      menuItems.map((i) => ({ ...i, active: i.id === selectedItem.id }))
+      menuItems.map((i) => ({
+        ...i,
+        active: i.id === props.defaultChartType,
+      }))
     );
   });
 

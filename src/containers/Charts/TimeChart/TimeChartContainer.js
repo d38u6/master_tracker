@@ -1,13 +1,18 @@
 import { useMemo, useState } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import menuItems from "./menuItems";
 import { createTimeFilter, createDays } from "../../../utility/time";
 import mapRecordsToDays from "../../../utility/mapRecordsToDays";
 
-function TimeChartContainer({ records, render }) {
+export function TimeChartContainer({ records, defaultChartType, render }) {
+  const defaultMenuItem = useMemo(
+    () => menuItems.find(({ id }) => id === defaultChartType),
+    [defaultChartType]
+  );
+  const [selectedItem, setSelectedItem] = useState(defaultMenuItem);
   const days = useMemo(() => mapRecordsToDays(records), [records]);
-  const [selectedItem, setSelectedItem] = useState(menuItems[0]);
 
   const selectItemHandler = (e) => {
     const activeItem = menuItems.find(({ id }) => id === e);
@@ -62,6 +67,12 @@ function TimeChartContainer({ records, render }) {
 TimeChartContainer.propTypes = {
   records: PropTypes.array.isRequired,
   render: PropTypes.func.isRequired,
+  //redux
+  defaultChartType: PropTypes.string.isRequired,
 };
 
-export default TimeChartContainer;
+function mapStateToProps({ settings: { defaultTimeChartType } }) {
+  return { defaultChartType: defaultTimeChartType };
+}
+
+export default connect(mapStateToProps)(TimeChartContainer);

@@ -1,12 +1,22 @@
 import { useState, useMemo } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import menuItems from "./menuItems";
-import { defaultGoals, goalsLevels } from "../../../data/goals";
+import { goalsLevels } from "../../../data/goals";
 import { createTimeFilter } from "../../../utility/time";
 
-function GoalChartContainer({ records, render }) {
-  const [selectedItem, setSelectedItem] = useState(menuItems[0]);
+export function GoalChartContainer({
+  records,
+  defaultChartType,
+  goals,
+  render,
+}) {
+  const defaultMenuItem = useMemo(
+    () => menuItems.find(({ id }) => id === defaultChartType),
+    [defaultChartType]
+  );
+  const [selectedItem, setSelectedItem] = useState(defaultMenuItem);
 
   const selectItemHandler = (e) => {
     const activeItem = menuItems.find(({ id }) => id === e);
@@ -32,7 +42,7 @@ function GoalChartContainer({ records, render }) {
       .reduce((pv, { value }) => pv + value, 0);
 
     let name = selectedItem.caption;
-    let goalValue = defaultGoals[selectedItem.id];
+    let goalValue = goals[selectedItem.id];
     let lastLvl = 0;
 
     if (selectedItem.id === "levels") {
@@ -50,7 +60,7 @@ function GoalChartContainer({ records, render }) {
       lastLvl,
       menuItemsWithActive,
     };
-  }, [records, selectedItem]);
+  }, [records, goals, selectedItem]);
 
   return render({
     progressBarConf: {
@@ -67,6 +77,13 @@ function GoalChartContainer({ records, render }) {
 GoalChartContainer.propTypes = {
   records: PropTypes.array.isRequired,
   render: PropTypes.func.isRequired,
+  //redux
+  defaultChartType: PropTypes.string.isRequired,
+  goals: PropTypes.object,
 };
 
-export default GoalChartContainer;
+function mapStateToProps({ settings: { defaultGoalChartType, goals } }) {
+  return { defaultChartType: defaultGoalChartType, goals };
+}
+
+export default connect(mapStateToProps)(GoalChartContainer);
