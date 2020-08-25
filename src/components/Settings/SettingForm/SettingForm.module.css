@@ -1,0 +1,9 @@
+.Form {
+  margin-bottom: 2.2rem;
+}
+.Label {
+  font-weight: bold;
+}
+.Control {
+  max-width: 330px;
+}
