@@ -6,15 +6,15 @@ import { setCategories, setSubjects, setRecords } from "./store/actions";
 import {
   getCategories,
   getSubjects,
+  getRecords,
 } from "./utility/localStorageManager/localStorageManager";
 import { initialCategories } from "./data/categories";
-import { subjects as fixturesSubjects } from "./data/fixtures";
-import { generateRecords } from "./data/recordsGenerator";
 
 import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
 import Home from "./routes/Home";
 import Category from "./routes/Category";
+import Settings from "./routes/Settings";
 
 export function App({ setCategories, setSubjects, setRecords }) {
   useEffect(() => {
@@ -28,15 +28,12 @@ export function App({ setCategories, setSubjects, setRecords }) {
 
   useEffect(() => {
     const subjectsLS = getSubjects();
-    if (subjectsLS && subjectsLS.length > 0) {
-      setSubjects(subjectsLS);
-    } else {
-      setSubjects(fixturesSubjects);
-    }
+    setSubjects(subjectsLS || []);
   }, [setSubjects]);
 
   useEffect(() => {
-    setRecords([...generateRecords("0", "1", 250)]);
+    const recordsLS = getRecords();
+    setRecords(recordsLS || []);
   }, [setRecords]);
 
   return (
@@ -44,6 +41,7 @@ export function App({ setCategories, setSubjects, setRecords }) {
       <Layout>
         <Route path="/" exact component={Home} />
         <Route path="/category/:title/:id" exact component={Category} />
+        <Route path="/settings" component={Settings} />
       </Layout>
     </Theme>
   );
