@@ -18,7 +18,7 @@ export function TimeFormContainer({
 
   const setHoursHandler = (value) => {
     const valueNumb = Number(value);
-    if (!isNaN(valueNumb)) {
+    if (!isNaN(valueNumb) && valueNumb >= 0) {
       setHours(valueNumb < 24 ? Math.floor(valueNumb) : 23);
     } else {
       setHours(0);
@@ -27,7 +27,7 @@ export function TimeFormContainer({
 
   const setMinHandler = (value) => {
     const valueNumb = Number(value);
-    if (!isNaN(valueNumb)) {
+    if (!isNaN(valueNumb) && valueNumb >= 0) {
       setMin(valueNumb < 60 ? Math.floor(valueNumb) : 59);
     } else {
       setMin(0);

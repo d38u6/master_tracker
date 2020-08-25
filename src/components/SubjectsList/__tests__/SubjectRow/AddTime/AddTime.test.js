@@ -46,50 +46,27 @@ describe("'AddTime' component", () => {
       expect(wrapper.find("TimeFormModal").prop("title")).toBe(props.title);
     });
 
-    //Hours TimeControl
-    it("render 'TimeControl' componetn with 'Hours' label", () => {
-      expect(wrapper.find("TimeControl").at(0).prop("label")).toBe("Hours");
+    //HoursAndMinutesControl
+    it("render 'HoursAndMinutesControl'", () => {
+      expect(wrapper.find("HoursAndMinutesControl").exists()).toBe(true);
     });
 
-    it("Hours 'TimeControl' should contain correctly 'value'", () => {
-      expect(wrapper.find("TimeControl").at(0).prop("value")).toBe(
-        properties.hoursConf.value
+    it("'HoursAndMinutesControl' should contain proper hoursConf prop", () => {
+      expect(
+        wrapper.find("HoursAndMinutesControl").prop("hoursConf")
+      ).toMatchObject(properties.hoursConf);
+    });
+
+    it("'HoursAndMinutesControl' should contain proper minConf prop", () => {
+      expect(
+        wrapper.find("HoursAndMinutesControl").prop("minConf")
+      ).toMatchObject(properties.minConf);
+    });
+
+    it("'HoursAndMinutesControl' should contain proper withMinMax prop", () => {
+      expect(wrapper.find("HoursAndMinutesControl").prop("withMinMax")).toBe(
+        true
       );
-    });
-
-    it("Hours 'TimeControl' should contain proper 'min' and 'max' props", () => {
-      expect(wrapper.find("TimeControl").at(0).props()).toMatchObject({
-        min: "0",
-        max: "23",
-      });
-    });
-
-    it("should call 'onChange' callback for hours", () => {
-      wrapper.find("TimeControl").at(0).simulate("change");
-      expect(properties.hoursConf.onChange).toHaveBeenCalled();
-    });
-
-    //Minutes TimeControl
-    it("render 'TimeControl' componetn with 'Minutes' label", () => {
-      expect(wrapper.find("TimeControl").at(1).prop("label")).toBe("Minutes");
-    });
-
-    it("Minutes 'TimeControl' should contain correctly 'value'", () => {
-      expect(wrapper.find("TimeControl").at(1).prop("value")).toBe(
-        properties.minConf.value
-      );
-    });
-
-    it("Minutes 'TimeControl' should contain proper 'min' and 'max' props", () => {
-      expect(wrapper.find("TimeControl").at(1).props()).toMatchObject({
-        min: "0",
-        max: "59",
-      });
-    });
-
-    it("should call 'onChange' callback for minutes", () => {
-      wrapper.find("TimeControl").at(1).simulate("change");
-      expect(properties.minConf.onChange).toHaveBeenCalled();
     });
 
     //Apply Button

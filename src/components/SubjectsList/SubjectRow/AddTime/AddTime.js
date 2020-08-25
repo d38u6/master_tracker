@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Button } from "react-bootstrap";
 
 import TimeFormContainer from "../../../../containers/Category/TimeForm/TimeFormContainer";
 import AddTimeButton from "./AddTimeButton/AddTimeButton";
 import TimeFormModal from "./TimeFormModal/TimeFormModal";
-import TimeControl from "./TimeControl/TimeControl";
+import HoursAndMinutesControl from "../../../Utility/HoursAndMinutesControl/HoursAndMinutesControl";
 import classes from "./AddTime.module.css";
-import { Button } from "react-bootstrap";
 
 function AddTime(props) {
   const [showForm, setShowForm] = useState(false);
@@ -20,13 +20,10 @@ function AddTime(props) {
             onHide={() => setShowForm(false)}
             title={props.title}
           >
-            <TimeControl label="Hours" min="0" max="23" {...hoursConf} />
-            <TimeControl
-              label="Minutes"
-              className={classes.MarginLeft}
-              min="0"
-              max="59"
-              {...minConf}
+            <HoursAndMinutesControl
+              hoursConf={hoursConf}
+              minConf={minConf}
+              withMinMax
             />
             <Button
               variant="success"

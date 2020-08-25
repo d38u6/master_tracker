@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import TimeControl from "../../../SubjectRow/AddTime/TimeControl/TimeControl";
+import TimeControl from "../TimeControl/TimeControl";
 
 const props = {
   value: 0,
