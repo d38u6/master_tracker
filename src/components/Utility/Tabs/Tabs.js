@@ -17,11 +17,17 @@ function renderContent(child) {
   return <Tab.Pane {...rest} />;
 }
 
+function getDefaultActiveKey(children) {
+  return Array.isArray(children)
+    ? children?.[0]?.props?.eventKey
+    : children?.props?.eventKey;
+}
+
 function Tabs({ id, defaultActiveKey, children }) {
   return (
     <Tab.Container
       id={id}
-      defaultActiveKey={defaultActiveKey || children?.[0]?.props?.eventKey}
+      defaultActiveKey={defaultActiveKey || getDefaultActiveKey(children)}
       transition={false}
     >
       <Nav variant="pills" className={classes.Nav} fill>
