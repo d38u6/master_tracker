@@ -1,5 +1,12 @@
+export function getMinutes(minutes) {
+  return minutes % 60;
+}
+
+export function getHours(minutes) {
+  return Math.floor(minutes / 60);
+}
 export function parseMinutes(minutes) {
-  return `${Math.floor(minutes / 60)}h ${minutes % 60}min`;
+  return `${getHours(minutes)}h ${getMinutes(minutes)}min`;
 }
 
 export const THIS_DAY = "THIS_DAY",
