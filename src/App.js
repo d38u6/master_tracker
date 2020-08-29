@@ -2,8 +2,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 
-import { setCategories, setSubjects, setRecords } from "./store/actions";
 import {
+  setSettings,
+  setCategories,
+  setSubjects,
+  setRecords,
+} from "./store/actions";
+import {
+  getSettings,
   getCategories,
   getSubjects,
   getRecords,
@@ -15,8 +21,14 @@ import Layout from "./components/Layout/Layout";
 import Home from "./routes/Home";
 import Category from "./routes/Category";
 import Settings from "./routes/Settings";
+import defaultSettings from "./data/defaultSettings";
 
-export function App({ setCategories, setSubjects, setRecords }) {
+export function App({ setSettings, setCategories, setSubjects, setRecords }) {
+  useEffect(() => {
+    const settingsLS = getSettings();
+    setSettings(settingsLS || defaultSettings);
+  });
+
   useEffect(() => {
     const categoriesLS = getCategories();
     if (categoriesLS && categoriesLS.length > 0) {
@@ -47,4 +59,9 @@ export function App({ setCategories, setSubjects, setRecords }) {
   );
 }
 
-export default connect(null, { setCategories, setSubjects, setRecords })(App);
+export default connect(null, {
+  setSettings,
+  setCategories,
+  setSubjects,
+  setRecords,
+})(App);
