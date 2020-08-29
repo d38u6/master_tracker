@@ -21,7 +21,7 @@ describe("'AlertTimeAdded' component", () => {
     expect(alertTimeAdded.find("Alert").props()).toMatchObject(desiredProps);
   });
 
-  it("'Alert' component should contain 'New category added' text", () => {
+  it("'Alert' component should contain 'Time Added' text", () => {
     expect(alertTimeAdded.find("Alert > span").text()).toBe("Time Added");
   });
 });

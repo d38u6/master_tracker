@@ -8,6 +8,12 @@ import AlertSubjectRemoved from "./AlertSubjectRemoved";
 import AlertTimeAdded from "./AlertTimeAdded";
 import AlertRecordRemoveConfirm from "./AlertRecordRemoveConfirm";
 import AlertRecordRemoved from "./AlertRecordRemoved";
+import AlertWrongFile from "./AlertWrongFile";
+import AlertImportDataConfirm from "./AlertImportDataConfirm";
+import AlertImportSuccess from "./AlertImportSuccess";
+import AlertExportSuccess from "./AlertExportSuccess";
+import AlertEraseSuccess from "./AlertEraseSuccess";
+import AlertEraseDataConfirm from "./AlertEraseDataConfirm";
 
 export default {
   ChangesSaved: AlertChangesSaved,
@@ -24,4 +30,11 @@ export default {
 
   RecordRemoveConfirm: AlertRecordRemoveConfirm,
   RecordRemoved: AlertRecordRemoved,
+
+  WrongFile: AlertWrongFile,
+  ImportDataConfirm: AlertImportDataConfirm,
+  ImportSuccess: AlertImportSuccess,
+  ExportSuccess: AlertExportSuccess,
+  EarseDataConfirm: AlertEraseDataConfirm,
+  EarseSuccess: AlertEraseSuccess,
 };
