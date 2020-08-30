@@ -11,6 +11,7 @@ function CircleProgressBar({ value, goalValue, diff = 0 }) {
   if (percent > 100) percent = 100;
 
   useEffect(() => {
+    let animationFrame;
     draw(() => (ctx) => {
       const { width, height } = ctx.canvas;
       //coordinates
@@ -28,38 +29,27 @@ function CircleProgressBar({ value, goalValue, diff = 0 }) {
         ctx.arc(x, y, r, 0.75 * Math.PI, 2.25 * Math.PI);
         ctx.stroke();
       };
-      drawEmptyCircle();
-
-      const drawFullProgress = () => {
-        ctx.strokeStyle = "#28a745";
-        ctx.beginPath();
-        ctx.arc(
-          x,
-          y,
-          r,
-          0.75 * Math.PI,
-          (0.75 + (percent / 100) * 1.5) * Math.PI
-        );
-        ctx.stroke();
-      };
 
       const drawProgress = (position) => {
-        position += 0.012;
         ctx.strokeStyle = "#28a745";
         ctx.beginPath();
         ctx.arc(x, y, r, 0.75 * Math.PI, (0.75 + position) * Math.PI);
         ctx.stroke();
+      };
+
+      const draw = (position) => {
+        ctx.clearRect(0, 0, width, height);
+        drawEmptyCircle();
+        position += 0.012;
+        drawProgress(position);
 
         if ((percent / 100) * 1.5 > position) {
-          window.requestAnimationFrame(() => drawProgress(position));
-        } else {
-          ctx.clearRect(0, 0, width, height);
-          drawEmptyCircle();
-          drawFullProgress();
+          animationFrame = window.requestAnimationFrame(() => draw(position));
         }
       };
-      window.requestAnimationFrame(() => drawProgress(0));
+      animationFrame = window.requestAnimationFrame(() => draw(0));
     });
+    return () => window.cancelAnimationFrame(animationFrame);
   }, [draw, percent]);
 
   return (
