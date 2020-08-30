@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./CategoryBoxWrapper.module.css";
+import classNames from "classnames";
 import { Col } from "react-bootstrap";
+
+import classes from "./CategoryBoxWrapper.module.css";
 
 function CategoryBoxWrapper({ className, children }) {
   return (
     <Col md="4">
-      <div className={[classes.CategoryBox, className || ""].join(" ")}>
+      <div className={classNames(classes.CategoryBox, className)}>
         {children}
       </div>
     </Col>

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import TableWithTheme from "../TableWithTheme/TableWithTheme";
 import classes from "./TableStriped.module.css";
@@ -7,7 +8,7 @@ import classes from "./TableStriped.module.css";
 function TableStriped({ className, children }) {
   return (
     <TableWithTheme
-      className={[classes.TableStriped, className || ""].join(" ")}
+      className={classNames(classes.TableStriped, className)}
       striped
       hover
       size="sm"

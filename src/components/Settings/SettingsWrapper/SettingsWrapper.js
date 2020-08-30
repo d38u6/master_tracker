@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import classes from "./SettingsWrapper.module.css";
 
 function SettingsWrapper({ className, children }) {
   return (
-    <div className={[classes.SettingsWrapper, className || ""].join(" ")}>
+    <div className={classNames(classes.SettingsWrapper, className)}>
       {children}
     </div>
   );

@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import classes from "./CircleButtonWrapper.module.css";
 
 function CircleButtonWrapper({ className, children }) {
   return (
-    <div className={[classes.CircleButtonWrapper, className || ""].join(" ")}>
+    <div className={classNames(classes.CircleButtonWrapper, className)}>
       {children}
     </div>
   );

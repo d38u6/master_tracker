@@ -32,15 +32,6 @@ describe("'TableStriped' component", () => {
     ).toBe(true);
   });
 
-  it("When prop className is undefined 'TableWithTheme' should contain empty class", () => {
-    const tableStriped = shallow(
-      <TableStriped {...props} className={undefined} />
-    );
-    expect(tableStriped.find("WithTheme(TableWithTheme)").hasClass("")).toBe(
-      true
-    );
-  });
-
   //tbody
   it("render 'tbody' element", () => {
     expect(tableStriped.find("tbody").exists()).toBe(true);

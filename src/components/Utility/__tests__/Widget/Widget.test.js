@@ -36,11 +36,6 @@ describe("'Widget' component", () => {
     expect(widget.find("Col").hasClass(props.className)).toBe(true);
   });
 
-  it("when prop className not exist, 'Col' component should contain empty class", () => {
-    const widget = shallow(<Widget {...props} className={null} />);
-    expect(widget.find("Col").hasClass("")).toBe(true);
-  });
-
   //span
   it("render 'span' element", () => {
     expect(widget.find("span").exists()).toBe(true);

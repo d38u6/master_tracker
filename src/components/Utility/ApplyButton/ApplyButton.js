@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { FaCheck } from "react-icons/fa";
 
 import classes from "./ApplyButton.module.css";
@@ -7,7 +8,7 @@ import classes from "./ApplyButton.module.css";
 function ApplyButton({ onClick, className }) {
   return (
     <div
-      className={[classes.ApplyButton, className].join(" ")}
+      className={classNames(classes.ApplyButton, className)}
       onClick={onClick}
     >
       <FaCheck />

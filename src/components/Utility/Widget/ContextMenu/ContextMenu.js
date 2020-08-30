@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Dropdown } from "react-bootstrap";
 
 import DotsButton from "./DotsButton/DotsButton";
@@ -9,7 +10,7 @@ function ContextMenu({ id, items, onSelect, classes }) {
     <Dropdown>
       <Dropdown.Toggle
         as={DotsButton}
-        className={classes?.MenuButton || ""}
+        className={classNames(classes?.MenuButton)}
         id={id}
       />
       <Dropdown.Menu alignRight>

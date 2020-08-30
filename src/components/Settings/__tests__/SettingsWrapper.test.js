@@ -20,12 +20,4 @@ describe("'SettingsWrapper' component", () => {
   it("'div' element should has correctly prop class", () => {
     expect(settingsWrapper.find("div").hasClass(props.className)).toBe(true);
   });
-
-  it("when prop className is undefinde, 'div' element should has empty class", () => {
-    const settingsWrapper = shallow(
-      <SettingsWrapper {...props} className={undefined} />
-    );
-
-    expect(settingsWrapper.find("div").hasClass("")).toBe(true);
-  });
 });

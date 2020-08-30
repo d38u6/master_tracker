@@ -21,11 +21,6 @@ describe("'DotsButton' component", () => {
     expect(dotsButton.find("div").hasClass(props.className)).toBe(true);
   });
 
-  it("when className is undefinde, 'div' element should contain empty class", () => {
-    const dotsButton = shallow(<DotsButton {...props} className={undefined} />);
-    expect(dotsButton.find("div").hasClass("")).toBe(true);
-  });
-
   it("should call 'onClick' callback", () => {
     dotsButton.simulate("click", { preventDefault: () => {} });
     expect(props.onClick).toHaveBeenCalled();

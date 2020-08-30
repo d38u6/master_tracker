@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { Table } from "react-bootstrap";
 
 import withTheme from "../../../HOC/withTheme";
@@ -10,7 +11,7 @@ export function TableWithTheme({ className, theme, children, ...props }) {
   return (
     <Table
       {...props}
-      className={[className || "", classes[themeClassName]].join(" ")}
+      className={classNames(classes[themeClassName], className)}
     >
       {children}
     </Table>

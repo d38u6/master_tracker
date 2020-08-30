@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import SelectImageContainer from "../../../../containers/CategoriesList/CategoryForm/SelectImage/SelectImageContainer";
 import SelectImage from "../../../Utility/SelectImage/SelectImage";
@@ -8,7 +9,7 @@ import classes from "./ImageControl.module.css";
 
 function ImageControl({ activeSrc, onSelect, className }) {
   return (
-    <div className={[classes.ImageControl, className].join(" ")}>
+    <div className={classNames(classes.ImageControl, className)}>
       <SelectImageContainer
         activeSrc={activeSrc}
         onSelect={onSelect}

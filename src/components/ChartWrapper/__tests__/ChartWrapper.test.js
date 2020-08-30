@@ -20,9 +20,4 @@ describe("'ChartWrapper' component", () => {
   it("'div' element should contain proper porp class name", () => {
     expect(chartWrapper.find("div").hasClass(props.className)).toBe(true);
   });
-
-  it("when prop className not exist, should contain empty class name", () => {
-    const chartWrapper = shallow(<ChartWrapper />);
-    expect(chartWrapper.find("div").hasClass("")).toBe(true);
-  });
 });

@@ -24,13 +24,6 @@ describe("'TimeControl' component", () => {
     expect(timeControl.find("div").hasClass(props.className)).toBe(true);
   });
 
-  it("when className prop is undefined, 'div' element should contain empty class", () => {
-    const timeControl = shallow(
-      <TimeControl {...props} className={undefined} />
-    );
-    expect(timeControl.find("div").hasClass("")).toBe(true);
-  });
-
   //FormControl
   it("render 'FormControl' component", () => {
     expect(timeControl.find("FormControl").exists()).toBe(true);

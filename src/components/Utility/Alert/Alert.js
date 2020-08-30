@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import classes from "./Alert.module.css";
 
 function Alert({
@@ -20,7 +22,7 @@ function Alert({
   }, []);
 
   return (
-    <div className={[classes.Alert, variantClass].join(" ")}>
+    <div className={classNames(classes.Alert, variantClass)}>
       <div className={classes.CloseBtn} onClick={onClose}>
         x
       </div>

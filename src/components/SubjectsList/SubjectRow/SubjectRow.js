@@ -1,5 +1,7 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import EditButton from "./EditButton/EditButton";
 import AddTime from "./AddTime/AddTime";
 import classes from "./SubjectRow.module.css";
@@ -16,7 +18,7 @@ export function SubjectRow({
   editable,
 }) {
   return (
-    <tr className={active ? classes.Active : ""}>
+    <tr className={classNames({ [classes.Active]: active })}>
       <td
         className={classes.Title}
         onClick={() => pickSubject(active ? null : id)}
