@@ -4,6 +4,7 @@ import TableStriped from "../../Utility/TableStriped/TableStriped";
 import RecordRow from "./RecordRow/RecordRow";
 import RecordContainer from "../../../containers/Category/Record/RecordContainer";
 import RowButton from "../../Utility/Buttons/RowButton/RowButton";
+import NoRecordsYet from "./NoRecordsYet";
 
 function RecordsList({ records }) {
   const [recordsCount, setRecordsCount] = useState(30);
@@ -13,22 +14,27 @@ function RecordsList({ records }) {
 
   return (
     <TableStriped>
-      {records
-        .slice(0, recordsCount)
-        .map(({ id, subjectTitle, date, value }) => (
-          <RecordContainer
-            key={id}
-            id={id}
-            render={({ removeRecord }) => (
-              <RecordRow
-                subjectTitle={subjectTitle}
-                date={date}
-                value={value}
-                removeRecord={removeRecord}
-              />
-            )}
-          />
-        ))}
+      {records.length > 0 ? (
+        records
+          .slice(0, recordsCount)
+          .map(({ id, subjectTitle, date, value }) => (
+            <RecordContainer
+              key={id}
+              id={id}
+              render={({ removeRecord }) => (
+                <RecordRow
+                  subjectTitle={subjectTitle}
+                  date={date}
+                  value={value}
+                  removeRecord={removeRecord}
+                />
+              )}
+            />
+          ))
+      ) : (
+        <NoRecordsYet />
+      )}
+
       {isMoreRecords && (
         <RowButton onClick={loadMoreHandlre}>
           <span>Load More</span>

@@ -23,6 +23,11 @@ describe("'RecordsList' component", () => {
     );
   });
 
+  it("render 'NoRecordsYet' component when records is empty array", () => {
+    const recordsList = shallow(<RecordsList records={[]} />);
+    expect(recordsList.find("NoRecordsYet").exists()).toBe(true);
+  });
+
   recordsList.find("Connect(RecordContainer)").forEach((recordContainer, i) => {
     it(`'recordContainer' ${i} should contain proper id prop`, () => {
       expect(recordContainer.prop("id")).toBe(props.records[i].id);
