@@ -2,8 +2,8 @@ import reducer from "../settings/settings";
 import * as actions from "../../actions/settings/settings";
 
 import defaultSettings from "../../../data/defaultSettings";
-import goalChartMenuItems from "../../../containers/Charts/GoalChart/menuItems";
-import timeChartMenuItems from "../../../containers/Charts/TimeChart/menuItems";
+import goalChartMenuItems from "../../../containers/Category/Charts/GoalChart/menuItems";
+import timeChartMenuItems from "../../../containers/Category/Charts/TimeChart/menuItems";
 import { defaultGoals } from "../../../data/goals";
 
 describe("settings reducer", () => {

@@ -1,9 +1,9 @@
 import itImage from "../assets/image/categories/it.jpg";
 import codingImage from "../assets/image/categories/coding.jpg";
 import defaultImage from "../assets/image/categories/default.jpg";
-import { generateRecords, generateRecord } from "./recordsGenerator";
-import timeChartMenuItems from "../containers/Charts/TimeChart/menuItems";
-import goalChartMenuItems from "../containers/Charts/GoalChart/menuItems";
+import { generateRecords, generateRecord } from "../utility/recordsGenerator";
+import timeChartMenuItems from "../containers/Category/Charts/TimeChart/menuItems";
+import goalChartMenuItems from "../containers/Category/Charts/GoalChart/menuItems";
 
 const isTest = process.env.NODE_ENV === "test";
 

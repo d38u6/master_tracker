@@ -6,7 +6,7 @@ import { FaFileExport, FaFileImport, FaEraser } from "react-icons/fa";
 import SettingsWrapper from "../SettingsWrapper/SettingsWrapper";
 import SettingsHeader from "../SettingsHeader/SettingsHeader";
 import SettingForm from "../SettingForm/SettingForm";
-import FileButton from "../../Utility/FileButton/FileButton";
+import FileButton from "../../Utility/Buttons/FileButton/FileButton";
 import classes from "./DataSettings.module.css";
 
 function DataSettings({ exportData, importData, eraseData }) {

@@ -6,7 +6,7 @@ import { createStore } from "redux";
 import * as serviceWorker from "./serviceWorker";
 
 import rootReducer from "./store/reducers";
-import { saveStoreSubscriber } from "./utility/localStorageManager/localStorageManager";
+import { saveStoreSubscriber } from "./utility/localStorageManager";
 
 import "./index.css";
 import App from "./App";

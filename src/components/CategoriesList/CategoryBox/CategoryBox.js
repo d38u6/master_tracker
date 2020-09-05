@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import CategoryBoxWrapper from "./CategoryBoxWrapper/CategoryBoxWrapper";
 import EditButton from "./EditButton/EditButton";
-import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
+import CardWithTheme from "../../Utility/WithTheme/CardWithTheme/CardWithTheme";
 import CategoryImage from "./CategoryImage/CategoryImage";
 import TimeCounter from "./TimeCounter/TimeCounter";
 

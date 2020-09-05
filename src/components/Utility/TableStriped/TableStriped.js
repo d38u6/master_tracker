@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-import TableWithTheme from "../TableWithTheme/TableWithTheme";
+import TableWithTheme from "../WithTheme/TableWithTheme/TableWithTheme";
 import classes from "./TableStriped.module.css";
 
 function TableStriped({ className, children }) {

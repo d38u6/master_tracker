@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ModalWithTheme from "../../Utility/ModalWithTheme/ModalWithTheme";
+import ModalWithTheme from "../WithTheme/ModalWithTheme/ModalWithTheme";
 import { Modal, Button } from "react-bootstrap";
 import Theme from "../../Theme/Theme";
 

@@ -9,8 +9,8 @@ import {
 import { showAlert } from "../../components/Utility/Alert/showAlert";
 import Alerts from "../../components/Alerts";
 
-import goalChartMenuItems from "../Charts/GoalChart/menuItems";
-import timeChartMenuItems from "../Charts/TimeChart/menuItems";
+import goalChartMenuItems from "../Category/Charts/GoalChart/menuItems";
+import timeChartMenuItems from "../Category/Charts/TimeChart/menuItems";
 
 export function ChartsSettingsContainer({
   render,

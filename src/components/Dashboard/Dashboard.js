@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { Row } from "react-bootstrap";
 import classes from "./Dashboard.module.css";
 
-import GoalChartContainer from "../../containers/Charts/GoalChart/GoalChartContainer";
+import GoalChartContainer from "../../containers/Category/Charts/GoalChart/GoalChartContainer";
+import TimeChartContainer from "../../containers/Category/Charts/TimeChart/TimeChartContainer";
 import Widget from "../Utility/Widget/Widget";
+import ChartWrapper from "./ChartWrapper/ChartWrapper";
+import ChartWithTheme from "../Utility/WithTheme/ChartWithTheme/ChartWithTheme";
 import CircleProgressBar from "../Utility/CircleProgressBar/CircleProgressBar";
-import ChartWithTheme from "../Utility/ChartWithTheme/ChartWithTheme";
-import TimeChartContainer from "../../containers/Charts/TimeChart/TimeChartContainer";
-import ChartWrapper from "../ChartWrapper/ChartWrapper";
 
 function Dashboard({ records }) {
   return (

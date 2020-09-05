@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import SettingsWrapper from "../SettingsWrapper/SettingsWrapper";
 import SettingsHeader from "../SettingsHeader/SettingsHeader";
 import SettingForm from "../SettingForm/SettingForm";
-import HoursAndMinutesControl from "../../Utility/HoursAndMinutesControl/HoursAndMinutesControl";
+import HoursAndMinutesControl from "../../Utility/Controls/HoursAndMinutesControl/HoursAndMinutesControl";
 import { Button } from "react-bootstrap";
 
 export function getLabel(goalName) {

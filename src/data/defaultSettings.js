@@ -1,5 +1,5 @@
-import goalChartMenuItems from "../containers/Charts/GoalChart/menuItems";
-import timeChartMenuItems from "../containers/Charts/TimeChart/menuItems";
+import goalChartMenuItems from "../containers/Category/Charts/GoalChart/menuItems";
+import timeChartMenuItems from "../containers/Category/Charts/TimeChart/menuItems";
 import { defaultGoals } from "./goals";
 
 export default {

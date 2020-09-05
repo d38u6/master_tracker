@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ImageButton from "../ImageButton/ImageButton";
+import ImageButton from "../Buttons/ImageButton/ImageButton";
 import ImagesModal from "./ImagesModal/ImagesModal";
 import ImageBox from "./ImageBox/ImageBox";
 

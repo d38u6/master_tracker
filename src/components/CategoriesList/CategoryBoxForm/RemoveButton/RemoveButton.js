@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 
-import Button from "../../../Utility/RemoveButton/RemoveButton";
+import Button from "../../../Utility/Buttons/RemoveButton/RemoveButton";
 
 function RemoveButton({ onClick }) {
   return (

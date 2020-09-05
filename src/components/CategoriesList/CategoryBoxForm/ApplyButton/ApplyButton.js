@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import CircleButtonWrapper from "../../CategoryBox/CircleButtonWrapper/CircleButtonWrapper";
-import Button from "../../../Utility/ApplyButton/ApplyButton";
+import Button from "../../../Utility/Buttons/ApplyButton/ApplyButton";
 
 function ApplyButton({ onClick }) {
   return (

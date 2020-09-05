@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Row } from "react-bootstrap";
 
-import AddButton from "../Utility/AddButton/AddButton";
+import AddButton from "../Utility/Buttons/AddButton/AddButton";
 import CategoryEditableContainer from "../../containers/CategoriesList/CategoryEditable/CategoryEditableContainer";
 import CategoryFormContainer from "../../containers/CategoriesList/CategoryForm/CategoryFormContainer";
 import CategoryBoxForm from "./CategoryBoxForm/CategoryBoxForm";

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CircleButtonWrapper from "../CircleButtonWrapper/CircleButtonWrapper";
-import Button from "../../../Utility/EditButton/EditButton";
+import Button from "../../../Utility/Buttons/EditButton/EditButton";
 
 function EditButton({ className, onClick }) {
   return (

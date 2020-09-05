@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { loadCategoriesImage } from "../../../../data/imagesLoader";
+import { loadCategoriesImage } from "../../../../utility/imagesLoader";
 
 function SelectImageContainer({ activeSrc, onSelect, render }) {
   const [images, setImages] = useState([]);

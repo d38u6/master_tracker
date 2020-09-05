@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import SettingsHeader from "../SettingsHeader/SettingsHeader";
 import { Button } from "react-bootstrap";
 import SettingForm from "../SettingForm/SettingForm";
-import SelectControl from "../../Utility/SelectControl/SelectControl";
+import SelectControl from "../../Utility/Controls/SelectControl/SelectControl";
 import SettingsWrapper from "../SettingsWrapper/SettingsWrapper";
 
 function ChartsSettings({ goalChart, timeChart, saveChanges }) {

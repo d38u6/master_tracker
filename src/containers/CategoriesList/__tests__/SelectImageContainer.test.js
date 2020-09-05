@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import SelectImageContainer from "../CategoryForm/SelectImage/SelectImageContainer";
-import { loadCategoriesImage } from "../../../data/imagesLoader";
+import { loadCategoriesImage } from "../../../utility/imagesLoader";
 const loadedImages = loadCategoriesImage();
 
 const props = {

@@ -13,7 +13,7 @@ import {
   getCategories,
   getSubjects,
   getRecords,
-} from "./utility/localStorageManager/localStorageManager";
+} from "./utility/localStorageManager";
 import { initialCategories } from "./data/categories";
 
 import Theme from "./components/Theme/Theme";

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 import Tabs from "../Utility/Tabs/Tabs";
 import Tab from "../Utility/Tabs/Tab";
-import SubjectsList from "../SubjectsList/SubjectsList";
-import RecordsList from "../RecordsList/RecordsList";
+import SubjectsList from "./SubjectsList/SubjectsList";
+import RecordsList from "./RecordsList/RecordsList";
 
 function SubjectsAndRecordsListTabs({ subjects, addSubject, records }) {
   return (

@@ -6,7 +6,7 @@ import classes from "./CategoryBoxForm.module.css";
 
 import ImageControl from "./ImageControl/ImageControl";
 import ApplyButton from "./ApplyButton/ApplyButton";
-import CardWithTheme from "../../Utility/CardWithTheme/CardWithTheme";
+import CardWithTheme from "../../Utility/WithTheme/CardWithTheme/CardWithTheme";
 import CategoryImage from "../CategoryBox/CategoryImage/CategoryImage";
 import TitleControl from "./TitleControl/TitleControl";
 import DescriptionControl from "./DescriptionControl/DescriptionControl";

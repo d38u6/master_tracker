@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Row } from "react-bootstrap";
 
-import ModalWithTheme from "../../ModalWithTheme/ModalWithTheme";
+import ModalWithTheme from "../../WithTheme/ModalWithTheme/ModalWithTheme";
 
 function ImagesModal({ show, onHide, children }) {
   return (
