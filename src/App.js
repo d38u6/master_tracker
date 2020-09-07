@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 
@@ -15,45 +15,47 @@ import {
   getRecords,
 } from "./utility/localStorageManager";
 import { initialCategories } from "./data/categories";
+import defaultSettings from "./data/defaultSettings";
 
 import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
-import Home from "./routes/Home";
-import Category from "./routes/Category";
-import Settings from "./routes/Settings";
-import defaultSettings from "./data/defaultSettings";
+import LoadingSpinner from "./components/Utility/LoadingSpinner/LoadingSpinner";
+
+const Home = lazy(() => import("./routes/Home"));
+const Category = lazy(() => import("./routes/Category"));
+const Settings = lazy(() => import("./routes/Settings"));
 
 export function App({ setSettings, setCategories, setSubjects, setRecords }) {
   useEffect(() => {
+    //init settings store
     const settingsLS = getSettings();
     setSettings(settingsLS || defaultSettings);
-  });
 
-  useEffect(() => {
+    //init categories store
     const categoriesLS = getCategories();
     if (categoriesLS && categoriesLS.length > 0) {
       setCategories(categoriesLS);
     } else {
       setCategories(initialCategories);
     }
-  }, [setCategories]);
 
-  useEffect(() => {
+    //init subjects store
     const subjectsLS = getSubjects();
     setSubjects(subjectsLS || []);
-  }, [setSubjects]);
 
-  useEffect(() => {
+    //init records store
     const recordsLS = getRecords();
     setRecords(recordsLS || []);
-  }, [setRecords]);
+  });
 
   return (
     <Theme>
       <Layout>
-        <Route path="/" exact component={Home} />
-        <Route path="/category/:title/:id" exact component={Category} />
-        <Route path="/settings" component={Settings} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Route path="/" exact component={Home} />
+          <Route path="/category/:title/:id" exact component={Category} />
+          <Route path="/settings" component={Settings} />
+        </Suspense>
       </Layout>
     </Theme>
   );
