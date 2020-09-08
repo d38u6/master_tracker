@@ -1,0 +1,17 @@
+.ErrorWrapper {
+  background-color: #00adffab;
+  color: antiquewhite;
+  padding: 2rem 5rem;
+  text-align: center;
+}
+.Header {
+  font-size: 5rem;
+  margin-bottom: 1.44rem;
+}
+.ErrorMsg {
+  display: block;
+  margin-top: 0.44rem;
+}
+.MarginBottom {
+  margin-bottom: 1.44rem;
+}

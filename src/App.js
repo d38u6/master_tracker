@@ -20,6 +20,8 @@ import defaultSettings from "./data/defaultSettings";
 import Theme from "./components/Theme/Theme";
 import Layout from "./components/Layout/Layout";
 import LoadingSpinner from "./components/Utility/LoadingSpinner/LoadingSpinner";
+import ErrorBundary from "./components/Utility/ErrorBoundary/ErrorBoundary";
+import ErrorCmp from "./components/Utility/ErrorCmp/ErrorCmp";
 
 const Home = lazy(() => import("./routes/Home"));
 const Category = lazy(() => import("./routes/Category"));
@@ -49,15 +51,17 @@ export function App({ setSettings, setCategories, setSubjects, setRecords }) {
   });
 
   return (
-    <Theme>
-      <Layout>
-        <Suspense fallback={<LoadingSpinner />}>
-          <Route path="/" exact component={Home} />
-          <Route path="/category/:title/:id" exact component={Category} />
-          <Route path="/settings" component={Settings} />
-        </Suspense>
-      </Layout>
-    </Theme>
+    <ErrorBundary errorCmp={ErrorCmp}>
+      <Theme>
+        <Layout>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Route path="/" exact component={Home} />
+            <Route path="/category/:title/:id" exact component={Category} />
+            <Route path="/settings" component={Settings} />
+          </Suspense>
+        </Layout>
+      </Theme>
+    </ErrorBundary>
   );
 }
 

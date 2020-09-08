@@ -14,6 +14,8 @@ import AlertImportSuccess from "./AlertImportSuccess";
 import AlertExportSuccess from "./AlertExportSuccess";
 import AlertEraseSuccess from "./AlertEraseSuccess";
 import AlertEraseDataConfirm from "./AlertEraseDataConfirm";
+import AlertRestoreDefaultSettingsConfirm from "./AlertRestoreDefaultSettingsConfirm";
+import AlertDefaultSettingsRestored from "./AlertDefaultSettingsRestored";
 
 export default {
   ChangesSaved: AlertChangesSaved,
@@ -37,4 +39,7 @@ export default {
   ExportSuccess: AlertExportSuccess,
   EarseDataConfirm: AlertEraseDataConfirm,
   EarseSuccess: AlertEraseSuccess,
+
+  RestoreDefaultSettingsConfirm: AlertRestoreDefaultSettingsConfirm,
+  DefaultSettingsRestored: AlertDefaultSettingsRestored,
 };
