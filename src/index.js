@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorker from "serviceWorker";
 
-import rootReducer from "./store/reducers";
-import { saveStoreSubscriber } from "./utility/localStorageManager";
+import rootReducer from "Store/reducers";
+import { saveStoreSubscriber } from "Utility/localStorageManager";
 
-import "./index.css";
-import App from "./App";
+import "index.css";
+import App from "App";
 
 const store = createStore(
   rootReducer,

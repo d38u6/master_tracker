@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ThemeContext from "../components/Theme/ThemeContext";
+import ThemeContext from "Components/Theme/ThemeContext";
 
 function withTheme(Cmp) {
   const WithTheme = (props) => {

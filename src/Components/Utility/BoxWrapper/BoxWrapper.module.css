@@ -1,0 +1,5 @@
+.BoxWrapper {
+  display: flex;
+  margin-bottom: 30px;
+  height: calc(100% - 30px);
+}

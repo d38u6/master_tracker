@@ -7,25 +7,25 @@ import {
   setCategories,
   setSubjects,
   setRecords,
-} from "./store/actions";
+} from "Store/actions";
 import {
   getSettings,
   getCategories,
   getSubjects,
   getRecords,
-} from "./utility/localStorageManager";
-import { initialCategories } from "./data/categories";
-import defaultSettings from "./data/defaultSettings";
+} from "Utility/localStorageManager";
+import { initialCategories } from "Data/categories";
+import defaultSettings from "Data/defaultSettings";
 
-import Theme from "./components/Theme/Theme";
-import Layout from "./components/Layout/Layout";
-import LoadingSpinner from "./components/Utility/LoadingSpinner/LoadingSpinner";
-import ErrorBundary from "./components/Utility/ErrorBoundary/ErrorBoundary";
-import ErrorCmp from "./components/Utility/ErrorCmp/ErrorCmp";
+import Theme from "Components/Theme/Theme";
+import Layout from "Components/Layout/Layout";
+import LoadingSpinner from "Components/Utility/LoadingSpinner/LoadingSpinner";
+import ErrorBundary from "Components/Utility/ErrorBoundary/ErrorBoundary";
+import ErrorCmp from "Components/ErrorCmp/ErrorCmp";
 
-const Home = lazy(() => import("./routes/Home"));
-const Category = lazy(() => import("./routes/Category"));
-const Settings = lazy(() => import("./routes/Settings"));
+const Home = lazy(() => import("Routes/Home"));
+const Category = lazy(() => import("Routes/Category"));
+const Settings = lazy(() => import("Routes/Settings"));
 
 export function App({ setSettings, setCategories, setSubjects, setRecords }) {
   useEffect(() => {
