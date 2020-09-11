@@ -15,7 +15,7 @@ import DataSettings from "Components/Settings/DataSettings/DataSettings";
 function Settings() {
   return (
     <>
-      <Tabs id="settingsTabs" defaultActiveKey="dataSettings">
+      <Tabs id="settingsTabs">
         <Tab eventKey="chartsSettings" title="Charts">
           <ChartsSettingsContainer
             render={(props) => <ChartsSettings {...props} />}
