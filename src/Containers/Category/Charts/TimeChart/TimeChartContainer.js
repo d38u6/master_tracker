@@ -19,14 +19,6 @@ export function TimeChartContainer({ records, defaultChartType, render }) {
     setSelectedItem(activeItem);
   };
 
-  const axes = useMemo(
-    () => [
-      { primary: true, type: "time", position: "bottom" },
-      { type: "linear", position: "left" },
-    ],
-    []
-  );
-
   const { data, menuItemsWithActive } = useMemo(() => {
     const menuItemsWithActive = menuItems.map((item) => ({
       ...item,
@@ -46,9 +38,10 @@ export function TimeChartContainer({ records, defaultChartType, render }) {
         emptyDays
       );
 
-    const data = [
-      [...dataDays].map(([date, value]) => [new Date(date), value]),
-    ];
+    const data = [...dataDays].map(([date, value]) => ({
+      time: date,
+      value,
+    }));
 
     return { data, menuItemsWithActive };
   }, [days, selectedItem.id, selectedItem.filter]);
@@ -57,10 +50,7 @@ export function TimeChartContainer({ records, defaultChartType, render }) {
     name: selectedItem.caption,
     menuItems: menuItemsWithActive,
     selectItem: selectItemHandler,
-    chartConf: {
-      axes,
-      data,
-    },
+    data,
   });
 }
 

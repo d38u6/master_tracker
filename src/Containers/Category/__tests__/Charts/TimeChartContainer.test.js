@@ -25,7 +25,10 @@ const clacData = (filter) => {
       emptyDays
     );
 
-  return [[...dataDays].map(([date, value]) => [new Date(date), value])];
+  return [...dataDays].map(([date, value]) => ({
+    time: date,
+    value,
+  }));
 };
 
 describe("'TimeChartContainer' component", () => {
@@ -60,16 +63,9 @@ describe("'TimeChartContainer' component", () => {
     );
   });
 
-  //chartConf
-  it("should call render fn with, 'chartConf.data' property", () => {
-    expect(properties.chartConf.data).toEqual(clacData(selectedItem.filter));
-  });
-
-  it("should call render fn with, 'chartConf.axes' property", () => {
-    expect(properties.chartConf.axes).toEqual([
-      { primary: true, type: "time", position: "bottom" },
-      { type: "linear", position: "left" },
-    ]);
+  //data
+  it("should call render fn with proper 'data' property", () => {
+    expect(properties.data).toEqual(clacData(selectedItem.filter));
   });
 
   describe("When change the active menu item", () => {
@@ -91,21 +87,6 @@ describe("'TimeChartContainer' component", () => {
       expect(properties.menuItems).toEqual(
         menuItems.map((i) => ({ ...i, active: i.id === selectedItem.id }))
       );
-    });
-
-    //chartConf
-    it("should call render fn with, 'chartConf.axes' property", () => {
-      expect(properties.chartConf.axes).toEqual([
-        { primary: true, type: "time", position: "bottom" },
-        { type: "linear", position: "left" },
-      ]);
-    });
-
-    it("should call render fn with, 'chartConf.axes' property", () => {
-      expect(properties.chartConf.axes).toEqual([
-        { primary: true, type: "time", position: "bottom" },
-        { type: "linear", position: "left" },
-      ]);
     });
   });
 });

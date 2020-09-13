@@ -129,19 +129,11 @@ export const circleProgressBarConf = {
   diff: 100,
 };
 
-export const timeChartConf = {
-  axes: [
-    { primary: true, type: "time", position: "bottom" },
-    { type: "linear", position: "left" },
-  ],
-  data: [
-    [
-      [1, 10],
-      [2, 10],
-      [3, 10],
-    ],
-  ],
-};
+export const timeChartData = [
+  { time: new Date(2019, 4, 20).getTime(), value: 25 },
+  { time: new Date(2019, 7, 12).getTime(), value: 125 },
+  { time: new Date(2020, 8, 2).getTime(), value: 205 },
+];
 
 export const subjectsWithSummaryTime = subjects.map((s) => ({
   ...s,

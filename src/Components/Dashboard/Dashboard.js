@@ -7,9 +7,8 @@ import GoalChartContainer from "Containers/Category/Charts/GoalChart/GoalChartCo
 import TimeChartContainer from "Containers/Category/Charts/TimeChart/TimeChartContainer";
 
 import Widget from "Components/Utility/Widget/Widget";
-import ChartWrapper from "Components/Utility/ChartWrapper/ChartWrapper";
-import ChartWithTheme from "Components/Utility/WithTheme/ChartWithTheme/ChartWithTheme";
 import CircleProgressBar from "Components/Utility/CircleProgressBar/CircleProgressBar";
+import TimeChart from "Components/Utility/TimeChart/TimeChart";
 
 function Dashboard({ records }) {
   return (
@@ -30,16 +29,14 @@ function Dashboard({ records }) {
 
       <TimeChartContainer
         records={records}
-        render={({ name, menuItems, selectItem, chartConf }) => (
+        render={({ name, menuItems, selectItem, data }) => (
           <Widget md="6" name={name}>
             <Widget.ContextMenu
               id={"TimeChartContextMenu"}
               items={menuItems}
               onSelect={selectItem}
             />
-            <ChartWrapper>
-              <ChartWithTheme {...chartConf} />
-            </ChartWrapper>
+            <TimeChart data={data} />
           </Widget>
         )}
       />

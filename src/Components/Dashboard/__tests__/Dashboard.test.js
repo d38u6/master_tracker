@@ -6,7 +6,7 @@ import {
   records,
   widgetProps,
   circleProgressBarConf,
-  timeChartConf,
+  timeChartData,
 } from "Data/fixtures";
 
 const props = { records };
@@ -75,7 +75,7 @@ describe("'Dashboard' component", () => {
   });
 
   describe("render function inside 'Connect(TimeChartContainer)'", () => {
-    const props = { ...widgetProps, chartConf: timeChartConf };
+    const props = { ...widgetProps, data: timeChartData };
     const wrapper = shallow(
       dashboard.find("Connect(TimeChartContainer)").prop("render")(props)
     );
@@ -96,9 +96,9 @@ describe("'Dashboard' component", () => {
     });
 
     it("render 'Chart' with proper props", () => {
-      expect(wrapper.find("WithTheme(ChartWithTheme)").props()).toMatchObject(
-        props.chartConf
-      );
+      expect(wrapper.find("TimeChart").props()).toMatchObject({
+        data: props.data,
+      });
     });
   });
 });
