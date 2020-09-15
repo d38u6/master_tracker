@@ -8,7 +8,12 @@ import classes from "./TimeControl.module.css";
 function TimeControl({ value, onChange, label, className, ...rest }) {
   return (
     <div className={classNames(classes.TimeControl, className)}>
-      <Form.Control type="number" value={value} onChange={onChange} {...rest} />
+      <Form.Control
+        type="number"
+        value={value.toString()}
+        onChange={onChange}
+        {...rest}
+      />
       <Form.Label>{label}</Form.Label>
     </div>
   );
