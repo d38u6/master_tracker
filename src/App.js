@@ -8,20 +8,18 @@ import {
   setSubjects,
   setRecords,
 } from "Store/actions";
-import {
-  getSettings,
-  getCategories,
-  getSubjects,
-  getRecords,
-} from "Utility/localStorageManager";
-import { initialCategories } from "Data/categories";
-import defaultSettings from "Data/defaultSettings";
 
 import Theme from "Components/Theme/Theme";
 import Layout from "Components/Layout/Layout";
 import LoadingSpinner from "Components/Utility/LoadingSpinner/LoadingSpinner";
 import ErrorBundary from "Components/Utility/ErrorBoundary/ErrorBoundary";
 import ErrorCmp from "Components/ErrorCmp/ErrorCmp";
+
+//sample data
+import sampleSettings from "Data/sampleData/settings";
+import sampleCategoris from "Data/sampleData/categories";
+import sampleSubjects from "Data/sampleData/subjects";
+import sampleRecords from "Data/sampleData/records";
 
 const Home = lazy(() => import("Routes/Home"));
 const Category = lazy(() => import("Routes/Category"));
@@ -30,24 +28,16 @@ const Settings = lazy(() => import("Routes/Settings"));
 export function App({ setSettings, setCategories, setSubjects, setRecords }) {
   useEffect(() => {
     //init settings store
-    const settingsLS = getSettings();
-    setSettings(settingsLS || defaultSettings);
+    setSettings(sampleSettings);
 
     //init categories store
-    const categoriesLS = getCategories();
-    if (categoriesLS && categoriesLS.length > 0) {
-      setCategories(categoriesLS);
-    } else {
-      setCategories(initialCategories);
-    }
+    setCategories(sampleCategoris);
 
     //init subjects store
-    const subjectsLS = getSubjects();
-    setSubjects(subjectsLS || []);
+    setSubjects(sampleSubjects);
 
     //init records store
-    const recordsLS = getRecords();
-    setRecords(recordsLS || []);
+    setRecords(sampleRecords);
   });
 
   return (

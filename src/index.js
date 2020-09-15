@@ -16,7 +16,7 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-store.subscribe(saveStoreSubscriber(store));
+// store.subscribe(saveStoreSubscriber(store));
 
 ReactDOM.render(
   <React.StrictMode>

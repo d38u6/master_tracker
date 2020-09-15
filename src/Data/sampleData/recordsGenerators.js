@@ -14,15 +14,15 @@ const lessonPlan = [
     day: 1,
     lessons: [
       { subId: "Z2XmI9u7K", time: 120 },
-      { subId: "wGTNKFE_A", time: 120 },
-      { subId: "BVB3bRxJj", time: 120 },
+      { subId: "wGTNKFE_A", time: 100 },
+      { subId: "BVB3bRxJj", time: 100 },
     ],
   },
   {
     day: 2,
     lessons: [
       { subId: "Z2XmI9u7K", time: 180 },
-      { subId: "B-rfQH5Ay", time: 120 },
+      { subId: "B-rfQH5Ay", time: 60 },
       { subId: "pwUb1dGB5", time: 60 },
     ],
   },
@@ -33,25 +33,25 @@ const lessonPlan = [
       { subId: "B-rfQH5Ay", time: 120 },
       { subId: "pwUb1dGB5", time: 60 },
       { subId: "BVB3bRxJj", time: 60 },
-      { subId: "wGTNKFE_A", time: 60 },
+      { subId: "wGTNKFE_A", time: 30 },
     ],
   },
   {
     day: 4,
     lessons: [
-      { subId: "Z2XmI9u7K", time: 60 },
+      { subId: "Z2XmI9u7K", time: 45 },
       { subId: "B-rfQH5Ay", time: 60 },
-      { subId: "pwUb1dGB5", time: 180 },
-      { subId: "wGTNKFE_A", time: 60 },
+      { subId: "pwUb1dGB5", time: 120 },
+      { subId: "wGTNKFE_A", time: 45 },
     ],
   },
   {
     day: 5,
     lessons: [
-      { subId: "Z2XmI9u7K", time: 60 },
-      { subId: "B-rfQH5Ay", time: 120 },
-      { subId: "wGTNKFE_A", time: 60 },
-      { subId: "BVB3bRxJj", time: 120 },
+      { subId: "Z2XmI9u7K", time: 30 },
+      { subId: "B-rfQH5Ay", time: 100 },
+      { subId: "wGTNKFE_A", time: 30 },
+      { subId: "BVB3bRxJj", time: 100 },
     ],
   },
 ];
@@ -111,6 +111,8 @@ function createCodingRecords(date) {
 
 function createSchoolRecords(date) {
   const weekDay = new Date(date).getDay();
+  const leave = random(0, 14);
+  if (leave === 0) return [];
   return (
     lessonPlan
       .find(({ day }) => day === weekDay)
@@ -122,6 +124,8 @@ function createSchoolRecords(date) {
 
 function createSoccerRecords(date) {
   const day = new Date(date).getDay();
+  const leave = random(0, 10);
+  if (leave === 0) return [];
   switch (day) {
     case 2:
       return [
@@ -131,7 +135,7 @@ function createSoccerRecords(date) {
     case 5:
       return [
         createReocrd(soccerCategory.id, "hxCvP1B_a", 60, date),
-        createReocrd(soccerCategory.id, "siKuHjdFM", 30, date),
+        createReocrd(soccerCategory.id, "WnxP_PEhe", 30, date),
         createReocrd(soccerCategory.id, "FarkQgn2b", 30, date),
       ];
     default:
