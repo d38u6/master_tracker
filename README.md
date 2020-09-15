@@ -1,3 +1,28 @@
+## Master Tracker APP
+
+This app helps you track your learning progress it is a more complex "todo" app.
+
+## Technology
+
+App is written in [React](https://reactjs.org/). I used [Redux](https://redux.js.org/) to manage state and [React-router](https://reactrouter.com/) to handling routing.
+Almost the entire project is written using react hook and functionals components
+
+I tried write this app using common design patterns like:
+
+- "Presentational and Container Components"
+- "Render Props"
+- "Compound Components"
+
+Time chart is created using [D3.js library](https://d3js.org/).
+
+Circle progress bar is created by me from scratch, for this i'm use HTML Canvas element.
+
+User interface is created using [React Bootstrap framework](https://react-bootstrap.github.io/)
+
+Maybe you want me in your project or have any thoughts about this project. Feel free to tell me this, write an email on <d38u6dev@gmail.com>
+
+## CRA Section
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

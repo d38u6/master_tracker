@@ -1,4 +1,4 @@
-import defaultImage from "Assets/image/categories/default.jpg";
+import defaultImage from "Assets/image/categories/default.png";
 export const initialCategories = [
   {
     id: "0",
