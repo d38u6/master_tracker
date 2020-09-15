@@ -19,6 +19,8 @@ Circle progress bar is created by me from scratch, for this i'm use HTML Canvas 
 
 User interface is created using [React Bootstrap framework](https://react-bootstrap.github.io/)
 
+All categories images come form [pixabay.com](https://pixabay.com/)
+
 Maybe you want me in your project or have any thoughts about this project. Feel free to tell me this, write an email on <d38u6dev@gmail.com>
 
 ## CRA Section
