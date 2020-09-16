@@ -2,6 +2,12 @@
 
 This app helps you track your learning progress it is a more complex "todo" app.
 
+You can set your daily, weekly, monthly, yearly goals and track them.
+
+Working app is deployed on [Heroku](https://heroku.com/). You can see it [master-tracker](https://master--tracker.herokuapp.com/)
+
+I'm also deploy version with sample data. You can see it [master-tracker-DEMO](https://master--tracker-demo.herokuapp.com/)
+
 ## Technology
 
 App is written in [React](https://reactjs.org/). I used [Redux](https://redux.js.org/) to manage state and [React-router](https://reactrouter.com/) to handling routing.
