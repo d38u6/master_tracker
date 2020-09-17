@@ -3,3 +3,6 @@
   margin-bottom: 30px;
   height: calc(100% - 30px);
 }
+.BoxWrapper > div {
+  flex: 1;
+}
