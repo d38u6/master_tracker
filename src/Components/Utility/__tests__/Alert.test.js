@@ -6,7 +6,6 @@ import Alert from "Components/Utility/Alert/Alert";
 const props = {
   variant: "success",
   onClose: jest.fn(),
-  withoutTimeout: false,
   timeoutTime: 250,
 };
 jest.useFakeTimers();
@@ -30,19 +29,12 @@ describe("'Alert' component", () => {
     ).toBe(true);
   });
 
-  //close button div
-  it("render 'div' with class 'CloseBtn'", () => {
-    expect(alert.find("div").at(1).hasClass("CloseBtn")).toBe(true);
+  it("render 'span' element for icon", () => {
+    expect(alert.find("span").hasClass("Icon")).toBe(true);
   });
 
-  it("close button 'div' should contain 'x' text", () => {
-    expect(alert.find("div").at(1).text()).toBe("x");
-  });
-
-  it("should call 'onClose' callback when clicked on the close button", () => {
-    jest.clearAllMocks();
-    alert.find("div").at(1).simulate("click");
-    expect(props.onClose).toHaveBeenCalled();
+  it("render 'div' element for content", () => {
+    expect(alert.find("div").at(1).hasClass("Content")).toBe(true);
   });
 
   describe("when 'variant' is undefined", () => {
@@ -52,84 +44,25 @@ describe("'Alert' component", () => {
     });
   });
 
-  describe("when 'withoutTimeout' is set to false", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      shallow(<Alert {...props} withoutTimeout={false} />);
-      useEffect();
-    });
-
-    afterEach(() => jest.clearAllTimers());
-
-    it("should call 'onClose' callback after 'timeoutTime'", () => {
-      jest.advanceTimersByTime(props.timeoutTime);
-      expect(props.onClose).toHaveBeenCalled();
-    });
+  it("should call 'onClose' callback after 'timeoutTime'", () => {
+    jest.clearAllMocks();
+    useEffect();
+    jest.advanceTimersByTime(props.timeoutTime);
+    expect(props.onClose).toHaveBeenCalled();
   });
 
-  describe("when 'withoutTimeout' is set to undefined", () => {
+  describe("when 'timeoutTime' is undefined", () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      shallow(<Alert {...props} withoutTimeout={undefined} />);
-      useEffect();
-    });
-
-    afterEach(() => jest.clearAllTimers());
-
-    it("should call 'onClose' callback after 'timeoutTime'", () => {
-      jest.advanceTimersByTime(props.timeoutTime);
-      expect(props.onClose).toHaveBeenCalled();
-    });
-  });
-
-  describe("when 'withoutTimeout' is set to false and when 'timeoutTime' is undefined", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      shallow(
-        <Alert {...props} withoutTimeout={false} timeoutTime={undefined} />
-      );
+      shallow(<Alert {...props} timeoutTime={undefined} />);
       useEffect();
     });
 
     afterEach(() => jest.clearAllTimers());
 
     it("should call 'onClose' callback after 2,5s", () => {
-      jest.advanceTimersByTime(4500);
+      jest.advanceTimersByTime(2500);
       expect(props.onClose).toHaveBeenCalled();
-    });
-  });
-
-  describe("with 'withoutTimeout'", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      shallow(<Alert {...props} withoutTimeout={true} />);
-      useEffect();
-    });
-
-    afterEach(() => jest.clearAllTimers());
-
-    it("should not call 'onClose' callback", () => {
-      jest.runAllTimers();
-      expect(props.onClose).not.toBeCalled();
-    });
-  });
-
-  describe("when click a close button, before elapsed 'timeoutTime' time", () => {
-    let alert;
-    let fakeUnmount;
-    beforeEach(() => {
-      jest.clearAllMocks();
-      alert = shallow(<Alert {...props} />);
-      fakeUnmount = useEffect();
-    });
-
-    afterEach(() => jest.clearAllTimers());
-
-    it("should call 'onClose' callback only once", () => {
-      alert.find("div").at(1).simulate("click");
-      fakeUnmount();
-      jest.runAllTimers();
-      expect(props.onClose).toHaveBeenCalledTimes(1);
     });
   });
 });
