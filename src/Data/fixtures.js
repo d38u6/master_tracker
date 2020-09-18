@@ -1,6 +1,6 @@
-import itImage from "Assets/image/categories/it.jpg";
-import codingImage from "Assets/image/categories/coding.jpg";
-import defaultImage from "Assets/image/categories/default.jpg";
+import itImage from "Assets/image/categories/coding2.png";
+import codingImage from "Assets/image/categories/coding.png";
+import defaultImage from "Assets/image/categories/default.png";
 import { generateRecords, generateRecord } from "Utility/recordsGenerator";
 import timeChartMenuItems from "Containers/Category/Charts/TimeChart/menuItems";
 import goalChartMenuItems from "Containers/Category/Charts/GoalChart/menuItems";

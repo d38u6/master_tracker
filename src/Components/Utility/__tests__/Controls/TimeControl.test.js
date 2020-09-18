@@ -34,7 +34,9 @@ describe("'TimeControl' component", () => {
   });
 
   it("'FormControl' should contain correctly value", () => {
-    expect(timeControl.find("FormControl").prop("value")).toBe(props.value);
+    expect(timeControl.find("FormControl").prop("value")).toBe(
+      props.value.toString()
+    );
   });
 
   it("should call 'onChange' callback", () => {
