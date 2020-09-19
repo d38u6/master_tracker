@@ -63,9 +63,9 @@ export function GoalChartContainer({
   }, [records, goals, selectedItem]);
 
   return render({
-    progressBarConf: {
+    goalData: {
       value: summaryTime,
-      goalValue,
+      goal: goalValue,
       diff: lastLvl,
     },
     menuItems: menuItemsWithActive,

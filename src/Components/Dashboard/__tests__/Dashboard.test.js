@@ -5,7 +5,7 @@ import Dashboard from "Components/Dashboard/Dashboard";
 import {
   records,
   widgetProps,
-  circleProgressBarConf,
+  donutProgressBarConf,
   timeChartData,
 } from "Data/fixtures";
 
@@ -35,7 +35,7 @@ describe("'Dashboard' component", () => {
   });
 
   describe("render function inside 'Connect(GoalChartContainer)'", () => {
-    const props = { ...widgetProps, progressBarConf: circleProgressBarConf };
+    const props = { ...widgetProps, goalData: donutProgressBarConf };
     const wrapper = shallow(
       dashboard.find("Connect(GoalChartContainer)").prop("render")(props)
     );
@@ -55,9 +55,9 @@ describe("'Dashboard' component", () => {
       });
     });
 
-    it("render 'CircleProgressBar' with proper props", () => {
-      expect(wrapper.find("CircleProgressBar").props()).toMatchObject(
-        props.progressBarConf
+    it("render 'DonutProgressBar' with proper props", () => {
+      expect(wrapper.find("DonutProgressBar").prop("data")).toMatchObject(
+        props.goalData
       );
     });
   });

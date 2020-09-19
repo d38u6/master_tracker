@@ -64,20 +64,16 @@ describe("'GoalChartContainer' component", () => {
       expect(properties.name).toBe(`Level ${currentLevel}`);
     });
 
-    it("should call render fn with, correctly 'value' property insied progressBarConf", () => {
-      expect(properties.progressBarConf.value).toBe(summaryTime);
+    it("should call render fn with, correctly 'value' property insied goalData", () => {
+      expect(properties.goalData.value).toBe(summaryTime);
     });
 
-    it("should call render fn with, correctly 'goalValue' property insied progressBarConf", () => {
-      expect(properties.progressBarConf.goalValue).toBe(
-        goalsLevels[currentLevel - 1]
-      );
+    it("should call render fn with, correctly 'goal' property insied goalData", () => {
+      expect(properties.goalData.goal).toBe(goalsLevels[currentLevel - 1]);
     });
 
-    it("should call render fn with, correctly 'diff' property insied progressBarConf", () => {
-      expect(properties.progressBarConf.diff).toBe(
-        goalsLevels[currentLevel - 2]
-      );
+    it("should call render fn with, correctly 'diff' property insied goalData", () => {
+      expect(properties.goalData.diff).toBe(goalsLevels[currentLevel - 2]);
     });
   });
 
@@ -101,18 +97,16 @@ describe("'GoalChartContainer' component", () => {
       expect(properties.name).toBe(selectedItem.caption);
     });
 
-    it("should call render fn with, correctly 'value' property insied progressBarConf", () => {
-      expect(properties.progressBarConf.value).toBe(summaryTime);
+    it("should call render fn with, correctly 'value' property insied goalData", () => {
+      expect(properties.goalData.value).toBe(summaryTime);
     });
 
-    it("should call render fn with, correctly 'goalValue' property insied progressBarConf", () => {
-      expect(properties.progressBarConf.goalValue).toBe(
-        props.goals[selectedItem.id]
-      );
+    it("should call render fn with, correctly 'goal' property insied goalData", () => {
+      expect(properties.goalData.goal).toBe(props.goals[selectedItem.id]);
     });
 
-    it("should call render fn with, correctly 'diff' property insied progressBarConf", () => {
-      expect(properties.progressBarConf.diff).toBe(0);
+    it("should call render fn with, correctly 'diff' property insied goalData", () => {
+      expect(properties.goalData.diff).toBe(0);
     });
   });
 });

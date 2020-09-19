@@ -123,9 +123,9 @@ export const widgetProps = {
   selectItem: isTest ? jest.fn() : null,
 };
 
-export const circleProgressBarConf = {
+export const donutProgressBarConf = {
   value: 1235,
-  goalValue: 2000,
+  goal: 2000,
   diff: 100,
 };
 
