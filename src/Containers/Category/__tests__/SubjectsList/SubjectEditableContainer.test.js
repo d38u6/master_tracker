@@ -3,35 +3,51 @@ import { shallow } from "enzyme";
 
 import { SubjectEditableContainer } from "Containers/Category/SubjectsList/SubjectEditable/SubjectEditableContainer";
 
-const props = { pickSubject: jest.fn(), render: jest.fn() };
+const props = {
+  defaultEditMode: false,
+  pickSubject: jest.fn(),
+  render: jest.fn(),
+};
 
 describe("'SubjectEditableContainer' component", () => {
-  const subjectEditableContainer = shallow(
-    <SubjectEditableContainer {...props} />
-  );
-
-  //render params
-  //edit mode
-  it("default should call 'render' callback with 'editMode' set to false", () => {
-    expect(props.render.mock.calls[0][0].editMode).toBe(false);
-  });
-
-  it("should call 'render' callback with 'setEditMode' function", () => {
-    expect(typeof props.render.mock.calls[0][0].setEditMode).toBe("function");
-  });
-
-  //pick subject
-  it("should call 'render' callback with 'pickSubject' function", () => {
-    expect(typeof props.render.mock.calls[0][0].pickSubject).toBe("function");
-  });
-
-  describe("when change edit mode", () => {
+  describe("render fn", () => {
+    let params;
     beforeEach(() => {
-      props.render.mock.calls[0][0].setEditMode(true);
+      jest.clearAllMocks();
+      shallow(<SubjectEditableContainer {...props} />);
+      params = [...props.render.mock.calls].pop()[0];
     });
 
-    it("should call 'render' callback with 'editMode' set to true", () => {
-      expect([...props.render.mock.calls].pop()[0].editMode).toBe(true);
+    //edit mode
+    it("default should call 'render' callback with proper 'editMode'", () => {
+      expect(params.editMode).toBe(props.defaultEditMode);
+    });
+
+    it("when 'defaultEditMode' is set to true, should call 'render' callback with 'editMode' to be true", () => {
+      shallow(<SubjectEditableContainer {...props} defaultEditMode={true} />);
+      params = [...props.render.mock.calls].pop()[0];
+
+      expect(params.editMode).toBe(true);
+    });
+
+    it("should call 'render' callback with 'setEditMode' function", () => {
+      expect(typeof params.setEditMode).toBe("function");
+    });
+
+    //pick subject
+    it("should call 'render' callback with 'pickSubject' function", () => {
+      expect(typeof params.pickSubject).toBe("function");
+    });
+
+    describe("when change edit mode", () => {
+      beforeEach(() => {
+        params.setEditMode(true);
+        params = [...props.render.mock.calls].pop()[0];
+      });
+
+      it("should call 'render' callback with 'editMode' set to true", () => {
+        expect(params.editMode).toBe(true);
+      });
     });
   });
 });
