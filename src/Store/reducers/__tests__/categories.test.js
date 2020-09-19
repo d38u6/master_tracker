@@ -28,6 +28,15 @@ describe("categories reducer", () => {
     expect(editedCategory).toStrictEqual({ ...categories[0], ...data });
   });
 
+  it("should delete 'editMode' prop from category", () => {
+    const categoryId = categories[0].id;
+    categories[0].editMode = true;
+    const state = reducer(categories, actions.editCategory(categoryId));
+    const editedCategory = state.find(({ id }) => id === categoryId);
+    delete categories[0]["editMode"];
+    expect(editedCategory).toStrictEqual({ ...categories[0] });
+  });
+
   it("should remove category from state", () => {
     const categoryId = categories[2].id;
     const state = reducer(categories, actions.removeCategory(categoryId));

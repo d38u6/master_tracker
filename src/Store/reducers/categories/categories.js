@@ -16,6 +16,7 @@ export default (state = [], { type, payload }) => {
         if (category.id !== payload.categoryId) {
           return category;
         }
+        delete category["editMode"];
         return { ...category, ...payload.data, id: category.id };
       });
     case REMOVE_CATEGORY:

@@ -16,6 +16,7 @@ function CategoriesList({ categories, onAddClick }) {
         {categories.map((category) => (
           <CategoryEditableContainer
             key={category.id}
+            defaultEditMode={Boolean(category.editMode)}
             render={({ editMode, setEditMode, pickCategory }) =>
               editMode ? (
                 <CategoryFormContainer
