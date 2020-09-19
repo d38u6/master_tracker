@@ -19,9 +19,7 @@ I tried write this app using common design patterns like:
 - "Render Props"
 - "Compound Components"
 
-Time chart is created using [D3.js library](https://d3js.org/).
-
-Circle progress bar is created by me from scratch, for this i'm use HTML Canvas element.
+Time chart and Donut progress is created using [D3.js library](https://d3js.org/).
 
 User interface is created using [React Bootstrap framework](https://react-bootstrap.github.io/)
 
