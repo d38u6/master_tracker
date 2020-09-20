@@ -17,6 +17,7 @@ export default (state = [], { type, payload }) => {
         if (subject.id !== payload.subjectId) {
           return subject;
         }
+        delete subject["editMode"];
         return { ...subject, ...payload.data, id: subject.id };
       });
     case REMOVE_SUBJECT:

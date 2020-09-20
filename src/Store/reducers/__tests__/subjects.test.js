@@ -28,6 +28,15 @@ describe("subjects reducer", () => {
     expect(editedSubject).toStrictEqual({ ...subjects[0], ...data });
   });
 
+  it("should delete 'editMode' prop from subjct", () => {
+    const subjectId = subjects[0].id;
+    subjects[0].editMode = true;
+    const state = reducer(subjects, actions.editSubject(subjectId));
+    const editedSubject = state.find(({ id }) => id === subjectId);
+    delete subjects[0]["editMode"];
+    expect(editedSubject).toStrictEqual({ ...subjects[0] });
+  });
+
   it("should remove subject from state", () => {
     const subjectId = subjects[1].id;
     const state = reducer(subjects, actions.removeSubject(subjectId));

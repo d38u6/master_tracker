@@ -16,6 +16,7 @@ function SubjectsList({ subjects, onAddClick }) {
       {subjects.map((subject) => (
         <SubjectEditableContainer
           key={subject.id}
+          defaultEditMode={Boolean(subject.editMode)}
           render={({ editMode, setEditMode, pickSubject }) =>
             editMode ? (
               <SubjectFormContainer

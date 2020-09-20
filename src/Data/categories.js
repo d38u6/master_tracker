@@ -15,4 +15,5 @@ export const newCategory = {
   desc:
     "This is new category. Click edit button to change title, description or image",
   time: 0,
+  editMode: true,
 };
