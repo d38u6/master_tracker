@@ -25,6 +25,16 @@ describe("'TimeFormContainer' component", () => {
       renderProperties = props.render.mock.calls[0][0];
     });
 
+    it("date value props should be actual date", () => {
+      expect(
+        new Date(renderProperties.dateConf.value).toLocaleDateString()
+      ).toBe(new Date().toLocaleDateString());
+    });
+
+    it("date onChange prop should be 'function'", () => {
+      expect(typeof renderProperties.dateConf.onChange).toBe("function");
+    });
+
     it("hours value prop should be '0'", () => {
       expect(renderProperties.hoursConf.value).toBe(0);
     });
@@ -43,6 +53,22 @@ describe("'TimeFormContainer' component", () => {
 
     it("apply prop should be function", () => {
       expect(typeof renderProperties.apply).toBe("function");
+    });
+  });
+
+  //Date change
+  describe("Whene change date value", () => {
+    const newDate = new Date("2020, 8, 11");
+    let renderProperties;
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<TimeFormContainer {...props} />);
+      props.render.mock.calls[0][0].dateConf.onChange(newDate);
+      renderProperties = [...props.render.mock.calls].pop()[0];
+    });
+
+    it("should call render fn with new date value", () => {
+      expect(renderProperties.dateConf.value).toBe(newDate);
     });
   });
 
@@ -192,6 +218,7 @@ describe("'TimeFormContainer' component", () => {
     describe("and when value is greater than 0", () => {
       let minValue = "44";
       let hoursValue = "23";
+      let dateValue = new Date("2044, 1, 30");
       beforeEach(() => {
         props.render.mock.calls[0][0].hoursConf.onChange({
           target: { value: hoursValue },
@@ -199,6 +226,7 @@ describe("'TimeFormContainer' component", () => {
         props.render.mock.calls[0][0].minConf.onChange({
           target: { value: minValue },
         });
+        props.render.mock.calls[0][0].dateConf.onChange(dateValue);
         [...props.render.mock.calls].pop()[0].apply();
       });
 
@@ -211,16 +239,15 @@ describe("'TimeFormContainer' component", () => {
           categoryId: props.categoryId,
           subjectId: props.subjectId,
           value: +hoursValue * 60 + +minValue,
+          date: dateValue.getTime(),
         };
         const record = props.addRecord.mock.calls[0][0];
         expect(record).toMatchObject(desiredRecord);
       });
 
       it("a new record should contain correctly date", () => {
-        const recordDate = new Date(
-          props.addRecord.mock.calls[0][0].date
-        ).setMilliseconds(0);
-        expect(recordDate).toBe(new Date(Date.now()).setMilliseconds(0));
+        const recordDate = props.addRecord.mock.calls[0][0].date;
+        expect(recordDate).toBe(dateValue.getTime());
       });
 
       it("a new record object should contain valid id", () => {

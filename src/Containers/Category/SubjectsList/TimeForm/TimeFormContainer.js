@@ -15,6 +15,7 @@ export function TimeFormContainer({
 }) {
   const [hours, setHours] = useState(0);
   const [min, setMin] = useState(0);
+  const [date, setDate] = useState(new Date());
 
   const setHoursHandler = (value) => {
     const valueNumb = Number(value);
@@ -41,7 +42,7 @@ export function TimeFormContainer({
         id: shortid.generate(),
         categoryId,
         subjectId,
-        date: Date.now(),
+        date: new Date(date).getTime(),
         value,
       };
       setHours(0);
@@ -52,6 +53,10 @@ export function TimeFormContainer({
   };
 
   return render({
+    dateConf: {
+      value: date,
+      onChange: setDate,
+    },
     hoursConf: {
       value: hours,
       onChange: ({ target: { value } }) => setHoursHandler(value),

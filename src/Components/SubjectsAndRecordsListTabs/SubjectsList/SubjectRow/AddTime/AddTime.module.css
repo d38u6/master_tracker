@@ -2,3 +2,12 @@
   width: 100%;
   margin-top: 0.44rem;
 }
+.DatePicker {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.DatePicker > div {
+  flex-grow: unset;
+  border: none;
+}

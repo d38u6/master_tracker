@@ -25,6 +25,7 @@ describe("'AddTime' component", () => {
 
   describe("render prop fn inside TimeFormContainer", () => {
     const properties = {
+      dateConf: { value: new Date(), onChange: jest.fn() },
       hoursConf: { value: 0, onChange: jest.fn() },
       minConf: { value: 0, onChange: jest.fn() },
       apply: jest.fn(),
@@ -44,6 +45,30 @@ describe("'AddTime' component", () => {
 
     it("'TimeFormModal' should contain proper title prop", () => {
       expect(wrapper.find("TimeFormModal").prop("title")).toBe(props.title);
+    });
+
+    //DateTimePicker
+    it("render 'DateTimePicker' component", () => {
+      expect(wrapper.find("WithTheme(DateTimePickerWithTheme)").exists()).toBe(
+        true
+      );
+    });
+
+    it("'DateTimePicker' component should contain proper 'dateConf' props", () => {
+      expect(
+        wrapper.find("WithTheme(DateTimePickerWithTheme)").props()
+      ).toMatchObject(properties.dateConf);
+    });
+
+    it("'DateTimePicker' component should contain proper rest props", () => {
+      const desiredProps = {
+        className: "DatePicker",
+        format: "y-MM-dd",
+        clearIcon: null,
+      };
+      expect(
+        wrapper.find("WithTheme(DateTimePickerWithTheme)").props()
+      ).toMatchObject(desiredProps);
     });
 
     //HoursAndMinutesControl

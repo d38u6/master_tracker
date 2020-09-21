@@ -1,0 +1,59 @@
+.Dark.Wrapper,
+.Dark.Wrapper input {
+  color: #f8f9fa;
+}
+.Wrapper :global(.react-datetime-picker__button:hover) {
+  color: #006edc;
+}
+.Calendar {
+  border: none;
+  border-radius: 10px;
+}
+.Dark.Calendar {
+  background-color: #343a40;
+}
+.Dark.Calendar :global(.react-calendar__month-view__weekdays) {
+  color: #fff;
+}
+.Dark.Calendar :global(.react-calendar__tile:hover) {
+  background-color: #1f2020;
+}
+.Dark.Calendar :global(.react-calendar__month-view__days__day--weekend) {
+  color: #fc3434;
+}
+.Dark.Calendar :global(.react-calendar__tile--now) {
+  background-color: #88882c;
+}
+.Dark.Calendar :global(.react-calendar__navigation button:enabled:focus),
+.Dark.Calendar :global(.react-calendar__navigation button:enabled:hover) {
+  background-color: #1f2020;
+}
+.Dark.Calendar :global(.react-calendar__navigation button[disabled]) {
+  background-color: #495057;
+}
+.Dark.Calendar :global(.react-calendar__tile--active),
+.Dark.Calendar :global(.react-calendar__tile--hasActive) {
+  background-color: #006edc;
+}
+
+.Shadow {
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.Shadow:before,
+.Shadow:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  border-radius: 100px / 10px;
+}
+.Shadow:after {
+  right: 10px;
+  left: auto;
+  transform: skew(8deg) rotate(3deg);
+}
