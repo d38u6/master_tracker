@@ -80,6 +80,7 @@ export const theme = {
 
 export const subOne = {
   id: "0",
+  position: 1,
   categoryId: "0",
   title: "Dziennik Uczuć",
   summaryTime: 21325,
@@ -87,13 +88,30 @@ export const subOne = {
 
 export const subTwo = {
   id: "1",
+  position: 2,
   categoryId: "0",
   title: "Master Tracker",
   summaryTime: 215,
 };
 
+export const subThree = {
+  id: "2",
+  position: 3,
+  categoryId: "0",
+  title: "Subject three",
+  summaryTime: 515,
+};
+
+export const subFour = {
+  id: "3",
+  position: 4,
+  categoryId: "0",
+  title: "Subject four",
+  summaryTime: 115,
+};
+
 export const subjects = [
-  ...[subOne, subTwo].map(({ summaryTime, ...rest }) => ({
+  ...[subOne, subTwo, subFour, subThree].map(({ summaryTime, ...rest }) => ({
     ...rest,
   })),
   ...[subOne, subTwo].map(({ summaryTime, ...rest }) => ({
@@ -104,6 +122,8 @@ export const subjects = [
 
 export const subjectFormConf = {
   titleConf,
+  moveUp: isTest ? jest.fn() : null,
+  moveDown: isTest ? jest.fn() : null,
   onApplyClick: isTest ? jest.fn() : null,
   onRemoveClick: isTest ? jest.fn() : null,
 };

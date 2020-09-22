@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -11,7 +11,7 @@ import { showAlert } from "Components/Utility/Alert/showAlert";
 import Alerts from "Components/Alerts";
 
 export function SubjectFormContainer({
-  subjectId,
+  subject,
   subjects,
   editSubject,
   removeSubject,
@@ -19,32 +19,25 @@ export function SubjectFormContainer({
   setEditMode,
   render,
 }) {
-  const [title, setTitle] = useState("");
-
-  useEffect(() => {
-    const subject = subjects.find(({ id }) => id === subjectId);
-    if (subject) {
-      setTitle(subject.title);
-    }
-  }, [subjectId, subjects]);
+  const [title, setTitle] = useState(subject.title);
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
   };
 
   const onSaveHandler = () => {
-    editSubject(subjectId, { title });
+    editSubject(subject.id, { title });
     setEditMode(false);
     showAlert(Alerts.ChangesSaved);
   };
 
   const removeSubjectHandler = () => {
-    removeSubject(subjectId);
+    removeSubject(subject.id);
     showAlert(Alerts.SubjectRemoved);
   };
 
   const removeSubjectAndRecordsHandler = () => {
-    removeRecordsForSubject(subjectId);
+    removeRecordsForSubject(subject.id);
     removeSubjectHandler();
   };
 
@@ -55,29 +48,47 @@ export function SubjectFormContainer({
     });
   };
 
+  const handlerMoveUp = () => {
+    if (subject.position > 1) {
+      editSubject(subject.id, { position: subject.position - 1 });
+      const upperSubject = subjects.find(
+        ({ position }) => position === subject.position - 1
+      );
+      editSubject(upperSubject.id, { position: upperSubject.position + 1 });
+    }
+  };
+
+  const handlerMoveDown = () => {
+    if (subject.position < subjects.length - 1) {
+      editSubject(subject.id, { position: subject.position + 1 });
+      const bottomSubject = subjects.find(
+        ({ position }) => position === subject.position + 1
+      );
+      editSubject(bottomSubject.id, { position: bottomSubject.position - 1 });
+    }
+  };
+
   return render({
     titleConf: { value: title, onChange: titleChangeHandler },
+    moveUp: handlerMoveUp,
+    moveDown: handlerMoveDown,
     onApplyClick: onSaveHandler,
     onRemoveClick: onRemoveHandler,
   });
 }
 
 SubjectFormContainer.propTypes = {
-  subjectId: PropTypes.string.isRequired,
+  subject: PropTypes.object.isRequired,
   setEditMode: PropTypes.func.isRequired,
   render: PropTypes.func.isRequired,
-  //redux
   subjects: PropTypes.array.isRequired,
+  //redux
   editSubject: PropTypes.func.isRequired,
   removeSubject: PropTypes.func.isRequired,
   removeRecordsForSubject: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ subjects }) {
-  return { subjects };
-}
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   editSubject,
   removeSubject,
   removeRecordsForSubject,

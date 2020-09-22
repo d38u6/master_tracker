@@ -6,7 +6,7 @@ import classes from "./TitleControl.module.css";
 
 function TitleControl({ value, onChange }) {
   return (
-    <td className={classes.InputWrapper} colSpan="2">
+    <td className={classes.InputWrapper}>
       <Form.Control
         className={classes.TitleInput}
         type="text"

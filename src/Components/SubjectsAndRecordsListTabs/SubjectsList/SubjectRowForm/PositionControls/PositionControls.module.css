@@ -1,0 +1,8 @@
+.Controls i {
+  padding: 0.2rem;
+  margin: 0.2rem;
+}
+.Controls i:hover {
+  cursor: pointer;
+  color: #006edc;
+}
