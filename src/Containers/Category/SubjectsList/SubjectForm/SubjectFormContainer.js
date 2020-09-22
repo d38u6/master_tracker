@@ -9,7 +9,6 @@ import {
 } from "Store/actions";
 import { showAlert } from "Components/Utility/Alert/showAlert";
 import Alerts from "Components/Alerts";
-import { subFour } from "Data/fixtures";
 
 export function SubjectFormContainer({
   subject,
