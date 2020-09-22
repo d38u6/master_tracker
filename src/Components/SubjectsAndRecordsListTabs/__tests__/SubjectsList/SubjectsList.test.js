@@ -24,12 +24,20 @@ describe("'SubjectsList' component", () => {
   subjectsList
     .find("Connect(SubjectEditableContainer)")
     .forEach((subjectEditableContainer, i) => {
-      it(`should correctly pass 'subjectId' to 'SubjectFormContainer' for subject ${i}`, () => {
+      it(`should correctly pass 'subject' to 'SubjectFormContainer' for subject ${i}`, () => {
         const subjectFormContainer = subjectEditableContainer.prop("render")({
           editMode: true,
         });
 
-        expect(subjectFormContainer.props.subjectId).toBe(props.subjects[i].id);
+        expect(subjectFormContainer.props.subject).toBe(props.subjects[i]);
+      });
+
+      it(`should correctly pass 'subjects' to 'SubjectFormContainer' for subject ${i}`, () => {
+        const subjectFormContainer = subjectEditableContainer.prop("render")({
+          editMode: true,
+        });
+
+        expect(subjectFormContainer.props.subjects).toBe(props.subjects);
       });
 
       it(`should correctly pass 'subject' props to 'SubjectRow' for subject ${i}`, () => {

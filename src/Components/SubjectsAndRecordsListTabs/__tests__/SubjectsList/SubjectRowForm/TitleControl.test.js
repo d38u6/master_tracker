@@ -15,7 +15,7 @@ describe("'TitleControl' component", () => {
   });
 
   it("'td' element should contain correct props", () => {
-    const desiredProps = { className: "InputWrapper", colSpan: "2" };
+    const desiredProps = { className: "InputWrapper" };
     expect(titleControl.find("td").props()).toMatchObject(desiredProps);
   });
 

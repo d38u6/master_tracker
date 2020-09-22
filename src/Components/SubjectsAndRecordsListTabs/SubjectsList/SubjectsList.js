@@ -20,7 +20,8 @@ function SubjectsList({ subjects, onAddClick }) {
           render={({ editMode, setEditMode, pickSubject }) =>
             editMode ? (
               <SubjectFormContainer
-                subjectId={subject.id}
+                subject={subject}
+                subjects={subjects}
                 setEditMode={setEditMode}
                 render={(formConf) => <SubjectRowForm {...formConf} />}
               />

@@ -3,6 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import shortid from "shortid";
+import compareFunc from "compare-func";
 import PropTypes from "prop-types";
 
 import { pickCategory, addSubject, pickSubject } from "Store/actions";
@@ -79,7 +80,8 @@ export function CategoryContainer({
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === currentSubject,
           editable: true,
-        })),
+        }))
+        .sort(compareFunc("position")),
     [subjects, currentCategory, categoryRecords, currentSubject]
   );
 
@@ -106,6 +108,7 @@ export function CategoryContainer({
     addSubject({
       id: shortid.generate(),
       categoryId: id,
+      position: categorySubjects.length + 1,
       ...newSubject,
     });
     showAlert(Alerts.NewSubjectAdded);
