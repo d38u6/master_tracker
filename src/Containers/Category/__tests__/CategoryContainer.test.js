@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import shortid from "shortid";
+import compareFunc from "compare-func";
 
 import {
   CategoryContainer,
@@ -63,7 +64,8 @@ describe("'CategoryContainer' component", () => {
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === props.currentSubject,
           editable: true,
-        }));
+        }))
+        .sort(compareFunc("position"));
 
       expect(renderProperties.subjects).toStrictEqual([
         generalSubject,
@@ -169,7 +171,8 @@ describe("'CategoryContainer' component", () => {
           summaryTime: calculateSummaryTime(sub.id, categoryRecords),
           active: sub.id === subjectId,
           editable: true,
-        }));
+        }))
+        .sort(compareFunc("position"));
 
       expect(renderProperties.subjects).toStrictEqual([
         generalSubject,
@@ -223,6 +226,9 @@ describe("'CategoryContainer' component", () => {
   });
 
   describe("'AddSubject' function callback", () => {
+    const catSubjects = props.subjects.filter(
+      (sub) => sub.categoryId === categoryId
+    );
     beforeEach(() => {
       jest.clearAllMocks();
       shallow(<CategoryContainer {...props} />);
@@ -230,7 +236,10 @@ describe("'CategoryContainer' component", () => {
     });
 
     it("should call 'addSubject' callback with newSubject data", () => {
-      expect(props.addSubject.mock.calls[0][0]).toMatchObject(newSubject);
+      expect(props.addSubject.mock.calls[0][0]).toMatchObject({
+        ...newSubject,
+        position: catSubjects.length + 1,
+      });
     });
 
     it("should create valid id for newSubject", () => {

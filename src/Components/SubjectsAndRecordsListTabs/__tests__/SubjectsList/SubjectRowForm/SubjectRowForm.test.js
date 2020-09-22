@@ -31,6 +31,18 @@ describe("'SubjectRowForm' component", () => {
     expect(props.titleConf.onChange).toHaveBeenCalledWith(newValue);
   });
 
+  //PositionControls
+  it("render 'PositionControls'", () => {
+    expect(subjectRowForm.find("PositionControls").exists()).toBe(true);
+  });
+
+  it("'PositionControls' component should contain proper props", () => {
+    expect(subjectRowForm.find("PositionControls").props()).toMatchObject({
+      moveUp: props.moveUp,
+      moveDown: props.moveDown,
+    });
+  });
+
   //RemoveButtonCol
   it("render 'RemoveButtonCol' component", () => {
     expect(subjectRowForm.find("RemoveButtonCol").exists()).toBe(true);

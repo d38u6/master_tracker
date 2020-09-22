@@ -2,15 +2,15 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import { SubjectFormContainer } from "Containers/Category/SubjectsList/SubjectForm/SubjectFormContainer";
-import { subjects, subOne } from "Data/fixtures";
+import { subFour, subOne, subThree, subTwo } from "Data/fixtures";
 import * as alert from "Components/Utility/Alert/showAlert";
 import Alerts from "Components/Alerts";
 
 alert.showAlert = jest.fn();
 
 const props = {
-  subjectId: subOne.id,
-  subjects,
+  subject: subOne,
+  subjects: [subOne, subTwo, subThree, subFour],
   editSubject: jest.fn(),
   removeSubject: jest.fn(),
   removeRecordsForSubject: jest.fn(),
@@ -23,63 +23,81 @@ jest.spyOn(React, "useEffect").mockImplementation((f) => (mockUseEffect = f));
 describe("'SubjectFormContainer' component", () => {
   shallow(<SubjectFormContainer {...props} />);
 
-  //title
-  it("should call 'render' function with 'titleChangeHandler'", () => {
-    const { onChange } = props.render.mock.calls[0][0].titleConf;
-    expect(typeof onChange).toBe("function");
-  });
-
-  it("should change title", () => {
-    const { onChange } = props.render.mock.calls[0][0].titleConf;
-    const newValue = "new title";
-    onChange({ target: { value: newValue } });
-    const { value } = [...props.render.mock.calls].pop()[0].titleConf;
-    expect(value).toBe(newValue);
-  });
-
-  //save
-  it("should call 'render' function with 'onApplyClick'", () => {
-    const { onApplyClick } = props.render.mock.calls[0][0];
-    expect(typeof onApplyClick).toBe("function");
-  });
-
-  describe("when call 'onApplyClick' callback", () => {
+  describe("by default", () => {
+    let renderProps;
     beforeEach(() => {
       jest.clearAllMocks();
       shallow(<SubjectFormContainer {...props} />);
-      props.render.mock.calls[0][0].onApplyClick();
+      renderProps = [...props.render.mock.calls].pop()[0];
     });
 
-    it("should call 'setEditMode' callback with false", () => {
-      expect(props.setEditMode).toHaveBeenLastCalledWith(false);
+    //title
+    it("should correctly init 'title' state", () => {
+      expect(renderProps.titleConf.value).toBe(props.subject.title);
+    });
+    it("should call 'render' function with 'titleChangeHandler'", () => {
+      expect(typeof renderProps.titleConf.onChange).toBe("function");
     });
 
-    it("should call 'showAlert' fn with 'ChangesSaved' alert", () => {
-      expect(alert.showAlert).toHaveBeenLastCalledWith(Alerts.ChangesSaved);
+    //moveUp
+    it("should call 'render' function with 'moveUp' fn", () => {
+      expect(typeof renderProps.moveUp).toBe("function");
+    });
+    //moveDown
+    it("should call 'render' function with 'moveDown' fn", () => {
+      expect(typeof renderProps.moveDown).toBe("function");
+    });
+    //save
+    it("should call 'render' function with 'onApplyClick'", () => {
+      expect(typeof renderProps.onApplyClick).toBe("function");
+    });
+
+    //remove
+    it("should call 'render' function with 'onRemoveClick'", () => {
+      expect(typeof renderProps.onRemoveClick).toBe("function");
     });
   });
 
-  //edit
-  it("should call 'editSubject' callback with correctly 'subjectId'", () => {
-    const { onApplyClick } = props.render.mock.calls[0][0];
-    onApplyClick();
-    expect(props.editSubject.mock.calls[0][0]).toBe(subOne.id);
-  });
+  describe("when change title", () => {
+    const newValue = "new title";
+    let renderProps;
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<SubjectFormContainer {...props} />);
+      [...props.render.mock.calls]
+        .pop()[0]
+        .titleConf.onChange({ target: { value: newValue } });
+      renderProps = [...props.render.mock.calls].pop()[0];
+    });
 
-  it("should call 'editSubject' callback with new data", () => {
-    const newData = { title: "New edit title" };
-    const lastRenderParam = [...props.render.mock.calls].pop()[0];
-    lastRenderParam.titleConf.onChange({ target: { value: newData.title } });
+    it("should call 'render' function with new title", () => {
+      expect(renderProps.titleConf.value).toBe(newValue);
+    });
 
-    const { onApplyClick } = [...props.render.mock.calls].pop()[0];
-    onApplyClick();
-    expect([...props.editSubject.mock.calls].pop()[1]).toMatchObject(newData);
-  });
+    describe("and when call 'onApplyClick' callback", () => {
+      beforeEach(() => {
+        renderProps.onApplyClick();
+        renderProps = [...props.render.mock.calls].pop()[0];
+      });
 
-  //remove
-  it("should call 'render' function with 'onRemoveClick'", () => {
-    const { onRemoveClick } = props.render.mock.calls[0][0];
-    expect(typeof onRemoveClick).toBe("function");
+      it("should call 'editSubject' callback with correctly 'subjectId'", () => {
+        expect(props.editSubject.mock.calls[0][0]).toBe(subOne.id);
+      });
+
+      it("should call 'editSubject' callback with new title 'subjectId'", () => {
+        expect(props.editSubject.mock.calls[0][1]).toStrictEqual({
+          title: newValue,
+        });
+      });
+
+      it("should call 'setEditMode' callback with false", () => {
+        expect(props.setEditMode).toHaveBeenLastCalledWith(false);
+      });
+
+      it("should call 'showAlert' fn with 'ChangesSaved' alert", () => {
+        expect(alert.showAlert).toHaveBeenLastCalledWith(Alerts.ChangesSaved);
+      });
+    });
   });
 
   describe("when call 'onRemoveClick' callback", () => {
@@ -112,12 +130,12 @@ describe("'SubjectFormContainer' component", () => {
       });
 
       it("should call 'removeSubject' callback with correctly subjectId", () => {
-        expect(props.removeSubject).toHaveBeenCalledWith(props.subjectId);
+        expect(props.removeSubject).toHaveBeenCalledWith(props.subject.id);
       });
 
       it("should call 'removeRecordsForSubject' callback with correctly subjectId", () => {
         expect(props.removeRecordsForSubject).toHaveBeenCalledWith(
-          props.subjectId
+          props.subject.id
         );
       });
 
@@ -132,7 +150,7 @@ describe("'SubjectFormContainer' component", () => {
       });
 
       it("should call 'removeSubject' callback with correctly subjectId", () => {
-        expect(props.removeSubject).toHaveBeenCalledWith(props.subjectId);
+        expect(props.removeSubject).toHaveBeenCalledWith(props.subject.id);
       });
 
       it("should not call 'removeRecordsForSubject'", () => {
@@ -145,29 +163,76 @@ describe("'SubjectFormContainer' component", () => {
     });
   });
 
-  describe("when subject exists", () => {
+  //MoveUp
+  describe("when call 'moveUp' callback and subject position is it first", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       shallow(<SubjectFormContainer {...props} />);
-      mockUseEffect();
+      [...props.render.mock.calls].pop()[0].moveUp();
     });
 
-    it("should correctly init title", () => {
-      const { value } = [...props.render.mock.calls].pop()[0].titleConf;
-      expect(value).toBe(subOne.title);
+    it("should not call editSubject callback", () => {
+      expect(props.editSubject).not.toHaveBeenCalled();
     });
   });
 
-  describe("when subject does not exists", () => {
+  describe("when call 'moveUp' callback and subject position is not first", () => {
+    const diffProps = { ...props, subject: subTwo };
     beforeEach(() => {
       jest.clearAllMocks();
-      shallow(<SubjectFormContainer {...props} subjectId="notExists" />);
-      mockUseEffect();
+      shallow(<SubjectFormContainer {...diffProps} />);
+      [...diffProps.render.mock.calls].pop()[0].moveUp();
     });
 
-    it("should correctly init title", () => {
-      const { value } = [...props.render.mock.calls].pop()[0].titleConf;
-      expect(value).toBe("");
+    it("should call editSubject callback with new subject position", () => {
+      expect(diffProps.editSubject).toHaveBeenCalledWith(diffProps.subject.id, {
+        position: diffProps.subject.position - 1,
+      });
+    });
+
+    it("should call editSubject callback with new upper subject position", () => {
+      const upperSub = diffProps.subjects.find(
+        ({ position }) => position === diffProps.subject.position - 1
+      );
+      expect(diffProps.editSubject).toHaveBeenLastCalledWith(upperSub.id, {
+        position: upperSub.position + 1,
+      });
+    });
+  });
+
+  //MoveDown
+  describe("when call 'moveDown' callback and subject position is it last", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<SubjectFormContainer {...props} subject={subFour} />);
+      [...props.render.mock.calls].pop()[0].moveDown();
+    });
+
+    it("should not call editSubject callback", () => {
+      expect(props.editSubject).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("when call 'moveDown' callback and subject position is not last", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      shallow(<SubjectFormContainer {...props} />);
+      [...props.render.mock.calls].pop()[0].moveDown();
+    });
+
+    it("should call editSubject callback with new subject position", () => {
+      expect(props.editSubject).toHaveBeenCalledWith(props.subject.id, {
+        position: props.subject.position + 1,
+      });
+    });
+
+    it("should call editSubject callback with new bottom subject position", () => {
+      const bottomSub = props.subjects.find(
+        ({ position }) => position === props.subject.position + 1
+      );
+      expect(props.editSubject).toHaveBeenLastCalledWith(bottomSub.id, {
+        position: bottomSub.position - 1,
+      });
     });
   });
 });
